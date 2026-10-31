@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Made To Flow 是吉隆坡的婚礼流程设计与统筹团队。婚前统筹、婚礼当天控场、vendor 协调和 cue calling，你享受当下，流程交给我们。服务整个西马。">
+<meta name="theme-color" content="#F4EFE6">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Made To Flow · 婚礼统筹">
+<meta property="og:description" content="你享受当下，流程交给我们。Wedding Flow Designer &amp; Coordinator, Kuala Lumpur.">
+<link rel="icon" type="image/png" href="media/mark-ink.png">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
+<title>Made To Flow · 婚礼统筹 Wedding Coordinator KL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600&family=Noto+Serif+SC:wght@500;700&display=swap">
+<style>
+/* Layout: an editorial wedding magazine. Full-bleed photographs alternate with ivory sections; deep-wine sections carry the moments that need weight (behind the scenes, the closing line). One column on phones, two-column spreads on desktop. */
+:root{
+  color-scheme:light;
+  --paper:#F4EFE6; --cream:#EBE3D6; --sand:#C9A79E; --stone:#7A6E69; --oxblood:#6E1F1E; --oxblood-hi:#571716;
+  --ink:#2A1514; --espresso:#6E1F1E; --line:rgba(42,21,20,.14); --line-dark:rgba(244,239,230,.16);
+  --on-dark:#F4EFE6; --on-dark-muted:rgba(239,233,223,.62);
+  --display-cn:"Noto Serif SC","Songti SC","STSong",serif;
+  --display-en:"Cormorant Garamond","Noto Serif SC",Georgia,serif;
+  --body:"Manrope","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+  --gutter:clamp(20px,5vw,64px);
+  --max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--sand);outline-offset:3px}
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--gutter)}
+.eyebrow{font-family:var(--body);font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--stone)}
+.en{font-family:var(--display-en);font-style:italic;font-weight:500;letter-spacing:.01em}
+h1,h2,h3{font-family:var(--display-cn);font-weight:700;margin:0;text-wrap:balance;letter-spacing:.02em}
+h2{font-size:clamp(30px,5.6vw,52px);line-height:1.25}
+h3{font-size:20px;line-height:1.4}
+p{margin:0}
+.lede{font-size:clamp(16px,1.9vw,18px);color:#5A4E4B;max-width:34em}
+section{padding-block:clamp(84px,12vw,148px)}
+.sec-head{display:flex;flex-direction:column;gap:14px;margin-bottom:clamp(40px,6vw,72px)}
+.dark{background:var(--ink);color:var(--on-dark)}
+.dark .eyebrow{color:var(--on-dark-muted)}
+.dark .lede{color:var(--on-dark-muted)}
+.tint{background:var(--cream)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 26px;border-radius:999px;font-size:14px;font-weight:600;letter-spacing:.06em;text-decoration:none;transition:background .3s,color .3s,transform .3s,border-color .3s;white-space:nowrap}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-solid{background:var(--oxblood);color:var(--on-dark)}
+.btn-solid:hover{background:var(--oxblood-hi)}
+.btn-line{border:1px solid currentColor;color:var(--ink)}
+.btn-line:hover{background:var(--ink);color:var(--on-dark);border-color:var(--ink)}
+.btn-light{background:var(--on-dark);color:var(--ink)}
+.btn-light:hover{background:#fff}
+.btn-ghost-light{border:1px solid rgba(239,233,223,.5);color:var(--on-dark)}
+.btn-ghost-light:hover{background:rgba(239,233,223,.12)}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:30;padding-top:env(safe-area-inset-top,0px);transition:background .4s,box-shadow .4s}
+.nav-in{max-width:var(--max);margin:0 auto;padding-inline:var(--gutter);height:76px;display:flex;align-items:center;justify-content:space-between;gap:16px;transition:height .4s}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--on-dark)}
+.brand img{height:30px;width:auto;transition:height .4s}
+.brand span{font-family:var(--display-en);font-weight:600;font-size:17px;letter-spacing:.2em;white-space:nowrap}
+.brand .ink{display:none}
+.links{display:flex;align-items:center;gap:30px}
+.links a{color:var(--on-dark);text-decoration:none;font-size:14px;letter-spacing:.08em;opacity:.85}
+.links a:hover{opacity:1}
+.links .btn{min-height:40px;padding:0 18px;font-size:13px}
+.nav .btn-nav{background:var(--on-dark);color:var(--ink);opacity:1}
+.nav.scrolled{background:rgba(244,239,230,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
+.nav.scrolled .nav-in{height:62px}
+.nav.scrolled .brand,.nav.scrolled .links a{color:var(--ink)}
+.nav.scrolled .brand .cream{display:none}
+.nav.scrolled .brand .ink{display:block}
+.nav.scrolled .brand img{height:26px}
+.nav.scrolled .btn-nav{background:var(--oxblood);color:var(--on-dark)}
+.burger{display:none;background:none;border:0;width:44px;height:44px;padding:10px;color:var(--on-dark);cursor:pointer}
+.nav.scrolled .burger{color:var(--ink)}
+.burger i{display:block;height:1.5px;background:currentColor;margin:6px 0;transition:transform .3s,opacity .3s}
+.menu{position:fixed;inset:0;z-index:29;background:var(--ink);color:var(--on-dark);display:flex;flex-direction:column;justify-content:center;gap:8px;padding:calc(90px + env(safe-area-inset-top,0px)) var(--gutter) calc(40px + env(safe-area-inset-bottom,0px))}
+.menu[hidden]{display:none}
+.menu a.m{font-family:var(--display-cn);font-size:30px;text-decoration:none;padding:8px 0;border-bottom:1px solid var(--line-dark);display:flex;justify-content:space-between;align-items:baseline}
+.menu a.m small{font-family:var(--display-en);font-style:italic;font-size:18px;color:var(--on-dark-muted)}
+.menu .btn{margin-top:28px}
+body.menu-open .nav{background:transparent;box-shadow:none}
+body.menu-open .nav .brand,body.menu-open .burger{color:var(--on-dark)}
+body.menu-open .nav .brand .cream{display:block}
+body.menu-open .nav .brand .ink{display:none}
+body.menu-open .burger i:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+body.menu-open .burger i:nth-child(2){opacity:0}
+body.menu-open .burger i:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+@media (max-width:860px){.links{display:none}.burger{display:block}}
+
+/* hero */
+.hero{position:relative;min-height:max(620px,92svh);display:flex;align-items:flex-end;color:var(--on-dark);overflow:hidden;padding:0}
+.hero-media{position:absolute;inset:0}
+.hero-media{will-change:transform}
+.hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity 2.2s ease,transform 0s linear 2.2s}
+.hero-media img.on{opacity:1}
+@media (prefers-reduced-motion:no-preference){.hero-media img.on{transform:scale(1.12);transition:opacity 2.2s ease,transform 9s ease-out}}
+.hero-dots{display:flex;gap:8px}
+.hero-dots button{width:26px;height:2px;padding:0;border:0;background:rgba(239,233,223,.35);cursor:pointer;transition:background .4s}
+.hero-dots button[aria-current="true"]{background:var(--on-dark)}
+.hero-dots button::after{content:"";display:block;height:20px;margin-top:-9px}
+[hidden]{display:none!important}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,13,12,.55) 0%,rgba(30,13,12,.12) 34%,rgba(30,13,12,.35) 62%,rgba(30,13,12,.86) 100%)}
+.hero-in{position:relative;z-index:1;width:100%;max-width:var(--max);margin:0 auto;padding:140px var(--gutter) clamp(44px,7vw,80px);display:flex;flex-direction:column;gap:22px}
+.hero .eyebrow{color:rgba(239,233,223,.78)}
+.hero h1{font-size:clamp(40px,8.4vw,92px);line-height:1.12;letter-spacing:.04em}
+.hero .en{font-size:clamp(20px,2.6vw,28px);color:rgba(239,233,223,.85)}
+.hero-foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;margin-top:10px}
+.hero-loc{font-size:11px;letter-spacing:.28em;color:rgba(239,233,223,.7)}
+
+/* intro */
+.intro .grid{display:grid;grid-template-columns:1fr;gap:clamp(36px,6vw,80px);align-items:end}
+@media (min-width:880px){.intro .grid{grid-template-columns:1.05fr 1fr}}
+.intro h2{font-size:clamp(38px,7vw,76px);line-height:1.15}
+.intro h2 .en{display:block;font-size:.5em;color:var(--stone);margin-top:10px;font-weight:500}
+.intro .copy{display:flex;flex-direction:column;gap:20px;min-width:0}
+.pull{font-family:var(--display-cn);font-size:clamp(20px,2.6vw,26px);line-height:1.6;padding-top:24px;border-top:1px solid var(--line);color:var(--ink)}
+
+/* pillars */
+.pillars{display:grid;grid-template-columns:1fr;border-top:1px solid var(--line)}
+@media (min-width:720px){.pillars{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1080px){.pillars{grid-template-columns:repeat(4,1fr)}}
+.pillar{padding:34px 28px 38px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:12px;transition:background .4s,padding .4s}
+@media (min-width:720px){.pillar{padding-right:28px}.pillar+.pillar{padding-left:28px;border-left:1px solid var(--line)}}
+@media (min-width:720px) and (max-width:1079px){.pillar:nth-child(3){padding-left:0;border-left:0}}
+.pillar .word{font-family:var(--display-en);font-size:clamp(34px,4vw,44px);font-weight:500;letter-spacing:.06em;line-height:1}
+.pillar h3{font-size:17px;color:var(--stone);font-family:var(--body);font-weight:600;letter-spacing:.12em}
+.pillar p{color:#5A4E4B;font-size:15px}
+
+/* behind the scenes */
+.bts .grid{display:grid;grid-template-columns:1fr;gap:clamp(40px,6vw,88px)}
+@media (min-width:900px){.bts .grid{grid-template-columns:minmax(0,.85fr) minmax(0,1fr)}.bts .film{position:sticky;top:100px;align-self:start}}
+.film{position:relative;border-radius:4px;overflow:hidden;aspect-ratio:9/14;max-width:440px;width:100%;background:#000}
+.film video{width:100%;height:100%;object-fit:cover}
+.film figcaption{position:absolute;left:0;right:0;bottom:0;padding:40px 18px 16px;background:linear-gradient(transparent,rgba(0,0,0,.7));font-size:12px;letter-spacing:.14em;color:var(--on-dark-muted)}
+.tl{position:relative;display:flex;flex-direction:column}
+.tl::before{content:"";position:absolute;left:7px;top:10px;bottom:10px;width:1px;background:var(--line-dark)}
+.tl .fill{position:absolute;left:7px;top:10px;width:1px;background:var(--sand);height:0;transition:height .5s ease}
+.step{position:relative;padding:0 0 38px 44px;display:grid;gap:4px;transition:opacity .5s}
+.step::before{content:"";position:absolute;left:0;top:8px;width:15px;height:15px;border-radius:50%;border:1px solid rgba(239,233,223,.4);background:var(--ink);transition:background .4s,border-color .4s}
+.step.on::before{background:var(--sand);border-color:var(--sand)}
+.step time{font-family:var(--display-en);font-size:26px;font-weight:500;letter-spacing:.04em;font-variant-numeric:tabular-nums;color:var(--sand)}
+.step b{font-family:var(--display-cn);font-size:19px;font-weight:500;letter-spacing:.04em}
+.step p{color:var(--on-dark-muted);font-size:15px;max-width:30em}
+.bts-quote{margin-top:22px;padding-top:30px;border-top:1px solid var(--line-dark);font-family:var(--display-cn);font-size:clamp(20px,2.4vw,24px);line-height:1.65}
+.bts-quote .en{display:block;font-size:17px;color:var(--on-dark-muted);margin-top:8px}
+
+/* services */
+.services{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border-block:1px solid var(--line)}
+@media (min-width:640px){.services{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1000px){.services{grid-template-columns:repeat(4,1fr)}}
+.svc{background:var(--paper);padding:30px 24px 34px;display:flex;flex-direction:column;gap:10px;transition:background .35s}
+.svc:hover{background:#FBF8F3}
+.svc .en{font-size:15px;color:var(--stone)}
+.svc h3{font-size:19px}
+.svc p{font-size:14.5px;color:#5A4E4B}
+
+/* process */
+.process{display:grid;grid-template-columns:1fr;counter-reset:s}
+@media (min-width:980px){.process{grid-template-columns:repeat(5,1fr);gap:28px}}
+.pstep{display:grid;grid-template-columns:56px 1fr;gap:4px 16px;padding:26px 0;border-top:1px solid var(--line)}
+@media (min-width:980px){.pstep{grid-template-columns:1fr;padding-top:28px}}
+.pstep .n{font-family:var(--display-en);font-size:30px;color:var(--stone);line-height:1;grid-row:span 3}
+.pstep .en{font-size:15px;color:var(--stone)}
+.pstep h3{font-size:21px}
+.pstep p{font-size:14.5px;color:#5A4E4B}
+.pstep.last h3{color:var(--espresso)}
+
+/* work */
+.work{display:flex;flex-direction:column;gap:clamp(70px,10vw,120px)}
+.wed{display:grid;grid-template-columns:1fr;gap:22px}
+@media (min-width:860px){.wed{grid-template-columns:repeat(12,1fr);gap:24px;align-items:end}}
+.wed .m1,.wed .m2{border-radius:3px;overflow:hidden;background:var(--cream)}
+.wed .m1 img,.wed .m1 video,.wed .m2 img,.wed .m2 video{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.wed .m1:hover img,.wed .m2:hover img{transform:scale(1.03)}
+.wed .m1{aspect-ratio:4/5}
+.wed .m2{aspect-ratio:3/4;width:62%;justify-self:end;margin-top:-18%}
+.wed .cap{display:flex;flex-direction:column;gap:8px}
+.wed .names{font-family:var(--display-en);font-size:clamp(32px,4.4vw,46px);font-weight:500;letter-spacing:.06em;line-height:1.1}
+.wed .names.cn{font-family:var(--display-cn);font-size:clamp(26px,3.6vw,36px)}
+.wed .meta{font-size:11px;letter-spacing:.26em;color:var(--stone);text-transform:uppercase}
+.wed .cap p{color:#5A4E4B;max-width:28em}
+@media (min-width:860px){
+  .wed .m1{grid-column:1/8;grid-row:1/3;aspect-ratio:4/5}
+  .wed .m2{grid-column:8/12;grid-row:1;width:auto;margin:0;justify-self:stretch}
+  .wed .cap{grid-column:8/13;grid-row:2;align-self:start}
+  .wed.flip .m1{grid-column:6/13}
+  .wed.flip .m2{grid-column:2/6}
+  .wed.flip .cap{grid-column:1/6}
+}
+
+/* testimonials */
+.quotes{display:grid;grid-template-columns:1fr;gap:0}
+.q{padding:clamp(40px,6vw,64px) 0;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr;gap:22px}
+@media (min-width:900px){.q{grid-template-columns:220px 1fr;gap:56px}}
+.q .who{display:flex;flex-direction:column;gap:6px}
+.q .who b{font-family:var(--display-en);font-size:24px;font-weight:500;letter-spacing:.06em}
+.q .who span{font-size:11px;letter-spacing:.24em;color:var(--stone);text-transform:uppercase}
+.q blockquote{margin:0;padding-top:.9em;font-family:var(--display-cn);font-size:clamp(19px,2.3vw,25px);line-height:1.85;font-weight:500;color:var(--ink);max-width:30em;position:relative}
+.q blockquote::before{content:"“";position:absolute;left:-.05em;top:-.28em;font-family:var(--display-en);font-size:3.4em;color:var(--sand);line-height:1}
+.q blockquote p+p{margin-top:.8em}
+
+/* about + team */
+.about .grid{display:grid;grid-template-columns:1fr;gap:clamp(40px,6vw,80px)}
+@media (min-width:900px){.about .grid{grid-template-columns:1fr 1fr;align-items:start}}
+.about .copy{display:flex;flex-direction:column;gap:18px;min-width:0}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border-block:1px solid var(--line);margin-top:14px}
+.facts div{background:var(--cream);padding:22px 4px 22px 0}
+.facts b{display:block;font-family:var(--display-en);font-size:40px;font-weight:500;line-height:1}
+.facts span{font-size:13px;color:#5A4E4B}
+.team{display:grid;grid-template-columns:1fr;gap:28px;align-items:end}
+@media (min-width:600px){.team{grid-template-columns:minmax(0,.9fr) minmax(0,1fr)}}
+.member{display:flex;flex-direction:column;gap:14px}
+.member .ph{aspect-ratio:3/4;border-radius:3px;overflow:hidden;background:var(--sand)}
+.member .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.member b{font-family:var(--display-en);font-size:26px;font-weight:500;letter-spacing:.08em}
+.member span{font-size:11px;letter-spacing:.24em;color:var(--stone);text-transform:uppercase;display:block}
+.team-note{display:flex;flex-direction:column;gap:14px;color:#5A4E4B;font-size:15px;min-width:0}
+.team-note h3{color:var(--ink)}
+.team-note ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.team-note li{padding-left:22px;position:relative}
+.team-note li::before{content:"";position:absolute;left:0;top:.85em;width:12px;height:1px;background:var(--espresso)}
+
+/* pricing */
+.price .grid{display:grid;grid-template-columns:1fr;gap:clamp(40px,6vw,80px)}
+@media (min-width:900px){.price .grid{grid-template-columns:1fr 1fr;align-items:start}}
+.factors{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.factors li{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);font-family:var(--display-cn);font-size:18px}
+.factors li .en{font-size:16px;color:var(--stone);white-space:nowrap}
+.include{display:flex;flex-direction:column;gap:14px;min-width:0}
+.include p{color:#5A4E4B}
+
+/* faq */
+.faq{border-top:1px solid var(--line);max-width:860px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:24px 44px 24px 0;position:relative;font-family:var(--display-cn);font-size:clamp(17px,2vw,20px);font-weight:500}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";position:absolute;right:6px;top:50%;width:14px;height:14px;margin-top:-7px;background:linear-gradient(var(--ink),var(--ink)) center/14px 1.5px no-repeat,linear-gradient(var(--ink),var(--ink)) center/1.5px 14px no-repeat;transition:transform .35s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq .a{padding:0 44px 26px 0;color:#5A4E4B;max-width:44em}
+
+/* contact */
+.contact .grid{display:grid;grid-template-columns:1fr;gap:clamp(40px,6vw,80px)}
+@media (min-width:900px){.contact .grid{grid-template-columns:1fr 1.1fr}}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:18px 16px}
+.form .full{grid-column:1/-1}
+.form label{display:flex;flex-direction:column;gap:8px;font-size:12px;letter-spacing:.14em;color:var(--stone);font-weight:600;min-width:0}
+.form input,.form select,.form textarea{font:inherit;font-size:16px;color:var(--ink);background:transparent;border:0;border-bottom:1px solid rgba(42,21,20,.3);border-radius:0;padding:10px 0;width:100%;letter-spacing:0;font-weight:500}
+.form textarea{min-height:84px;resize:vertical}
+.form input:focus,.form select:focus,.form textarea:focus{outline:none;border-bottom-color:var(--ink)}
+.form .hint{font-size:13px;color:var(--stone);letter-spacing:0;font-weight:400}
+.direct{display:flex;flex-direction:column;gap:18px;padding-top:26px;border-top:1px solid var(--line)}
+.direct a,.direct div{display:flex;justify-content:space-between;gap:16px;text-decoration:none;font-size:15px;flex-wrap:wrap}
+.direct span{color:var(--stone);font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+.direct a b,.direct div b{font-weight:600}
+.copy-btn{background:none;border:0;padding:0;font:inherit;color:var(--stone);text-decoration:underline;cursor:pointer;font-size:13px}
+
+/* closing */
+.closing{position:relative;overflow:hidden;color:var(--on-dark);padding-block:clamp(110px,16vw,190px)}
+.closing .bg{position:absolute;inset:0}
+.closing .bg img{width:100%;height:100%;object-fit:cover;object-position:50% 60%}
+.closing::after{content:"";position:absolute;inset:0;background:rgba(42,21,20,.72)}
+.closing .wrap{position:relative;z-index:1;display:flex;flex-direction:column;gap:26px;align-items:flex-start}
+.closing h2{font-size:clamp(32px,6vw,64px);line-height:1.35}
+.closing .en{font-size:clamp(20px,2.4vw,26px);color:rgba(239,233,223,.8)}
+
+/* footer */
+footer{background:var(--ink);color:var(--on-dark);padding-block:72px calc(110px + env(safe-area-inset-bottom,0px))}
+footer .grid{display:grid;grid-template-columns:1fr;gap:44px}
+@media (min-width:800px){footer .grid{grid-template-columns:1.2fr 1fr 1fr}}
+footer .logo{width:170px;height:auto}
+footer p{color:var(--on-dark-muted);font-size:14px}
+footer h4{margin:0 0 14px;font-size:11px;letter-spacing:.24em;color:var(--on-dark-muted);font-weight:600}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:15px}
+footer a{text-decoration:none}
+footer a:hover{text-decoration:underline}
+.sign{margin-top:56px;padding-top:26px;border-top:1px solid var(--line-dark);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:12px;color:var(--on-dark-muted);letter-spacing:.1em}
+
+/* floating whatsapp */
+.wa-float{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:25;display:inline-flex;align-items:center;gap:10px;background:var(--oxblood);color:var(--on-dark);text-decoration:none;border-radius:999px;padding:13px 20px 13px 16px;font-size:14px;font-weight:600;letter-spacing:.06em;box-shadow:0 10px 30px rgba(42,21,20,.3);transition:transform .35s,opacity .35s}
+.wa-float svg{width:20px;height:20px}
+.wa-float .dot{width:7px;height:7px;border-radius:50%;background:var(--on-dark);box-shadow:0 0 0 3px rgba(244,239,230,.25)}
+.wa-float.hide{transform:translateY(140%);opacity:0;pointer-events:none}
+
+/* motion: content is visible at rest; only a short rise plays */
+@media (prefers-reduced-motion:no-preference){
+  .rise{transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+  .rise.pre{transform:translateY(22px)}
+}
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--on-dark);padding:10px 16px;border-radius:10px;font-size:14px;z-index:40}
+</style>
+</head>
+<body>
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top" aria-label="Made To Flow 首页">
+      <img class="cream" src="media/mark-cream.png" alt="" width="202" height="162">
+      <img class="ink" src="media/mark-ink.png" alt="" width="202" height="162">
+      <span>MADE TO FLOW</span>
+    </a>
+    <nav class="links" aria-label="主选单">
+      <a href="#work">真实婚礼</a>
+      <a href="#services">服务</a>
+      <a href="#behind">幕后</a>
+      <a href="#about">关于我们</a>
+      <a href="#contact">联络</a>
+      <a class="btn btn-nav wa-link" href="#" target="_blank" rel="noopener">预约咨询</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="打开选单" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button>
+  </div>
+</header>
+<div class="menu" id="menu" hidden>
+  <a class="m" href="#work">真实婚礼 <small>Work</small></a>
+  <a class="m" href="#services">服务 <small>Services</small></a>
+  <a class="m" href="#behind">幕后 <small>Experience</small></a>
+  <a class="m" href="#about">关于我们 <small>About</small></a>
+  <a class="m" href="#contact">联络 <small>Contact</small></a>
+  <a class="btn btn-light wa-link" href="#" target="_blank" rel="noopener">WhatsApp 咨询档期</a>
+</div>
+
+<main id="top">
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-media" id="heroMedia">
+    <img class="on" src="media/jack-rebecca-cake.jpg" alt="Jack 与 Rebecca 在舞台灯光下切蛋糕" style="object-position:38% 62%" fetchpriority="high">
+    <img src="media/penang-ceremony.jpg" alt="Penang 海边的户外证婚仪式" style="object-position:50% 52%">
+    <img src="media/kacey.jpg" alt="Adrian 与 Kacey 在宴会厅里相拥" style="object-position:50% 40%">
+  </div>
+  <div class="hero-in">
+    <div class="eyebrow">Wedding Flow Designer &amp; Coordinator</div>
+    <h1>你享受当下，<br>流程交给我们。</h1>
+    <p class="en">You enjoy the moment. We take care of the flow.</p>
+    <div class="hero-foot">
+      <div class="btns">
+        <a class="btn btn-light wa-link" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.7 11.7 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3Z"/></svg>WhatsApp 咨询档期</a>
+        <a class="btn btn-ghost-light" href="#work">看真实婚礼</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start"><div class="hero-dots" id="heroDots" role="group" aria-label="切换封面照片"><button aria-label="照片 1" aria-current="true"></button><button aria-label="照片 2"></button><button aria-label="照片 3"></button></div><div class="hero-loc">KUALA LUMPUR · WEST MALAYSIA</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INTRO ============ -->
+<section class="intro">
+  <div class="wrap grid">
+    <h2 class="rise">你的婚礼。<br>我们的 Flow。<span class="en">Your wedding. Our flow.</span></h2>
+    <div class="copy rise">
+      <p class="lede">顺利的婚礼，不是靠运气。</p>
+      <p class="lede">每一次准时的进场、刚刚好的致辞、动人的瞬间和无缝的转场背后，都有一套需要被设计、被协调、被执行的流程。</p>
+      <p class="lede">Made To Flow 在幕后处理这些细节，让你们可以全心在场。</p>
+      <p class="pull">你不应该在自己的婚礼上，<br>管理自己的婚礼。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY ============ -->
+<section class="tint" id="why">
+  <div class="wrap">
+    <div class="sec-head rise">
+      <div class="eyebrow">Why Made To Flow</div>
+      <h2>不只是统筹。</h2>
+    </div>
+    <div class="pillars">
+      <div class="pillar rise"><div class="word">People</div><h3>人</h3><p>先了解你们、家人和每一位 vendor，才知道流程该怎么走。</p></div>
+      <div class="pillar rise"><div class="word">Emotions</div><h3>情绪</h3><p>守住最重要的那几个瞬间，让它们在对的时间发生。</p></div>
+      <div class="pillar rise"><div class="word">Flow</div><h3>流程</h3><p>设计婚礼的每一段怎么衔接、谁在什么时候往哪里走。</p></div>
+      <div class="pillar rise"><div class="word">Execution</div><h3>执行</h3><p>婚礼当天，确保写在纸上的计划，真的发生。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BEHIND THE SCENES ============ -->
+<section class="dark bts" id="behind">
+  <div class="wrap">
+    <div class="sec-head rise">
+      <div class="eyebrow">The details you don't see</div>
+      <h2>你看不到的细节。</h2>
+      <p class="lede">一场婚礼当天，有几十件事在同一时间发生。你在台前享受，我们在幕后对时间。</p>
+    </div>
+    <div class="grid">
+      <figure class="film" style="margin:0">
+        <video class="lazy-video" muted loop playsinline preload="none" poster="media/bts1-poster.jpg" aria-label="Adrian 与 Kacey 婚礼当天的幕后片段"><source data-src="media/bts1.mp4" type="video/mp4"></video>
+        <figcaption>BEHIND THE SCENES · ADRIAN &amp; KACEY</figcaption>
+      </figure>
+      <div>
+        <div class="tl" id="tl">
+          <span class="fill" id="tlFill"></span>
+          <div class="step"><time>3:00 PM</time><b>布置进场</b><p>对照平面图检查舞台、桌位、走道和签到区。</p></div>
+          <div class="step"><time>5:00 PM</time><b>乐队 Sound Check</b><p>确认每一首进场音乐的版本、起点和音量。</p></div>
+          <div class="step"><time>6:30 PM</time><b>Cocktail 迎宾</b><p>安排宾客动线，提醒家人和伴郎伴娘就位。</p></div>
+          <div class="step"><time>7:30 PM</time><b>第一次进场</b><p>同一秒 cue 音乐、灯光、MC 和摄影。</p></div>
+          <div class="step"><time>8:45 PM</time><b>致辞与敬酒</b><p>致辞的人提前在台边待命，麦克风已经测好。</p></div>
+          <div class="step"><time>9:30 PM</time><b>乐队表演</b><p>跟厨房对好上菜节奏，节目不被打断。</p></div>
+          <div class="step"><time>10:20 PM</time><b>最后一道菜</b><p>准备送客流程、最后的合照和 vendor 撤场。</p></div>
+        </div>
+        <p class="bts-quote rise">顺利的婚礼不代表什么都没发生，<br>只是你不需要去处理。<span class="en">A smooth wedding doesn't mean nothing happened. It means you didn't have to deal with it.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head rise">
+      <div class="eyebrow">What we take care of</div>
+      <h2>我们负责的事。</h2>
+      <p class="lede">从婚礼前的流程设计，到当天每一个 cue。你已经订好的 vendor，我们帮你串起来。</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="services">
+      <div class="svc"><span class="en">Wedding Flow Design</span><h3>婚礼流程设计</h3><p>设计整场婚礼的顺序和移动方式，从迎宾到送客。</p></div>
+      <div class="svc"><span class="en">Wedding Day Coordination</span><h3>婚礼当天统筹</h3><p>从布置进场到最后一个节目，全程控场。</p></div>
+      <div class="svc"><span class="en">Vendor Coordination</span><h3>Vendor 协调</h3><p>跟场地、MC、乐队、摄影、化妆和布置对好时间和流程。</p></div>
+      <div class="svc"><span class="en">Timeline &amp; Programme</span><h3>Timeline 与节目流程</h3><p>一份实际可执行、细到分钟的婚礼 timeline。</p></div>
+      <div class="svc"><span class="en">Cue Calling</span><h3>Cue Calling</h3><p>进场音乐、灯光、视频、致辞和敬酒，每一个 cue 都由我们 call。</p></div>
+      <div class="svc"><span class="en">Guest Flow</span><h3>宾客动线</h3><p>让宾客知道该去哪里、接下来会发生什么。</p></div>
+      <div class="svc"><span class="en">Crisis Management</span><h3>突发状况处理</h3><p>vendor 迟到、流程临时改动，我们在幕后冷静处理。</p></div>
+      <div class="svc"><span class="en">Plan B Execution</span><h3>Plan B 执行</h3><p>事情没有照计划走的时候，备案已经准备好。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="tint">
+  <div class="wrap">
+    <div class="sec-head rise">
+      <div class="eyebrow">From plan to flow</div>
+      <h2>从计划，到顺顺地走完。</h2>
+    </div>
+    <div class="process">
+      <div class="pstep rise"><span class="n">01</span><span class="en">Understand</span><h3>了解</h3><p>了解你们的婚礼、场地、vendor，还有对你们最重要的是什么。</p></div>
+      <div class="pstep rise"><span class="n">02</span><span class="en">Design</span><h3>设计</h3><p>设计婚礼流程、timeline、节目和分工。</p></div>
+      <div class="pstep rise"><span class="n">03</span><span class="en">Coordinate</span><h3>协调</h3><p>婚礼前跟每一位 vendor 对好流程，把所有东西准备好。</p></div>
+      <div class="pstep rise"><span class="n">04</span><span class="en">Execute</span><h3>执行</h3><p>婚礼当天，我们控流程、call cue、处理 vendor 和突发状况。</p></div>
+      <div class="pstep rise last"><span class="n">05</span><span class="en">You enjoy</span><h3>你只管享受</h3><p>不用再想"接下来是什么"。你只需要好好在场。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REAL WEDDINGS ============ -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head rise">
+      <div class="eyebrow">Real weddings. Real moments.</div>
+      <h2>真实的婚礼，<br>真实的瞬间。</h2>
+    </div>
+    <div class="work">
+      <article class="wed">
+        <div class="m1"><img src="media/kacey.jpg" alt="Adrian 与 Kacey 在宴会厅" loading="lazy"></div>
+        <div class="m2"><video class="lazy-video" muted loop playsinline preload="none" poster="media/bts1-poster.jpg" aria-label="Adrian 与 Kacey 婚礼进场片段"><source data-src="media/bts1.mp4" type="video/mp4"></video></div>
+        <div class="cap rise">
+          <div class="meta">12.09.2026 · Kuala Lumpur</div>
+          <div class="names">Adrian &amp; Kacey</div>
+          <p>宴会厅婚礼。从婚前流程到当天的进场、节目和气球落下的那一刻，全程由我们统筹。</p>
+        </div>
+      </article>
+      <article class="wed flip">
+        <div class="m1"><img src="media/penang-ceremony.jpg" alt="Penang 海边的户外证婚仪式" loading="lazy"></div>
+        <div class="m2"><img src="media/penang-cake.jpg" alt="新人在海边切蛋糕" loading="lazy"></div>
+        <div class="cap rise">
+          <div class="meta">Penang · Outdoor</div>
+          <div class="names cn">海边证婚</div>
+          <p>户外婚礼要看天气、看日光，也要顾好宾客。我们从 KL 北上，把证婚、切蛋糕和宾客动线一一接好。</p>
+        </div>
+      </article>
+      <article class="wed">
+        <div class="m1"><video class="lazy-video" muted loop playsinline preload="none" poster="media/bts2-poster.jpg" aria-label="Jack 与 Rebecca 婚礼当天片段"><source data-src="media/bts2.mp4" type="video/mp4"></video></div>
+        <div class="m2"><img src="media/jack-rebecca.jpg" alt="Jack 与 Rebecca 和统筹团队合照" loading="lazy"></div>
+        <div class="cap rise">
+          <div class="meta">10.01.2026 · Ballroom</div>
+          <div class="names">Jack &amp; Rebecca</div>
+          <p>中式褂皇进场、灯光、乐队、敬酒，几十个 cue 在同一个晚上完成。</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="tint" id="words">
+  <div class="wrap">
+    <div class="sec-head rise">
+      <div class="eyebrow">Words from our couples</div>
+      <h2>新人们说。</h2>
+    </div>
+    <div class="quotes">
+      <div class="q rise">
+        <div class="who"><b>Adrian &amp; Kacey</b><span>12.09.2026 · Kuala Lumpur</span></div>
+        <blockquote><p>很多事情我甚至还来不及担心，你们已经帮我们想好了、安排好了，让我们这对新人可以真正放下心来，安心享受属于我们的这一天。</p><p>现在婚礼结束了，回头看，真的觉得 Wedding Coordinator 是一场婚礼里非常非常重要的存在。</p></blockquote>
+      </div>
+      <div class="q rise">
+        <div class="who"><b>Penang</b><span>新人 · 外地婚礼</span></div>
+        <blockquote><p>从前期沟通到婚礼当天，整个过程都让人非常安心，信息回复从来没有慢过。</p><p>婚礼当天不管遇到什么小状况，你们都能马上处理好，让我们可以真正放松、好好享受属于我们的那一天。</p></blockquote>
+      </div>
+      <div class="q rise">
+        <div class="who"><b>The Bride</b><span>婚礼隔天的 WhatsApp</span></div>
+        <blockquote><p>幸好最后有叫你们来帮忙，你们接手后，我这边的压力减轻了不少，东西都安排好好。昨天的婚礼都很顺利。</p></blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="about" id="about">
+  <div class="wrap grid">
+    <div class="copy rise">
+      <div class="eyebrow">Built from experience</div>
+      <h2>从现场经验<br>长出来的品牌。</h2>
+      <p class="lede">Made To Flow 是一个年轻的品牌，建立在多年真实的婚礼与宴会现场经验上。</p>
+      <p class="lede">我们从宴会厅的第一线做起，从服务、督导到婚礼统筹，看过婚礼在幕后真正发生的每一件事：哪里最容易卡住，哪个环节最容易出错。</p>
+      <p class="lede">今天，我们把这些经验整理成清楚的 SOP、分工和工具，让每一场婚礼都有一套可以依靠的流程。</p>
+      <div class="facts">
+        <div><b>7 年+</b><span>婚礼与宴会现场经验</span></div>
+        <div><b>West MY</b><span>KL、Selangor、Penang、JB 都去过</span></div>
+      </div>
+    </div>
+    <div class="team rise" aria-labelledby="teamTitle">
+      <div class="member">
+        <div class="ph"><img src="media/desmond.jpg" alt="Desmond" loading="lazy"></div>
+        <div><b>Desmond</b><span>Team Leader</span></div>
+      </div>
+      <div class="team-note">
+        <div class="eyebrow">People behind the flow</div>
+        <h3 id="teamTitle">流程背后的人。</h3>
+        <p>婚礼当天，你见到的是一个分工清楚的团队，不是临时找来的帮手。</p>
+        <ul>
+          <li>熟悉宴会厅和户外婚礼的运作</li>
+          <li>按照同一套 timeline 和 cue sheet 执行</li>
+          <li>婚礼前就跟你的 vendor 对好流程</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="tint price" id="pricing">
+  <div class="wrap grid">
+    <div class="rise">
+      <div class="sec-head" style="margin-bottom:28px">
+        <div class="eyebrow">Designed around your wedding</div>
+        <h2>按你的婚礼来报价。</h2>
+      </div>
+      <div class="include">
+        <p class="lede">每一场婚礼都不一样，所以我们不拿固定配套来套你。了解你的婚礼之后，我们会给你一份清楚的专属报价。</p>
+        <p>报价包含婚前统筹和婚礼当天执行，付款分阶段进行，跟着婚前统筹的进度走。</p>
+        <div class="btns" style="margin-top:8px"><a class="btn btn-solid wa-quote" href="#" target="_blank" rel="noopener">获取专属报价</a></div>
+      </div>
+    </div>
+    <ul class="factors rise" aria-label="影响报价的因素">
+      <li>婚礼规模与桌数 <span class="en">Wedding size</span></li>
+      <li>场地 <span class="en">Venue</span></li>
+      <li>节目流程的复杂度 <span class="en">Programme</span></li>
+      <li>Vendor 数量 <span class="en">Vendors</span></li>
+      <li>宾客动线 <span class="en">Guest flow</span></li>
+      <li>统筹人数与分工 <span class="en">Coordination</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head rise">
+      <div class="eyebrow">FAQ</div>
+      <h2>常见问题。</h2>
+    </div>
+    <div class="faq">
+      <details><summary>什么是 Wedding Flow Design？</summary><div class="a">就是先把婚礼当天"怎么动"设计好：谁在什么时候出现在哪里、音乐什么时候进、灯光和摄影怎么配合、宾客怎么移动、上菜和节目怎么衔接。流程设计好了，当天才执行得顺。</div></details>
+      <details><summary>Wedding Planner 和 Wedding Coordinator 有什么分别？</summary><div class="a">Planner 通常从零开始帮你找 vendor、定预算、做设计。Coordinator 专注把你已经订好的一切串起来，确保婚礼当天照着流程走。很多新人 vendor 都订好了，缺的是一个人把所有东西接起来，这就是我们做的事。</div></details>
+      <details><summary>会跟我们已经订好的 vendor 配合吗？</summary><div class="a">会。婚礼前我们会跟场地、MC、乐队、摄影、化妆和布置对好流程和时间，婚礼当天由我们统一 cue。</div></details>
+      <details><summary>会安排几位 coordinator？</summary><div class="a">看桌数、场地和流程的复杂度来安排。报价的时候会清楚列出人数和分工。</div></details>
+      <details><summary>有婚前统筹吗？</summary><div class="a">有。包括 timeline、节目流程、vendor 沟通、场地动线和 rehearsal 安排。我们不是婚礼当天才出现。</div></details>
+      <details><summary>音乐和 cue 也会处理吗？</summary><div class="a">会。进场音乐、灯光、视频、致辞、敬酒、切蛋糕，每一个 cue 都由我们 call。</div></details>
+      <details><summary>遇到突发状况怎么办？</summary><div class="a">vendor 迟到、流程临时改动、下雨要转 Plan B，我们都在幕后处理。大部分时候，新人和宾客根本不会察觉。</div></details>
+      <details><summary>KL 以外的婚礼也接吗？</summary><div class="a">接。我们服务整个西马，Penang、JB 都去过。外地婚礼的交通和住宿会另外计算。</div></details>
+      <details><summary>应该什么时候预订？</summary><div class="a">建议婚礼前 6 到 12 个月，吉日和热门日子会比较早满。最晚也建议在婚礼前 2 到 3 个月，让我们有足够时间做婚前统筹。</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="tint contact" id="contact">
+  <div class="wrap grid">
+    <div class="rise" style="display:flex;flex-direction:column;gap:22px;min-width:0">
+      <div class="eyebrow">Let's talk</div>
+      <h2>跟我们聊聊<br>你的婚礼。</h2>
+      <p class="lede">填好右边的资料，按一下就会打开 WhatsApp，资料已经帮你写好在 message 里。</p>
+      <div class="direct">
+        <a class="wa-link" href="#" target="_blank" rel="noopener"><span>WhatsApp</span><b>010-568 1636</b></a>
+        <div><span>Email</span><b id="mail">madetoflowevent@gmail.com</b><button class="copy-btn" data-copy="madetoflowevent@gmail.com" type="button">Copy</button></div>
+        <a href="https://www.instagram.com/made_to_flow/" target="_blank" rel="noopener"><span>Instagram</span><b>@made_to_flow</b></a>
+      </div>
+    </div>
+    <form class="form rise" id="form" novalidate>
+      <label>称呼<input id="c_name" placeholder="例如 Ms Kacey" autocomplete="name"></label>
+      <label>婚礼日期<input id="c_date" type="date"></label>
+      <label class="full">婚礼场地<input id="c_venue" placeholder="酒店 / 餐厅 / 户外场地"></label>
+      <label>桌数<input id="c_tables" inputmode="numeric" placeholder="例如 40"></label>
+      <label>想了解<select id="c_need">
+        <option>婚前统筹 + 婚礼当天执行</option>
+        <option>婚礼当天统筹</option>
+        <option>还不确定，想先了解</option>
+      </select></label>
+      <label class="full">已经订好的 vendor（可以不填）<textarea id="c_vendors" placeholder="例如 MC、乐队、摄影、布置"></textarea></label>
+      <div class="full" style="display:flex;flex-direction:column;gap:10px;margin-top:6px">
+        <a class="btn btn-solid" id="formSend" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.7 11.7 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3Z"/></svg>用 WhatsApp 发送</a>
+        <span class="hint" style="font-size:13px;color:var(--stone)">会打开 WhatsApp，你可以先看过 message 再按发送。</span>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ============ CLOSING ============ -->
+<section class="closing">
+  <div class="bg"><img src="media/penang-ceremony.jpg" alt="" loading="lazy"></div>
+  <div class="wrap rise">
+    <h2>婚礼应该被记住的，<br>是那些瞬间，<br>不是那些问题。</h2>
+    <p class="en">Let us take care of the flow.</p>
+    <div class="btns">
+      <a class="btn btn-light wa-link" href="#" target="_blank" rel="noopener">WhatsApp 咨询档期</a>
+      <a class="btn btn-ghost-light" href="#contact">填写婚礼资料</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="grid">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <img class="logo" src="media/logo-cream.png" alt="Made To Flow" width="333" height="314" loading="lazy">
+        <p>Wedding Flow Designer &amp; Coordinator<br>Kuala Lumpur · West Malaysia</p>
+      </div>
+      <div>
+        <h4>CONTACT</h4>
+        <ul>
+          <li><a class="wa-link" href="#" target="_blank" rel="noopener">WhatsApp · 010-568 1636</a></li>
+          <li><a href="https://www.instagram.com/made_to_flow/" target="_blank" rel="noopener">Instagram · @made_to_flow</a></li>
+          <li>madetoflowevent@gmail.com</li>
+        </ul>
+      </div>
+      <div>
+        <h4>EXPLORE</h4>
+        <ul>
+          <li><a href="#work">真实婚礼</a></li>
+          <li><a href="#services">服务</a></li>
+          <li><a href="#faq">常见问题</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="sign"><span class="en" style="font-size:16px;letter-spacing:.02em">You enjoy the moment. We take care of the flow.</span><span>© 2026 MADE TO FLOW</span></div>
+  </div>
+</footer>
+
+<a class="wa-float wa-link" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="WhatsApp 咨询"><span class="dot" aria-hidden="true"></span>WhatsApp 咨询</a>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(()=>{
+  /* ---- editable: contact ---- */
+  const PHONE="60105681636";
+  const GREETING="Hi Made To Flow 😊 我想了解一下婚礼统筹服务。";
+  const QUOTE="Hi Made To Flow 😊 我想拿一个婚礼统筹的报价。\n婚礼日期：\n场地：\n桌数：";
+  const wa=t=>`https://wa.me/${PHONE}?text=${encodeURIComponent(t)}`;
+  document.querySelectorAll(".wa-link").forEach(a=>a.href=wa(GREETING));
+  document.querySelectorAll(".wa-quote").forEach(a=>a.href=wa(QUOTE));
+
+  /* ---- form builds a WhatsApp message ---- */
+  const v=id=>document.getElementById(id).value.trim();
+  const fmt=d=>{if(!d)return"";const[y,m,dd]=d.split("-");return `${+dd}/${+m}/${y}`};
+  function build(){
+    const lines=["Hi Made To Flow 😊 我想了解一下婚礼统筹服务。",""];
+    if(v("c_name"))lines.push("称呼："+v("c_name"));
+    lines.push("婚礼日期："+(fmt(v("c_date"))||"还没确定"));
+    if(v("c_venue"))lines.push("场地："+v("c_venue"));
+    if(v("c_tables"))lines.push("桌数："+v("c_tables"));
+    lines.push("想了解："+v("c_need"));
+    if(v("c_vendors"))lines.push("已订 vendor："+v("c_vendors"));
+    document.getElementById("formSend").href=wa(lines.join("\n"));
+  }
+  const form=document.getElementById("form");
+  form.addEventListener("input",build);form.addEventListener("change",build);
+  form.addEventListener("submit",e=>e.preventDefault());
+  build();
+
+  /* ---- copy email ---- */
+  const toast=m=>{const t=document.getElementById("toast");t.textContent=m;t.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>t.hidden=true,2000)};
+  document.querySelectorAll("[data-copy]").forEach(b=>b.addEventListener("click",async()=>{
+    try{await navigator.clipboard.writeText(b.dataset.copy);toast("Email 已 copy")}
+    catch(_){const r=document.createRange();r.selectNodeContents(document.getElementById("mail"));const s=getSelection();s.removeAllRanges();s.addRange(r);toast("已选取，可以长按 copy")}
+  }));
+
+  /* ---- hero crossfade ---- */
+  const slides=[...document.querySelectorAll("#heroMedia img")],dots=[...document.querySelectorAll("#heroDots button")];
+  let cur=0,timer=null;
+  const show=i=>{slides[cur].classList.remove("on");dots[cur].removeAttribute("aria-current");cur=(i+slides.length)%slides.length;
+    slides[cur].classList.add("on");dots[cur].setAttribute("aria-current","true")};
+  const start=()=>{clearInterval(timer);if(!matchMedia("(prefers-reduced-motion: reduce)").matches)timer=setInterval(()=>show(cur+1),6000)};
+  dots.forEach((d,i)=>d.addEventListener("click",()=>{show(i);start()}));
+  document.addEventListener("visibilitychange",()=>document.hidden?clearInterval(timer):start());
+  start();
+
+  /* ---- nav ---- */
+  const nav=document.getElementById("nav"),float=document.getElementById("waFloat"),hero=document.getElementById("heroMedia");
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let ticking=false;
+  function onScroll(){
+    const y=scrollY;
+    nav.classList.toggle("scrolled",y>40);
+    const nearEnd=innerHeight+y>document.documentElement.scrollHeight-260;
+    float.classList.toggle("hide",y<innerHeight*.6||nearEnd);
+    if(!reduce&&y<innerHeight*1.2)hero.style.transform=`translateY(${y*.18}px)`;
+    ticking=false;
+  }
+  addEventListener("scroll",()=>{if(!ticking){ticking=true;requestAnimationFrame(onScroll)}},{passive:true});
+  onScroll();
+
+  const burger=document.getElementById("burger"),menu=document.getElementById("menu");
+  const setMenu=open=>{menu.hidden=!open;document.body.classList.toggle("menu-open",open);burger.setAttribute("aria-expanded",open);burger.setAttribute("aria-label",open?"关闭选单":"打开选单");document.body.style.overflow=open?"hidden":""};
+  burger.addEventListener("click",()=>setMenu(menu.hidden));
+  menu.addEventListener("click",e=>{if(e.target.closest("a"))setMenu(false)});
+  addEventListener("keydown",e=>{if(e.key==="Escape"&&!menu.hidden)setMenu(false)});
+
+  /* ---- gentle rise (content stays visible) ---- */
+  if(!reduce&&"IntersectionObserver" in window){
+    const els=[...document.querySelectorAll(".rise")].filter(el=>el.getBoundingClientRect().top>innerHeight);
+    els.forEach(el=>el.classList.add("pre"));
+    const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove("pre");io.unobserve(e.target)}}),{rootMargin:"0px 0px -8% 0px"});
+    els.forEach(el=>io.observe(el));
+  }
+
+  /* ---- timeline progress ---- */
+  const steps=[...document.querySelectorAll("#tl .step")],fill=document.getElementById("tlFill"),tl=document.getElementById("tl");
+  function tlUpdate(){
+    const mid=innerHeight*.55;let last=-1;
+    steps.forEach((s,i)=>{const on=s.getBoundingClientRect().top<mid;s.classList.toggle("on",on);if(on)last=i});
+    if(last<0){fill.style.height="0px";return}
+    const r=steps[last].getBoundingClientRect(),t=tl.getBoundingClientRect();
+    fill.style.height=Math.max(0,r.top-t.top)+"px";
+  }
+  addEventListener("scroll",()=>requestAnimationFrame(tlUpdate),{passive:true});tlUpdate();
+
+  /* ---- videos load and play only when on screen ---- */
+  const vids=document.querySelectorAll(".lazy-video");
+  if("IntersectionObserver" in window){
+    const vio=new IntersectionObserver(es=>es.forEach(e=>{
+      const vd=e.target;
+      if(e.isIntersecting){
+        const s=vd.querySelector("source[data-src]");
+        if(s){s.src=s.dataset.src;s.removeAttribute("data-src");vd.load()}
+        if(!reduce){const p=vd.play();if(p&&p.catch)p.catch(()=>{})}
+      }else vd.pause();
+    }),{threshold:.25});
+    vids.forEach(vd=>vio.observe(vd));
+  }
+})();
+</script>
+</body>
+</html>
