@@ -2,10 +2,10 @@
 
 Wedding flow designer & coordinator, Kuala Lumpur.
 
-- `index.html` — the whole homepage (styles and script inline)
-- `media/` — photos, logo and behind-the-scenes videos
+- `public/index.html` — the whole homepage (styles and script inline)
+- `public/media/` — photos, logo and behind-the-scenes videos
 
-Static site, no build step. Deployed on Cloudflare.
+Static site, no build step. Cloudflare Worker `madetoflow` deploys `public/` on every push to main (config in `wrangler.jsonc`).
 
 ## Project State
 - Palette: ivory #F4EFE6 · deep wine #2A1514 · oxblood #6E1F1E (oxblood only on CTAs)
