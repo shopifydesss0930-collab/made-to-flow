@@ -245,39 +245,6 @@ footer .by a{color:var(--gold);text-decoration:none}
  <p class="note reveal"><span class="t-en">Parking is available at the hotel.<br>Nearest LRT: Bukit Nanas / Dang Wangi.</span><span class="t-zh zh">酒店设有停车场<br>最近轻快铁站：Bukit Nanas / Dang Wangi</span></p>
 </section>
 
-<!-- DRESS -->
-<section class="dress grain">
- <div class="eyebrow reveal"><span class="t-en">Dress code</span><span class="t-zh zh">着装</span></div>
- <h2 class="reveal d1"><span class="t-en">Formal · Earth Tones</span><span class="t-zh zh">正装 · 大地色系</span></h2>
- <div class="sw reveal" id="sw"><span style="background:#e9dfcf"></span><span style="background:#cdb89a"></span><span style="background:#a88b6a"></span><span style="background:#6f5a46"></span><span style="background:#2f2621"></span></div>
- <p class="lead reveal t-en">We'd love to see you in soft neutrals and warm earth tones.<br>Kindly avoid all-white and all-red.</p>
- <p class="lead reveal t-zh zh">欢迎穿着柔和的大地色系<br>请避免全白及全红</p>
-</section>
-
-<!-- RSVP -->
-<section class="rsvp grain" id="rsvp">
- <div class="eyebrow reveal"><span class="t-en">RSVP</span><span class="t-zh zh">出席回复</span></div>
- <h2 class="reveal d1"><span class="t-en">Will you join us?</span><span class="t-zh zh">您会出席吗？</span></h2>
- <p class="lead reveal d2" style="color:#9d9184"><span class="t-en">Kindly reply by 12 August 2026</span><span class="t-zh zh">请于 2026 年 8 月 12 日前回复</span></p>
- <form id="form" class="reveal d2" novalidate>
-  <div class="f"><label><span class="t-en">YOUR NAME</span><span class="t-zh zh">您的名字</span></label><input id="nm" autocomplete="name"></div>
-  <div class="f"><label><span class="t-en">ATTENDING</span><span class="t-zh zh">是否出席</span></label>
-   <div class="chips" data-single id="att"><span class="chip" data-v="yes"><span class="t-en">Joyfully accept</span><span class="t-zh zh">欣然出席</span></span><span class="chip" data-v="no"><span class="t-en">Regretfully decline</span><span class="t-zh zh">无法出席</span></span></div></div>
-  <div class="f" id="paxf"><label><span class="t-en">NUMBER OF GUESTS</span><span class="t-zh zh">出席人数</span></label>
-   <div class="step"><button type="button" id="minus">−</button><output id="pax">1</output><button type="button" id="plus">+</button></div></div>
-  <div class="f"><label><span class="t-en">DIETARY</span><span class="t-zh zh">饮食需求</span></label>
-   <div class="chips" data-single id="diet"><span class="chip on" data-v="none"><span class="t-en">None</span><span class="t-zh zh">无</span></span><span class="chip" data-v="veg"><span class="t-en">Vegetarian</span><span class="t-zh zh">素食</span></span><span class="chip" data-v="nobeef"><span class="t-en">No beef</span><span class="t-zh zh">不吃牛</span></span><span class="chip" data-v="seafood"><span class="t-en">No seafood</span><span class="t-zh zh">不吃海鲜</span></span></div></div>
-  <div class="f"><label><span class="t-en">A NOTE FOR THE COUPLE</span><span class="t-zh zh">给新人的祝福</span></label><textarea id="msg"></textarea></div>
-  <p class="err" id="err"><span class="t-en">Please fill in your name and let us know if you're attending.</span><span class="t-zh zh">请填写名字并选择是否出席</span></p>
-  <button class="submit" type="submit"><span class="t-en">SEND REPLY</span><span class="t-zh zh">提交回复</span></button>
- </form>
- <div class="thanks" id="thanks">
-  <div class="seal">K&amp;A</div>
-  <h3 id="th-h"></h3>
-  <p id="th-p"></p>
- </div>
-</section>
-
 <footer>
  <div class="fn">Kacey <i>&amp;</i> Adrian</div>
  <div class="fd">12 · 09 · 2026 · KUALA LUMPUR</div>
@@ -309,23 +276,11 @@ $('#ics').onclick=e=>{e.preventDefault();const ics=['BEGIN:VCALENDAR','VERSION:2
  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));a.download='Kacey-Adrian-Wedding.ics';a.click()};
 // reveal on scroll
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.18});
-document.querySelectorAll('.reveal,#month,#sw,.ev').forEach(el=>io.observe(el));
+document.querySelectorAll('.reveal,#month,.ev').forEach(el=>io.observe(el));
 // timeline progress line
 const tl=$('#tl'),rail=tl.querySelector('.rail i');
 function prog(){const r=tl.getBoundingClientRect();const p=Math.min(1,Math.max(0,(innerHeight*0.7-r.top)/r.height));rail.style.setProperty('--p',(p*100)+'%')}
 addEventListener('scroll',prog,{passive:true});prog();
-// chips
-document.querySelectorAll('.chips').forEach(c=>c.addEventListener('click',e=>{const ch=e.target.closest('.chip');if(!ch)return;c.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));ch.classList.add('on');
- if(c.id==='att'){$('#paxf').style.display=ch.dataset.v==='no'?'none':''}}));
-// pax stepper
-let pax=1;$('#minus').onclick=()=>{pax=Math.max(1,pax-1);$('#pax').textContent=pax};$('#plus').onclick=()=>{pax=Math.min(6,pax+1);$('#pax').textContent=pax};
-// submit
-$('#form').addEventListener('submit',e=>{e.preventDefault();const nm=$('#nm').value.trim();const att=document.querySelector('#att .on');
- if(!nm||!att){$('#err').style.display='block';return}$('#err').style.display='none';
- const yes=att.dataset.v==='yes';
- $('#th-h').textContent=lang==='en'?(yes?'Thank you, '+nm:'Thank you, '+nm):(yes?'谢谢您，'+nm:'谢谢您，'+nm);
- $('#th-p').textContent=lang==='en'?(yes?'Your reply is in. We can’t wait to celebrate with you — '+pax+(pax>1?' guests':' guest')+' noted.':'We’ll miss you, and we’re grateful for your wishes.'):(yes?'已收到您的回复，期待与您一同庆祝（'+pax+' 位）。':'虽然遗憾，但非常感谢您的祝福。');
- $('#form').style.display='none';const t=$('#thanks');t.style.display='block';requestAnimationFrame(()=>t.classList.add('show'));t.scrollIntoView({behavior:'smooth',block:'center'})});
 </script>
 </body>
 </html>
