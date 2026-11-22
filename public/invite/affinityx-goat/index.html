@@ -228,11 +228,11 @@ ol.steps li.key{color:var(--gold-hi)}
 .flap-out{background-color:#62152a}
 .flap-out::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.07),transparent 30%,rgba(0,0,0,.25) 100%)}
 .flap-in{clip-path:polygon(0 100%,100% 100%,50% 0);background:linear-gradient(0deg,#3a0c16,#55142a);box-shadow:inset 0 0 30px rgba(0,0,0,.5)}
-.seal{position:absolute;left:50%;top:54%;width:40%;aspect-ratio:608/640;z-index:6;transform:translate(-50%,-50%);will-change:transform,opacity}
+.seal{position:absolute;left:50%;top:56%;width:36%;aspect-ratio:514/560;z-index:6;transform:translate(-50%,-50%);will-change:transform,opacity}
 .seal img{display:block;width:100%;height:100%;filter:drop-shadow(0 6px 8px rgba(0,0,0,.55)) drop-shadow(0 1px 1px rgba(0,0,0,.4)) brightness(.92);transition:filter 1s}
 .seal.lit img{filter:drop-shadow(0 6px 8px rgba(0,0,0,.55)) drop-shadow(0 0 14px rgba(255,205,150,.75)) brightness(1.18)}
 .seal i{position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(255,240,215,.95) 50%,transparent 65%) no-repeat;background-size:250% 100%;background-position:150% 0;mix-blend-mode:overlay;
-  -webkit-mask:url(goat-bronze.webp) center/100% 100% no-repeat;mask:url(goat-bronze.webp) center/100% 100% no-repeat}
+  -webkit-mask:url(wax-seal.webp) center/100% 100% no-repeat;mask:url(wax-seal.webp) center/100% 100% no-repeat}
 .seal.shine i{animation:sealShine 1.2s ease-in-out forwards}
 @keyframes sealShine{to{background-position:-50% 0}}
 .tap-open{position:relative;z-index:1;margin-top:5vh;text-align:center;font-family:var(--serif-en);font-size:13px;letter-spacing:.55em;padding-left:.55em;color:#e9d29a;
@@ -278,7 +278,7 @@ body.opened .top{opacity:1}
       <div class="env-front paper"></div>
       <div class="env-flap" id="envFlap"><div class="flap-face flap-out paper"></div></div>
       <div class="env-flap-open" id="envFlapOpen"><div class="flap-face flap-in"></div></div>
-      <div class="seal" id="seal"><img src="goat-bronze.webp" alt="AffinityX"><i></i></div>
+      <div class="seal" id="seal"><img src="wax-seal.webp" alt="AffinityX wax seal"><i></i></div>
     </div>
   </div>
   <div class="env-guest" id="guest1" hidden><small><span class="zh">特别邀请</span><span class="en">SPECIALLY FOR</span></small><b class="gname"></b></div>
@@ -601,7 +601,7 @@ $('#ics').onclick=e=>{e.preventDefault();const ics=['BEGIN:VCALENDAR','VERSION:2
  }
  op.addEventListener('click',play);op.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')play()});
  // preload assets before allowing the tap
- const srcs=['goat-bronze.webp','goat-trophy.webp','logo-mark.png','goat-kv.jpg','logo-gold.png'];
+ const srcs=['wax-seal.webp','goat-bronze.webp','goat-trophy.webp','logo-mark.png','goat-kv.jpg','logo-gold.png'];
  const done=()=>{if(ready)return;ready=true;op.classList.remove('loading');if(location.hash==='#open'){started=true;finish()}};
  Promise.all(srcs.map(s=>new Promise(r=>{const i=new Image();i.onload=i.onerror=r;i.src=s}))).then(done);setTimeout(done,5000);
 })();
