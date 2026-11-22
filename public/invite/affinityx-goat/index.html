@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>G.O.A.T. · AffinityX Annual Dinner 2027</title>
+<meta name="description" content="金羊盛典 · Golden Oscars of AffinityX Team · 23.01.2027 · Dynasty Hotel, Kuala Lumpur">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0b0a09">
+<meta property="og:title" content="G.O.A.T. · Golden Oscars of AffinityX Team">
+<meta property="og:description" content="金羊盛典 · An Oscar Night · 23.01.2027 · Dynasty Hotel, Kuala Lumpur">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+SC:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#0b0a09; --ink:#141210; --gold:#d4b06a; --gold-hi:#f3dc9c; --gold-lo:#8a6a32;
+  --red:#9e2a24; --red-deep:#5c1512; --champ:#f3ece0; --muted:#b9ad97;
+  --serif-en:'Cinzel',serif; --body-en:'Cormorant Garamond',serif; --zh:'Noto Serif SC','Songti SC',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--black);color:var(--champ);overflow:hidden}
+body{font-family:var(--zh);-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+a{color:inherit;text-decoration:none}
+
+/* language */
+body.lang-zh .en{display:none!important}
+body.lang-en .zh{display:none!important}
+
+/* sparkle layer */
+#stars{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+
+/* deck */
+.deck{position:relative;z-index:1;height:100dvh;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.deck::-webkit-scrollbar{display:none}
+.page{flex:0 0 100vw;height:100dvh;scroll-snap-align:start;scroll-snap-stop:always;position:relative;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+.inner{min-height:100%;max-width:460px;margin:0 auto;padding:84px 30px 96px;display:flex;flex-direction:column;justify-content:center}
+.page::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 70% at 50% -10%,rgba(212,176,106,.10),transparent 60%),radial-gradient(90% 60% at 50% 115%,rgba(158,42,36,.16),transparent 65%)}
+
+/* top bar */
+.top{position:fixed;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:calc(env(safe-area-inset-top) + 16px) 20px 12px;pointer-events:none}
+.brand{font-family:var(--serif-en);font-size:11px;letter-spacing:.32em;color:var(--gold);opacity:.85}
+.lang{pointer-events:auto;display:flex;border:1px solid rgba(212,176,106,.45);border-radius:20px;overflow:hidden;background:rgba(11,10,9,.6);backdrop-filter:blur(6px)}
+.lang button{all:unset;cursor:pointer;font-family:var(--serif-en);font-size:11px;letter-spacing:.12em;padding:6px 12px;color:var(--muted)}
+.lang button.on{background:var(--gold);color:var(--black)}
+
+/* dots */
+.dots{position:fixed;left:0;right:0;bottom:calc(env(safe-area-inset-bottom) + 18px);z-index:5;display:flex;justify-content:center;gap:9px}
+.dots button{all:unset;cursor:pointer;width:6px;height:6px;border-radius:50%;background:rgba(243,236,224,.28);transition:all .35s}
+.dots button.on{width:22px;border-radius:4px;background:var(--gold)}
+.count{position:fixed;right:20px;bottom:calc(env(safe-area-inset-bottom) + 13px);z-index:5;font-family:var(--serif-en);font-size:11px;letter-spacing:.15em;color:var(--muted)}
+
+/* type */
+.kicker{font-family:var(--serif-en);font-size:11px;letter-spacing:.38em;color:var(--gold);text-transform:uppercase}
+.kicker.zh{font-family:var(--zh);letter-spacing:.5em}
+h2{font-family:var(--zh);font-weight:600;font-size:30px;letter-spacing:.12em;margin:12px 0 4px;color:var(--champ)}
+h2.en{font-family:var(--serif-en);font-weight:500;font-size:26px;letter-spacing:.12em}
+.rule{width:64px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:22px auto}
+.rule.left{margin-left:0}
+.lbl{font-size:12px;letter-spacing:.28em;color:var(--gold);margin-bottom:6px}
+.lbl.en{font-family:var(--serif-en);font-size:11px}
+.val{font-size:19px;line-height:1.5;color:var(--champ)}
+.val.en{font-family:var(--body-en);font-size:22px}
+.p{font-size:16px;line-height:2;color:#e8dfcf;letter-spacing:.04em}
+.p.en{font-family:var(--body-en);font-size:19px;line-height:1.65;letter-spacing:.01em}
+.center{text-align:center}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(14px);transition:opacity .9s ease,transform .9s ease}
+.page.active .rv{opacity:1;transform:none}
+.page.active .rv.d1{transition-delay:.15s}.page.active .rv.d2{transition-delay:.35s}.page.active .rv.d3{transition-delay:.55s}
+.page.active .rv.d4{transition-delay:.75s}.page.active .rv.d5{transition-delay:.95s}.page.active .rv.d6{transition-delay:1.15s}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-width:210px;padding:14px 26px;border:1px solid var(--gold);color:var(--gold);font-family:var(--serif-en);font-size:12px;letter-spacing:.24em;background:linear-gradient(180deg,rgba(212,176,106,.08),rgba(212,176,106,0));transition:all .3s}
+.btn .zh{font-family:var(--zh);letter-spacing:.3em;font-size:14px}
+.btn:active{background:var(--gold);color:var(--black)}
+.btn.solid{background:linear-gradient(180deg,var(--gold-hi),var(--gold));color:var(--black);border-color:var(--gold-hi)}
+.btn svg{width:16px;height:16px;flex:none}
+
+/* ---------- COVER ---------- */
+.cover .inner{padding-top:70px;padding-bottom:0;justify-content:flex-start;align-items:center;text-align:center;min-height:100dvh}
+.beam{position:absolute;top:-10%;width:60%;height:95%;pointer-events:none;mix-blend-mode:screen;opacity:.55;filter:blur(2px)}
+.beam.l{left:-8%;transform-origin:10% 0;background:linear-gradient(170deg,rgba(255,236,190,.38),rgba(255,236,190,0) 70%);clip-path:polygon(0 0,22% 0,100% 100%,40% 100%);animation:swayL 9s ease-in-out infinite}
+.beam.r{right:-8%;transform-origin:90% 0;background:linear-gradient(190deg,rgba(255,236,190,.38),rgba(255,236,190,0) 70%);clip-path:polygon(78% 0,100% 0,60% 100%,0 100%);animation:swayR 9s ease-in-out infinite}
+@keyframes swayL{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(5deg)}}
+@keyframes swayR{0%,100%{transform:rotate(4deg)}50%{transform:rotate(-5deg)}}
+.spot{position:absolute;left:50%;top:22%;width:520px;height:520px;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,232,180,.16),transparent 62%);pointer-events:none}
+
+.marquee{position:relative;width:100%;max-width:360px;margin-top:4vh;padding:34px 18px 30px;border:1px solid rgba(212,176,106,.55);border-radius:6px;box-shadow:0 0 0 6px rgba(212,176,106,.06),inset 0 0 40px rgba(212,176,106,.06)}
+.bulb{position:absolute;width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:50%;background:#ffe7a8;box-shadow:0 0 6px 2px rgba(255,210,120,.75);animation:blink 1.6s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.22;box-shadow:0 0 2px rgba(255,210,120,.3)}}
+.annual{font-family:var(--serif-en);font-size:10px;letter-spacing:.42em;color:var(--gold)}
+.goat{font-family:var(--serif-en);font-weight:700;font-size:clamp(54px,17vw,82px);line-height:1;letter-spacing:.02em;margin:18px 0 10px;background:linear-gradient(180deg,#fff3cf 0%,#f0d28a 38%,#c79a4b 62%,#f3dc9c 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 18px rgba(212,176,106,.35));position:relative}
+.goat::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 40%,rgba(255,255,255,.75) 50%,transparent 60%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 5.5s ease-in-out infinite}
+@keyframes shine{0%{background-position:150% 0}55%,100%{background-position:-60% 0}}
+.full{font-family:var(--serif-en);font-size:clamp(9.5px,2.9vw,12.5px);letter-spacing:.16em;white-space:nowrap;color:var(--champ)}
+.horns{display:block;width:150px;height:34px;margin:18px auto 12px}
+.cn-title{font-family:var(--zh);font-weight:700;font-size:30px;letter-spacing:.55em;padding-left:.55em;color:var(--champ)}
+.theme{font-family:var(--body-en);font-style:italic;font-size:19px;color:var(--gold);margin-top:10px}
+.theme .zh{font-family:var(--zh);font-style:normal;font-size:13px;letter-spacing:.35em}
+.when{font-family:var(--serif-en);font-size:13px;letter-spacing:.3em;margin-top:24px;color:var(--champ)}
+.where{font-size:12px;letter-spacing:.2em;color:var(--muted);margin-top:8px;font-family:var(--serif-en)}
+.carpet{position:absolute;left:0;right:0;bottom:0;height:24dvh;pointer-events:none;perspective:300px}
+.carpet i{position:absolute;left:50%;bottom:0;width:120%;height:100%;transform:translateX(-50%);clip-path:polygon(42% 0,58% 0,100% 100%,0 100%);background:linear-gradient(180deg,#4a0f0c 0%,#8c211c 45%,#a52a23 100%);box-shadow:inset 0 0 0 1px rgba(212,176,106,.6)}
+.carpet i::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(0,0,0,.08) 0 2px,transparent 2px 7px);mix-blend-mode:multiply}
+.carpet b{position:absolute;left:50%;bottom:0;width:120%;height:100%;transform:translateX(-50%);clip-path:polygon(41.6% 0,42% 0,0.4% 100%,0 100%,  58% 0,58.4% 0,100% 100%,99.6% 100%);background:var(--gold);opacity:.8}
+.carpet::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--black) 0%,transparent 35%)}
+.swipe{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom) + 46px);z-index:2;text-align:center;font-family:var(--serif-en);font-size:11px;letter-spacing:.3em;color:var(--champ);animation:nudge 2.2s ease-in-out infinite}
+.swipe .zh{font-family:var(--zh)}
+@keyframes nudge{0%,100%{transform:translateX(0);opacity:.85}50%{transform:translateX(-10px);opacity:.5}}
+
+/* ---------- date ---------- */
+.film{height:22px;margin:0 -30px 26px;background:
+  repeating-linear-gradient(90deg,transparent 0 9px,rgba(11,10,9,1) 9px 19px) top/100% 5px no-repeat,
+  repeating-linear-gradient(90deg,transparent 0 9px,rgba(11,10,9,1) 9px 19px) bottom/100% 5px no-repeat,
+  linear-gradient(90deg,rgba(212,176,106,.0),rgba(212,176,106,.55),rgba(212,176,106,0));opacity:.7}
+.bigdate{font-family:var(--serif-en);font-weight:600;font-size:clamp(40px,13vw,56px);letter-spacing:.06em;color:var(--gold-hi);line-height:1.1}
+.sched{margin:26px 0 6px;border-top:1px solid rgba(212,176,106,.25)}
+.sched div{display:flex;justify-content:space-between;align-items:baseline;padding:14px 2px;border-bottom:1px solid rgba(212,176,106,.25)}
+.sched .t{font-family:var(--serif-en);font-size:20px;color:var(--champ);letter-spacing:.06em}
+.sched .n{font-size:14px;letter-spacing:.2em;color:var(--muted)}
+.sched .n.en{font-family:var(--serif-en);font-size:11px;letter-spacing:.24em}
+.cd{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:28px 0}
+.cd div{border:1px solid rgba(212,176,106,.35);padding:12px 0 9px;text-align:center;background:rgba(20,18,16,.6)}
+.cd b{display:block;font-family:var(--serif-en);font-weight:500;font-size:26px;color:var(--gold-hi)}
+.cd span{font-size:10px;letter-spacing:.2em;color:var(--muted);font-family:var(--serif-en)}
+
+/* venue */
+.hotel{font-family:var(--serif-en);font-size:30px;letter-spacing:.08em;line-height:1.25;color:var(--gold-hi)}
+.box{border:1px solid rgba(212,176,106,.3);padding:22px 20px;margin:26px 0;background:rgba(20,18,16,.55)}
+.box + .box{margin-top:-14px}
+
+/* parking */
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0 26px}
+.facts>div{border:1px solid rgba(212,176,106,.3);padding:14px 14px 12px;background:rgba(20,18,16,.55)}
+.facts b{display:block;font-family:var(--serif-en);font-size:24px;color:var(--gold-hi);margin-top:4px;font-weight:500}
+.photo{margin:0 0 18px;border:1px solid rgba(212,176,106,.35);padding:5px;background:#0f0e0c}
+.photo img{display:block;width:100%;height:auto}
+.photo figcaption{font-size:12px;color:var(--muted);padding:8px 4px 3px;line-height:1.6}
+.photo figcaption.en{font-family:var(--body-en);font-size:15px}
+ol.steps{list-style:none;counter-reset:s}
+ol.steps li{counter-increment:s;position:relative;padding:11px 0 11px 44px;border-bottom:1px solid rgba(212,176,106,.16);font-size:15px;line-height:1.6;color:#e8dfcf}
+ol.steps li.en{font-family:var(--body-en);font-size:18px;line-height:1.45}
+ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:11px;font-family:var(--serif-en);font-size:13px;color:var(--gold);letter-spacing:.05em}
+ol.steps li.key{color:var(--gold-hi)}
+
+/* dress */
+.dress-t{font-family:var(--serif-en);font-size:28px;letter-spacing:.1em;color:var(--gold-hi);line-height:1.3}
+.gown{display:block;width:120px;height:120px;margin:6px auto 22px;opacity:.9}
+
+/* contact */
+.deadline{font-family:var(--serif-en);font-size:34px;color:var(--gold-hi);letter-spacing:.06em;line-height:1.2}
+.tg{font-family:var(--serif-en);font-size:20px;color:var(--champ);letter-spacing:.06em}
+
+/* finale */
+.finale .inner{text-align:center;align-items:center}
+.see{font-family:var(--body-en);font-style:italic;font-size:30px;color:var(--gold-hi);margin-top:18px}
+.see.zh{font-family:var(--zh);font-style:normal;font-size:22px;letter-spacing:.3em}
+.foot{margin-top:40px;font-family:var(--serif-en);font-size:10px;letter-spacing:.3em;color:var(--muted)}
+.trophy{width:56px;height:90px;margin:0 auto 6px;display:block}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+@media (min-height:820px){.inner{padding-top:96px}}
+</style>
+</head>
+<body class="lang-zh">
+<canvas id="stars"></canvas>
+
+<div class="top">
+  <div class="brand">AFFINITYX</div>
+  <div class="lang"><button data-l="en">EN</button><button data-l="zh" class="on">中</button></div>
+</div>
+
+<main class="deck" id="deck">
+
+<!-- 1 COVER -->
+<section class="page cover active">
+  <div class="beam l"></div><div class="beam r"></div><div class="spot"></div>
+  <div class="inner">
+    <div class="marquee" id="marquee">
+      <div class="annual rv">AFFINITYX ANNUAL DINNER 2027</div>
+      <div class="goat rv d1" data-t="G.O.A.T.">G.O.A.T.</div>
+      <div class="full rv d2">GOLDEN OSCARS OF AFFINITYX TEAM</div>
+      <svg class="horns rv d3" viewBox="0 0 150 34" fill="none" stroke="url(#hg)" stroke-width="1.3" stroke-linecap="round">
+        <defs><linearGradient id="hg" x1="0" x2="1"><stop offset="0" stop-color="#8a6a32"/><stop offset=".5" stop-color="#f3dc9c"/><stop offset="1" stop-color="#8a6a32"/></linearGradient></defs>
+        <path d="M68 20 C58 6 38 2 26 10 C16 17 18 30 29 30 C37 30 39 21 33 18 C29 16 25 20 28 23"/>
+        <path d="M82 20 C92 6 112 2 124 10 C134 17 132 30 121 30 C113 30 111 21 117 18 C121 16 125 20 122 23"/>
+        <path d="M2 20 H20 M130 20 H148" stroke-width="1"/>
+        <path d="M75 13 L78.5 20 L75 27 L71.5 20 Z" fill="#d4b06a" stroke="none"/>
+      </svg>
+      <div class="cn-title rv d3">金羊盛典</div>
+      <div class="theme rv d4"><span class="en">An Oscar Night</span><span class="zh">奥 斯 卡 之 夜 · OSCAR NIGHT</span></div>
+      <div class="when rv d5">23 · 01 · 2027</div>
+      <div class="where rv d5">DYNASTY HOTEL · KUALA LUMPUR</div>
+    </div>
+  </div>
+  <div class="carpet"><i></i></div>
+  <div class="swipe"><span class="zh">滑动查看 · SWIPE</span><span class="en">SWIPE</span> &nbsp;←</div>
+</section>
+
+<!-- 2 THANK YOU -->
+<section class="page">
+  <div class="inner">
+    <div class="kicker rv"><span class="zh">感谢与邀请</span><span class="en">A Thank You &amp; Invitation</span></div>
+    <div class="rule left rv d1"></div>
+    <div class="zh">
+      <p class="p rv d1">感谢每一位 AffinityX 伙伴。这一年的努力、坚持和每一次并肩作战，我们都看在眼里。</p><br>
+      <p class="p rv d2">今年的年度晚宴，是我们特别为你准备的一场红毯之夜，属于每一个认真付出的你。</p>
+      <p class="p rv d3" style="font-size:20px;color:var(--gold-hi);margin:18px 0;letter-spacing:.12em">今晚没有观众，只有主角。</p>
+      <p class="p rv d4">诚挚邀请你盛装出席，和我们一起举杯，为这一年喝彩。</p>
+    </div>
+    <div class="en">
+      <p class="p en rv d1">Thank you to every member of the AffinityX team. Your hard work, persistence and every challenge we took on together this year did not go unnoticed.</p><br>
+      <p class="p en rv d2">This year's Annual Dinner is a red carpet night we've prepared especially for you, for everyone who gave their best.</p>
+      <p class="p en rv d3" style="font-size:24px;font-style:italic;color:var(--gold-hi);margin:18px 0">Tonight there is no audience, only stars.</p>
+      <p class="p en rv d4">We warmly invite you to dress up, raise a glass with us and celebrate the year together.</p>
+    </div>
+    <div class="rule left rv d5"></div>
+    <div class="kicker rv d5" style="letter-spacing:.3em">AFFINITYX · PEOPLE &amp; CULTURE</div>
+  </div>
+</section>
+
+<!-- 3 DATE & TIME -->
+<section class="page">
+  <div class="inner">
+    <div class="film rv"></div>
+    <div class="kicker rv"><span class="zh">日期与时间</span><span class="en">Date &amp; Time</span></div>
+    <div class="bigdate rv d1" style="margin-top:14px">23.01.2027</div>
+    <div class="val rv d2" style="margin-top:6px"><span class="zh">2027年1月23日（星期六）</span><span class="en" style="font-family:var(--body-en);font-size:22px">Saturday, 23 January 2027</span></div>
+    <div class="sched rv d3">
+      <div><span class="n zh">红毯入场</span><span class="n en">RED CARPET</span><span class="t">6:00 PM</span></div>
+      <div><span class="n zh">晚宴开始</span><span class="n en">DINNER</span><span class="t">7:30 PM</span></div>
+      <div><span class="n zh">结束</span><span class="n en">ENDS</span><span class="t">11:00 PM</span></div>
+    </div>
+    <div class="cd rv d4" id="cd">
+      <div><b id="cd-d">--</b><span class="zh">天</span><span class="en">DAYS</span></div>
+      <div><b id="cd-h">--</b><span class="zh">时</span><span class="en">HRS</span></div>
+      <div><b id="cd-m">--</b><span class="zh">分</span><span class="en">MIN</span></div>
+      <div><b id="cd-s">--</b><span class="zh">秒</span><span class="en">SEC</span></div>
+    </div>
+    <div class="center rv d5"><a class="btn" id="ics" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="16" rx="1"/><path d="M3 10h18M8 3v4M16 3v4M12 13v5M9.5 15.5h5"/></svg>
+      <span class="zh">加入日历</span><span class="en">ADD TO CALENDAR</span></a></div>
+  </div>
+</section>
+
+<!-- 4 VENUE -->
+<section class="page">
+  <div class="inner">
+    <div class="kicker rv"><span class="zh">地点</span><span class="en">Venue</span></div>
+    <div class="rule left rv d1"></div>
+    <div class="hotel rv d1">Dynasty Hotel</div>
+    <div class="val rv d2" style="color:var(--muted);margin-top:8px;font-size:16px"><span class="zh">吉隆坡 Jalan Ipoh</span><span class="en" style="font-family:var(--body-en);font-size:20px">Jalan Ipoh, Kuala Lumpur</span></div>
+    <div class="box rv d3">
+      <div class="lbl"><span class="zh">宴会厅</span><span class="en">BALLROOM</span></div>
+      <div class="val"><span class="zh">5 楼宴会厅</span><span class="en">Level 5 Ballroom</span></div>
+    </div>
+    <div class="center rv d4"><a class="btn solid" href="https://waze.com/ul/hw286419b1" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+      <span class="zh">WAZE 导航</span><span class="en">OPEN IN WAZE</span></a></div>
+    <p class="center rv d5" style="margin-top:22px;font-size:13px;color:var(--muted);letter-spacing:.1em"><span class="zh">停车和路线请往下一页 →</span><span class="en" style="font-family:var(--body-en);font-size:16px;font-style:italic">Parking &amp; directions on the next page →</span></p>
+  </div>
+</section>
+
+<!-- 5 PARKING · DRIVING -->
+<section class="page">
+  <div class="inner" style="justify-content:flex-start">
+    <div class="kicker rv"><span class="zh">停车与路线 · 自己开车</span><span class="en">Parking · Driving</span></div>
+    <div class="facts rv d1">
+      <div><div class="lbl"><span class="zh">停车费</span><span class="en">PARKING</span></div><b>RM5</b></div>
+      <div><div class="lbl"><span class="zh">限高</span><span class="en">HEIGHT LIMIT</span></div><b>1.8m</b></div>
+    </div>
+    <figure class="photo rv d2"><img src="drive.jpg" alt="Jalan Ipoh: hotel lobby on the left, car park entrance ahead" loading="lazy">
+      <figcaption class="zh">经过酒店正门（左），继续往前到停车场入口</figcaption><figcaption class="en">Drive past the hotel lobby (left) and continue to the car park</figcaption></figure>
+    <ol class="steps rv d3 zh">
+      <li>沿 Jalan Ipoh 经过酒店正门，继续往前</li>
+      <li>左转</li>
+      <li>再左转</li>
+      <li>从 Dynasty Hotel · Golden City Condominium 入口进停车场</li>
+      <li class="key">沿斜坡上停车场（限高 1.8m）</li>
+      <li>自行找车位</li>
+      <li>停好车，找「Lift to Hotel Lobby」电梯到 G 楼</li>
+      <li>出电梯后右转</li>
+      <li>直走，再右转</li>
+      <li>直走到酒店大堂</li>
+      <li class="key">搭这里的电梯到 5 楼</li>
+    </ol>
+    <ol class="steps rv d3 en">
+      <li class="en">Drive past the hotel lobby on Jalan Ipoh</li>
+      <li class="en">Turn left</li>
+      <li class="en">Turn left again</li>
+      <li class="en">Enter at the Dynasty Hotel · Golden City Condominium car park</li>
+      <li class="en key">Drive up the ramp (height limit 1.8m)</li>
+      <li class="en">Find a parking spot</li>
+      <li class="en">Take the "Lift to Hotel Lobby" to G Floor</li>
+      <li class="en">Turn right out of the lift</li>
+      <li class="en">Go straight, then turn right</li>
+      <li class="en">Walk straight to the hotel lobby</li>
+      <li class="en key">Take this lift to Level 5</li>
+    </ol>
+  </div>
+</section>
+
+<!-- 6 PARKING · GRAB -->
+<section class="page">
+  <div class="inner">
+    <div class="kicker rv"><span class="zh">停车与路线 · 搭 Grab</span><span class="en">Directions · Taking Grab</span></div>
+    <div class="rule left rv d1"></div>
+    <figure class="photo rv d2"><img src="grab.jpg" alt="Dynasty Hotel main entrance, Grab drop-off point" loading="lazy">
+      <figcaption class="zh">在酒店正门（Jalan Ipoh）下车</figcaption><figcaption class="en">Drop off at the main entrance on Jalan Ipoh</figcaption></figure>
+    <ol class="steps rv d3 zh">
+      <li>在酒店正门（Jalan Ipoh）下车</li>
+      <li class="key">进大堂，搭电梯到 5 楼</li>
+    </ol>
+    <ol class="steps rv d3 en">
+      <li class="en">Drop off at the main entrance on Jalan Ipoh</li>
+      <li class="en key">Take the lobby lift to Level 5</li>
+    </ol>
+  </div>
+</section>
+
+<!-- 7 DRESS CODE -->
+<section class="page">
+  <div class="inner center">
+    <div class="kicker rv"><span class="zh">着装要求</span><span class="en">Dress Code</span></div>
+    <svg class="gown rv d1" viewBox="0 0 120 120" fill="none" stroke="#d4b06a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M38 22 L44 50 L30 104 H58 L52 50 L58 22"/><path d="M42 30 Q48 34 54 30"/><circle cx="48" cy="14" r="5"/>
+      <path d="M68 104 V58 H92 V104"/><path d="M68 58 L80 44 L92 58"/><path d="M76 50 L80 56 L84 50"/><circle cx="80" cy="34" r="5"/><path d="M78 58 V104 M82 58 V104" stroke-width=".6"/>
+      <path d="M18 108 H102" stroke-width=".8"/>
+    </svg>
+    <div class="dress-t rv d2">Red Carpet Attire</div>
+    <div class="val rv d2" style="margin-top:6px;letter-spacing:.3em"><span class="zh">红毯正装 · 盛装出席</span></div>
+    <div class="rule rv d3"></div>
+    <p class="p rv d3 zh">这一晚，我们用心准备了每一个细节，也期待你认真装扮，盛装走上属于你的红毯。</p>
+    <p class="p en rv d3">We've put our hearts into every detail of this night. Now it's your turn: dress to impress and make your red carpet moment count.</p>
+    <p class="rv d4" style="margin-top:20px;font-size:13px;letter-spacing:.2em;color:var(--gold)"><span class="zh">正式、优雅，颜色不限</span><span class="en" style="font-family:var(--serif-en);font-size:11px">FORMAL &amp; ELEGANT · ANY COLOUR</span></p>
+  </div>
+</section>
+
+<!-- 8 CONTACT -->
+<section class="page">
+  <div class="inner">
+    <div class="kicker rv"><span class="zh">出席变动与联系人</span><span class="en">Change of Plans &amp; Contact</span></div>
+    <div class="rule left rv d1"></div>
+    <p class="p rv d1 zh">如果无法出席，请<b style="color:var(--gold-hi)">最迟在 2026 年 12 月 20 日之前</b>联系 March 告知。</p>
+    <p class="p en rv d1">If you're unable to attend, please let March know <b style="color:var(--gold-hi)">by 20 December 2026</b> at the latest.</p>
+    <div class="box rv d2">
+      <div class="lbl"><span class="zh">告知截止</span><span class="en">DEADLINE</span></div>
+      <div class="deadline">20 · 12 · 2026</div>
+    </div>
+    <div class="box rv d3">
+      <div class="lbl"><span class="zh">联系人</span><span class="en">CONTACT</span></div>
+      <div class="tg">March</div>
+      <div class="val" style="color:var(--muted);font-size:16px;margin-top:2px">Telegram <b style="color:var(--champ)">@little301</b></div>
+    </div>
+    <div class="center rv d4"><a class="btn solid" href="https://t.me/little301" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.5 3.6 2.9 10.8c-1.2.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.1.9.8.9.5 0 .7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.8c.3-1.3-.5-1.9-1.4-1.5zM8.7 13.6l9.6-6.1c.5-.3.9-.1.5.2l-8.2 7.4-.3 3.4-1.6-4.9z"/></svg>
+      <span class="zh">TELEGRAM 联系 MARCH</span><span class="en">MESSAGE MARCH</span></a></div>
+  </div>
+</section>
+
+<!-- 9 FINALE -->
+<section class="page finale">
+  <div class="inner">
+    <svg class="trophy rv" viewBox="0 0 56 90" fill="none" stroke="#d4b06a" stroke-width="1.2">
+      <circle cx="28" cy="10" r="6"/><path d="M28 16 V20 M20 24 Q28 18 36 24 L33 52 Q28 56 23 52 Z"/><path d="M23 52 L22 66 M33 52 L34 66"/><rect x="16" y="66" width="24" height="7"/><rect x="12" y="73" width="32" height="9"/>
+    </svg>
+    <div class="cn-title rv d1" style="font-size:24px">金羊盛典</div>
+    <div class="goat rv d2" style="font-size:52px;margin:10px 0 6px">G.O.A.T.</div>
+    <div class="full rv d2">GOLDEN OSCARS OF AFFINITYX TEAM</div>
+    <div class="rule rv d3"></div>
+    <div class="when rv d3" style="margin-top:0">23 · 01 · 2027</div>
+    <div class="where rv d3">DYNASTY HOTEL · KUALA LUMPUR</div>
+    <div class="see rv d4 en">See you on the red carpet.</div>
+    <div class="see rv d4 zh">红毯上见</div>
+    <div class="foot rv d5">AFFINITYX · PEOPLE &amp; CULTURE</div>
+  </div>
+</section>
+
+</main>
+
+<nav class="dots" id="dots"></nav>
+<div class="count" id="count">01 / 09</div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const deck=$('#deck'),pages=$$('.page'),dots=$('#dots'),count=$('#count');
+
+// language
+const setLang=l=>{document.body.className='lang-'+l;document.documentElement.lang=l==='zh'?'zh':'en';$$('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));try{localStorage.setItem('goat-lang',l)}catch(e){}};
+$$('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
+try{const s=localStorage.getItem('goat-lang');if(s)setLang(s)}catch(e){}
+
+// dots + active page
+pages.forEach((p,i)=>{const b=document.createElement('button');b.setAttribute('aria-label','Page '+(i+1));b.onclick=()=>deck.scrollTo({left:i*deck.clientWidth,behavior:'smooth'});dots.appendChild(b)});
+let cur=-1;
+const update=()=>{const i=Math.round(deck.scrollLeft/deck.clientWidth);if(i===cur)return;cur=i;
+  pages.forEach((p,j)=>p.classList.toggle('active',j===i));
+  [...dots.children].forEach((d,j)=>d.classList.toggle('on',j===i));
+  count.textContent=String(i+1).padStart(2,'0')+' / '+String(pages.length).padStart(2,'0')};
+deck.addEventListener('scroll',()=>requestAnimationFrame(update),{passive:true});
+window.addEventListener('resize',()=>{deck.scrollLeft=cur*deck.clientWidth});
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')dots.children[Math.min(cur+1,pages.length-1)].click();if(e.key==='ArrowLeft')dots.children[Math.max(cur-1,0)].click()});
+update();
+
+// marquee bulbs
+(function(){const m=$('#marquee');const place=()=>{m.querySelectorAll('.bulb').forEach(b=>b.remove());
+  const w=m.offsetWidth,h=m.offsetHeight,gap=22,pts=[];
+  const nx=Math.round(w/gap),ny=Math.round(h/gap);
+  for(let i=0;i<=nx;i++){pts.push([i*w/nx,0]);pts.push([i*w/nx,h])}
+  for(let j=1;j<ny;j++){pts.push([0,j*h/ny]);pts.push([w,j*h/ny])}
+  pts.forEach(([x,y],k)=>{const b=document.createElement('span');b.className='bulb';b.style.left=x+'px';b.style.top=y+'px';b.style.animationDelay=((k%2)*.8)+'s';m.appendChild(b)})};
+  place();window.addEventListener('resize',place);document.fonts&&document.fonts.ready.then(place)})();
+
+// countdown to 23 Jan 2027 6:00pm MYT
+const T=Date.UTC(2027,0,23,10,0,0);
+const tick=()=>{let d=Math.max(0,T-Date.now())/1000;const p=n=>String(Math.floor(n)).padStart(2,'0');
+  $('#cd-d').textContent=Math.floor(d/86400);$('#cd-h').textContent=p(d%86400/3600);$('#cd-m').textContent=p(d%3600/60);$('#cd-s').textContent=p(d%60)};
+tick();setInterval(tick,1000);
+
+// add to calendar
+$('#ics').onclick=e=>{e.preventDefault();const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//AffinityX//Annual Dinner 2027//EN','BEGIN:VEVENT','UID:affinityx-goat-20270123','DTSTAMP:20261122T000000Z','DTSTART:20270123T100000Z','DTEND:20270123T150000Z','SUMMARY:G.O.A.T. 金羊盛典 · AffinityX Annual Dinner 2027','DESCRIPTION:Red Carpet 6:00pm · Dinner 7:30pm · Dress code: Red Carpet Attire','LOCATION:Dynasty Hotel\\, Level 5 Ballroom\\, Jalan Ipoh\\, Kuala Lumpur','END:VEVENT','END:VCALENDAR'].join('\r\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));a.download='AffinityX-GOAT-2027.ics';a.click()};
+
+// gold sparkles
+(function(){const c=$('#stars'),x=c.getContext('2d');let W,H,S=[];const dpr=Math.min(2,window.devicePixelRatio||1);
+  const rs=()=>{W=c.width=innerWidth*dpr;H=c.height=innerHeight*dpr;S=Array.from({length:70},()=>({x:Math.random()*W,y:Math.random()*H,r:(Math.random()*1.4+.4)*dpr,v:(Math.random()*.25+.05)*dpr,p:Math.random()*6.28,s:Math.random()*.02+.008}))};
+  rs();addEventListener('resize',rs);
+  const fr=()=>{x.clearRect(0,0,W,H);for(const s of S){s.y-=s.v;s.p+=s.s;if(s.y<-5){s.y=H+5;s.x=Math.random()*W}
+    const a=.25+.55*(.5+.5*Math.sin(s.p));x.fillStyle=`rgba(243,214,150,${a})`;x.beginPath();x.arc(s.x,s.y,s.r,0,6.28);x.fill()}
+    requestAnimationFrame(fr)};
+  if(!matchMedia('(prefers-reduced-motion:reduce)').matches)fr()})();
+</script>
+</body>
+</html>
