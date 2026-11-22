@@ -219,6 +219,19 @@ ol.steps li.key{color:var(--gold-hi)}
 .stagecard .tap i{font-style:normal;font-family:var(--zh);letter-spacing:.5em}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
 
+
+.stagecard{gap:0}
+.stage-glow{position:absolute;left:50%;top:44%;width:150vw;height:150vw;max-width:760px;max-height:760px;transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(circle,rgba(255,226,160,.32) 0%,rgba(255,190,90,.12) 32%,rgba(0,0,0,0) 62%);pointer-events:none}
+.stage-trophy{position:relative;width:68vw;max-width:300px;height:auto;filter:drop-shadow(0 18px 30px rgba(0,0,0,.65)) drop-shadow(0 0 22px rgba(255,210,120,.35));animation:float 3.6s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.stage-sub{position:relative;margin-top:14px;font-family:var(--serif-en);font-size:11px;letter-spacing:.5em;padding-left:.5em;color:#f3dc9c;text-shadow:0 2px 6px rgba(0,0,0,.8)}
+.stagecard .tap{position:relative;margin-top:30px;padding:13px 30px 11px;border:1px solid rgba(243,220,156,.9);border-radius:40px;background:linear-gradient(180deg,rgba(20,8,6,.55),rgba(20,8,6,.8));
+  font-family:var(--display);font-size:20px;letter-spacing:.12em;color:#f3dc9c;text-align:center;line-height:1.1;box-shadow:0 0 0 4px rgba(212,176,106,.15),0 8px 24px rgba(0,0,0,.5);animation:tapGlow 2.2s ease-in-out infinite}
+.stagecard .tap .zh{font-family:var(--zh);font-weight:600;letter-spacing:.5em;padding-left:.5em;font-size:17px}
+.stagecard .tap small{display:block;margin-top:5px;font-family:var(--serif-en);font-size:9px;letter-spacing:.45em;opacity:.75}
+body.lang-en .stagecard .tap small{display:none}
+@keyframes tapGlow{0%,100%{box-shadow:0 0 0 4px rgba(212,176,106,.15),0 8px 24px rgba(0,0,0,.5)}50%{box-shadow:0 0 0 9px rgba(212,176,106,.05),0 0 28px rgba(255,210,120,.45)}}
 /* ---------- SCRATCH ---------- */
 .scratch-wrap{display:flex;justify-content:center;gap:14px;margin:18px 0 10px}
 .coin{position:relative;width:86px;height:86px;border-radius:50%;border:1px solid rgba(212,176,106,.55);background:#16130f;display:flex;align-items:center;justify-content:center;flex:none}
@@ -248,9 +261,10 @@ body.opened .top{opacity:1}
   <div class="half l"></div><div class="half r"></div>
   <div class="valance"></div>
   <div class="stagecard" id="stagecard">
-    <img src="logo-gold.png" alt="AffinityX" style="width:92px;margin-bottom:18px;filter:drop-shadow(0 3px 10px rgba(0,0,0,.7))">
-    <div class="em"><b>G.O.A.T.</b><small>2027</small></div>
-    <div class="tap"><span class="zh"><i>点击开幕</i> · TAP TO OPEN</span><span class="en">TAP TO OPEN</span></div>
+    <div class="stage-glow"></div>
+    <img class="stage-trophy" src="goat-trophy.webp" alt="AffinityX G.O.A.T.">
+    <div class="stage-sub">ANNUAL DINNER 2027</div>
+    <div class="tap"><span class="zh">点击开幕</span><span class="en">TAP TO OPEN</span><small>TAP TO OPEN</small></div>
   </div>
 </div>
 
