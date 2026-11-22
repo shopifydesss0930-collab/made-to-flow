@@ -192,57 +192,34 @@ ol.steps li.key{color:var(--gold-hi)}
 .looks figcaption{font-size:12px;letter-spacing:.2em;color:var(--gold);padding:8px 4px 4px;text-align:center}
 .looks figcaption .en{font-family:var(--serif-en);font-size:11px}
 /* ---------- ENVELOPE OPENING ---------- */
-.opener{position:fixed;inset:0;z-index:8;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  background:radial-gradient(120% 80% at 50% 42%,#5a1420 0%,#3a0b14 45%,#1c0509 100%);-webkit-user-select:none;user-select:none;cursor:pointer;touch-action:manipulation}
+.opener{position:fixed;inset:0;z-index:8;overflow:hidden;-webkit-user-select:none;user-select:none;cursor:pointer;touch-action:manipulation;background:transparent;perspective:1100px}
 .opener.gone{display:none}
-.opener::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(70% 55% at 50% 45%,transparent 45%,rgba(8,2,3,.75) 100%);transition:opacity 1.2s}
-#dust{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.env-stage{position:relative;z-index:1;width:min(84vw,400px);aspect-ratio:1.46/1;perspective:1400px;will-change:transform;transform-origin:50% 56%}
-.env{position:absolute;inset:0;filter:drop-shadow(0 26px 34px rgba(0,0,0,.55)) drop-shadow(0 6px 10px rgba(0,0,0,.4))}
-.env-back,.env-front,.flap-face{position:absolute;inset:0;border-radius:4px}
-.paper{background-color:#5c1322;background-image:
-  radial-gradient(120% 90% at 30% 20%,rgba(255,255,255,.06),transparent 60%),
-  repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,transparent 1px 3px),
-  repeating-linear-gradient(90deg,rgba(0,0,0,.035) 0 1px,transparent 1px 4px)}
-.env-back{background-color:#3b0a14;box-shadow:inset 0 0 40px rgba(0,0,0,.6)}
-.env-card{position:absolute;left:5%;right:5%;top:5%;height:88%;border-radius:3px;z-index:2;
-  background:linear-gradient(160deg,#141110,#0b0a09 60%,#16120e);border:1px solid rgba(212,176,106,.7);box-shadow:inset 0 0 0 5px #0b0a09,inset 0 0 0 6px rgba(212,176,106,.45),0 8px 20px rgba(0,0,0,.5);
-  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:6%;will-change:transform}
-.env-card img{width:46%;height:auto;filter:drop-shadow(0 4px 10px rgba(212,176,106,.35))}
-.env-card b{font-family:var(--display);font-size:clamp(20px,6.4vw,30px);font-weight:700;margin-top:4%;background:linear-gradient(180deg,#fff3cf,#e2bf72 55%,#a17a37);-webkit-background-clip:text;background-clip:text;color:transparent}
-.env-card span{font-family:var(--serif-en);font-size:9px;letter-spacing:.4em;color:#d4b06a;margin-top:3%}
-.env-front{z-index:3;clip-path:polygon(0 0,50% 56%,100% 0,100% 100%,0 100%);
-  box-shadow:inset 0 -10px 30px rgba(0,0,0,.35)}
-.env-front::before{content:"";position:absolute;inset:0;background:
-  linear-gradient(to bottom right,transparent 49.6%,rgba(0,0,0,.28) 50%,transparent 58%) left/50% 100% no-repeat,
-  linear-gradient(to bottom left,transparent 49.6%,rgba(0,0,0,.28) 50%,transparent 58%) right/50% 100% no-repeat,
-  linear-gradient(180deg,rgba(255,255,255,.05),transparent 40%)}
-.env-guest{position:relative;z-index:1;margin-top:7vh;text-align:center;transition:opacity .6s}
-.opener.go .env-guest{opacity:0}
-.env-guest small{display:block;font-family:var(--zh);font-size:10px;letter-spacing:.5em;padding-left:.5em;color:#e9d6a6;opacity:.8}
-.env-guest small .en{font-family:var(--serif-en);letter-spacing:.4em}
-.env-guest b{display:block;margin-top:4px;font-family:var(--display);font-weight:600;font-size:clamp(18px,5.6vw,24px);color:#f3dfb0;text-shadow:0 1px 0 rgba(0,0,0,.5)}
-.env-flap{position:absolute;left:0;right:0;top:0;height:58%;z-index:5;transform-origin:50% 0;will-change:transform}
-.env-flap-open{position:absolute;left:0;right:0;bottom:100%;height:58%;z-index:1;transform-origin:50% 100%;transform:perspective(900px) rotateX(-90deg);visibility:hidden;will-change:transform}
-.flap-face{clip-path:polygon(0 0,100% 0,50% 100%)}
-.flap-out{background-color:#62152a}
-.flap-out::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.07),transparent 30%,rgba(0,0,0,.25) 100%)}
-.flap-in{clip-path:polygon(0 100%,100% 100%,50% 0);background:linear-gradient(0deg,#3a0c16,#55142a);box-shadow:inset 0 0 30px rgba(0,0,0,.5)}
-.seal{position:absolute;left:50%;top:56%;width:36%;aspect-ratio:514/560;z-index:6;transform:translate(-50%,-50%);will-change:transform,opacity}
-.seal img{display:block;width:100%;height:100%;filter:drop-shadow(0 6px 8px rgba(0,0,0,.55)) drop-shadow(0 1px 1px rgba(0,0,0,.4)) brightness(.92);transition:filter 1s}
-.seal.lit img{filter:drop-shadow(0 6px 8px rgba(0,0,0,.55)) drop-shadow(0 0 14px rgba(255,205,150,.75)) brightness(1.18)}
-.seal i{position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(255,240,215,.95) 50%,transparent 65%) no-repeat;background-size:250% 100%;background-position:150% 0;mix-blend-mode:overlay;
-  -webkit-mask:url(wax-seal.webp) center/100% 100% no-repeat;mask:url(wax-seal.webp) center/100% 100% no-repeat}
-.seal.shine i{animation:sealShine 1.2s ease-in-out forwards}
+.envx{position:absolute;left:50%;top:0;width:max(100vw,52.94dvh);aspect-ratio:900/1700;transform:translateX(-50%);will-change:transform}
+.envx-body,.envx-flap{position:absolute;inset:0;background:url(env-portrait.jpg) center/100% 100% no-repeat}
+.envx-body{clip-path:polygon(0 18.39%,54.67% 35.65%,100% 16.72%,100% 100%,0 100%);will-change:transform,opacity}
+.envx-pocket{position:absolute;inset:0;clip-path:polygon(0 0,0 18.39%,54.67% 35.65%,100% 16.72%,100% 0);background:linear-gradient(180deg,#14040a,#2a0811);transition:opacity .9s}
+.envx-flap{clip-path:polygon(0 0,0 18.39%,54.67% 35.65%,100% 16.72%,100% 0);transform-origin:50% 0;will-change:transform;filter:drop-shadow(0 10px 14px rgba(0,0,0,.45))}
+.envx-seal{position:absolute;left:21.33%;top:13.76%;width:58.11%;height:31.88%;transform-origin:50% 0;will-change:transform,opacity}
+.envx-seal img{display:block;width:100%;height:100%;filter:drop-shadow(0 10px 14px rgba(0,0,0,.5));transition:filter .8s}
+.envx-seal.lit img{filter:drop-shadow(0 10px 14px rgba(0,0,0,.5)) drop-shadow(0 0 22px rgba(255,200,140,.8)) brightness(1.15)}
+.envx-seal i{position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(255,240,215,.95) 50%,transparent 65%) no-repeat;background-size:250% 100%;background-position:150% 0;mix-blend-mode:overlay;
+  -webkit-mask:url(seal-cut.webp) center/100% 100% no-repeat;mask:url(seal-cut.webp) center/100% 100% no-repeat}
+.envx-seal.shine i{animation:sealShine .9s ease-in-out forwards}
 @keyframes sealShine{to{background-position:-50% 0}}
-.tap-open{position:relative;z-index:1;margin-top:5vh;text-align:center;font-family:var(--serif-en);font-size:13px;letter-spacing:.55em;padding-left:.55em;color:#e9d29a;
-  text-shadow:0 0 12px rgba(233,210,154,.55);animation:tapPulse 2.4s ease-in-out infinite;transition:opacity .6s,transform .6s}
-.tap-open small{display:block;margin-top:8px;font-family:var(--zh);font-size:11px;letter-spacing:.6em;opacity:.7}
+.envx-seal.idle{animation:sealBreath 2.6s ease-in-out infinite}
+@keyframes sealBreath{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
+#dust{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+.env-copy{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom) + 12dvh);z-index:3;text-align:center;transition:opacity .5s,transform .5s;pointer-events:none}
+.env-copy .inv{font-family:var(--display);font-size:clamp(30px,9vw,44px);color:#f3d9b0;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+.env-guest b{display:block;margin-top:2px;font-family:var(--display);font-weight:600;font-size:clamp(20px,6vw,26px);color:#f6e2bd;text-shadow:0 2px 8px rgba(0,0,0,.7)}
+.env-guest small{display:block;margin-top:10px;font-family:var(--zh);font-size:10px;letter-spacing:.5em;padding-left:.5em;color:#ecd3a8;opacity:.85}
+.env-guest small .en{font-family:var(--serif-en);letter-spacing:.4em}
+.tap-open{margin-top:18px;font-family:var(--serif-en);font-size:12px;letter-spacing:.55em;padding-left:.55em;color:#f0d9a8;text-shadow:0 0 12px rgba(240,217,168,.6);animation:tapPulse 2.2s ease-in-out infinite}
+.tap-open small{display:block;margin-top:7px;font-family:var(--zh);font-size:11px;letter-spacing:.6em;opacity:.75}
 body.lang-en .tap-open small{display:none}
-@keyframes tapPulse{0%,100%{opacity:.55}50%{opacity:1;text-shadow:0 0 18px rgba(233,210,154,.85)}}
-.opener.loading .tap-open{animation:none;opacity:.35}
-.opener.go .tap-open{opacity:0;transform:translateY(10px);animation:none}
-.opener.go::after{opacity:1}
+@keyframes tapPulse{0%,100%{opacity:.5}50%{opacity:1}}
+.opener.loading .tap-open{animation:none;opacity:.3}
+.opener.go .env-copy{opacity:0;transform:translateY(12px)}
 .sparks{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:9}
 /* ---------- SCRATCH ---------- */
 .scratch-wrap{display:flex;justify-content:center;gap:14px;margin:18px 0 10px}
@@ -270,19 +247,18 @@ body.opened .top{opacity:1}
 <canvas id="stars"></canvas>
 <canvas id="confetti"></canvas>
 <div class="opener loading" id="opener" role="button" aria-label="Tap to open the invitation" tabindex="0">
-  <canvas id="dust"></canvas>
-  <div class="env-stage" id="envStage">
-    <div class="env">
-      <div class="env-back"></div>
-      <div class="env-card" id="envCard"><img src="goat-bronze.webp" alt="AffinityX"></div>
-      <div class="env-front paper"></div>
-      <div class="env-flap" id="envFlap"><div class="flap-face flap-out paper"></div></div>
-      <div class="env-flap-open" id="envFlapOpen"><div class="flap-face flap-in"></div></div>
-      <div class="seal" id="seal"><img src="wax-seal.webp" alt="AffinityX wax seal"><i></i></div>
-    </div>
+  <div class="envx" id="envx">
+    <div class="envx-pocket" id="envPocket"></div>
+    <div class="envx-body" id="envBody"></div>
+    <div class="envx-flap" id="envFlap"></div>
+    <div class="envx-seal" id="envSeal"><img src="seal-cut.webp" alt="AffinityX wax seal"><i></i></div>
   </div>
-  <div class="env-guest" id="guest1" hidden><small><span class="zh">特别邀请</span><span class="en">SPECIALLY FOR</span></small><b class="gname"></b></div>
-  <div class="tap-open" id="tapOpen">TAP TO OPEN<small>点击开启</small></div>
+  <canvas id="dust"></canvas>
+  <div class="env-copy">
+    <div class="inv">You're Invited</div>
+    <div class="env-guest" id="guest1" hidden><small><span class="zh">特别邀请</span><span class="en">SPECIALLY FOR</span></small><b class="gname"></b></div>
+    <div class="tap-open" id="tapOpen">TAP TO OPEN<small>点击开启</small></div>
+  </div>
   <canvas class="sparks" id="sparks"></canvas>
 </div>
 
@@ -543,66 +519,47 @@ $('#ics').onclick=e=>{e.preventDefault();const ics=['BEGIN:VCALENDAR','VERSION:2
  document.querySelectorAll('.gname').forEach(e=>e.textContent=name);$('#guest1').hidden=false;$('#dear').hidden=false;
  document.title=name+' · G.O.A.T. 金羊盛典'}catch(e){}})();
 
-// envelope opening (replaces the former curtain intro)
+// envelope opening (full-screen envelope, flap lifts with the wax seal)
 (function(){
- const op=$('#opener'),stage=$('#envStage'),flap=$('#envFlap'),seal=$('#seal'),card=$('#envCard'),tap=$('#tapOpen');
+ const op=$('#opener'),env=$('#envx'),body=$('#envBody'),flap=$('#envFlap'),seal=$('#envSeal'),pocket=$('#envPocket');
  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
  let ready=false,started=false;
  pages[0].classList.remove('active');
- // dust
  (function(){const c=$('#dust'),x=c.getContext('2d');const d=Math.min(2,devicePixelRatio||1);let P=[];
-  const rs=()=>{c.width=innerWidth*d;c.height=innerHeight*d;P=Array.from({length:42},()=>({x:Math.random()*c.width,y:Math.random()*c.height,r:(Math.random()*1.2+.3)*d,vx:(Math.random()-.5)*.12*d,vy:-(Math.random()*.18+.04)*d,p:Math.random()*6}))};
+  const rs=()=>{c.width=innerWidth*d;c.height=innerHeight*d;P=Array.from({length:36},()=>({x:Math.random()*c.width,y:Math.random()*c.height,r:(Math.random()*1.2+.3)*d,vx:(Math.random()-.5)*.12*d,vy:-(Math.random()*.16+.04)*d,p:Math.random()*6}))};
   rs();addEventListener('resize',rs);
   const f=()=>{if(op.classList.contains('gone'))return;x.clearRect(0,0,c.width,c.height);for(const s of P){s.x+=s.vx;s.y+=s.vy;s.p+=.02;if(s.y<-4){s.y=c.height+4;s.x=Math.random()*c.width}
-   x.fillStyle=`rgba(236,206,150,${.18+.3*(.5+.5*Math.sin(s.p))})`;x.beginPath();x.arc(s.x,s.y,s.r,0,6.28);x.fill()}requestAnimationFrame(f)};
+   x.fillStyle=`rgba(255,214,160,${.15+.3*(.5+.5*Math.sin(s.p))})`;x.beginPath();x.arc(s.x,s.y,s.r,0,6.28);x.fill()}requestAnimationFrame(f)};
   if(!reduce)f()})();
- // gold sparks from the seal
  const sparks=(cx,cy)=>{const c=$('#sparks'),x=c.getContext('2d'),d=Math.min(2,devicePixelRatio||1);c.width=innerWidth*d;c.height=innerHeight*d;
-  const P=Array.from({length:26},()=>{const a=Math.random()*6.28,v=(Math.random()*2.2+.6)*d;return{x:cx*d,y:cy*d,vx:Math.cos(a)*v,vy:Math.sin(a)*v-.6*d,l:1,r:(Math.random()*1.6+.6)*d}});
-  const f=()=>{x.clearRect(0,0,c.width,c.height);let alive=0;for(const p of P){p.x+=p.vx;p.y+=p.vy;p.vy+=.03*d;p.vx*=.98;p.l-=.012;if(p.l>0){alive++;x.fillStyle=`rgba(255,221,160,${p.l})`;x.beginPath();x.arc(p.x,p.y,p.r,0,6.28);x.fill()}}
-   if(alive)requestAnimationFrame(f);else x.clearRect(0,0,c.width,c.height)};f()};
+  const P=Array.from({length:30},()=>{const a=Math.random()*6.28,v=(Math.random()*2.4+.6)*d;return{x:cx*d,y:cy*d,vx:Math.cos(a)*v,vy:Math.sin(a)*v-.6*d,l:1,r:(Math.random()*1.6+.6)*d}});
+  const f=()=>{x.clearRect(0,0,c.width,c.height);let n=0;for(const p of P){p.x+=p.vx;p.y+=p.vy;p.vy+=.03*d;p.l-=.014;if(p.l>0){n++;x.fillStyle=`rgba(255,221,160,${p.l})`;x.beginPath();x.arc(p.x,p.y,p.r,0,6.28);x.fill()}}
+   if(n)requestAnimationFrame(f);else x.clearRect(0,0,c.width,c.height)};f()};
  const wait=ms=>new Promise(r=>setTimeout(r,ms));
  const anim=(el,kf,o)=>el.animate(kf,Object.assign({fill:'forwards',easing:'cubic-bezier(.65,0,.35,1)'},o)).finished.catch(()=>{});
- const finish=()=>{op.classList.add('gone');document.body.classList.add('opened');pages[0].classList.remove('active');void pages[0].offsetWidth;pages[0].classList.add('active')};
+ const finish=()=>{op.classList.add('gone');document.body.classList.add('opened');if(!pages[0].classList.contains('active')){void pages[0].offsetWidth;pages[0].classList.add('active')}};
  async function play(){
-  if(!ready||started)return;started=true;op.classList.add('go');
+  if(!ready||started)return;started=true;op.classList.add('go');seal.classList.remove('idle');
   if(reduce){await anim(op,[{opacity:1},{opacity:0}],{duration:500});return finish()}
-  const safety=setTimeout(finish,12000);
-  // 1. zoom towards the wax seal
-  const r=stage.getBoundingClientRect(),sr=seal.getBoundingClientRect();
-  const dy=innerHeight/2-(sr.top+sr.height/2);
-  await wait(250);
-  await anim(stage,[{transform:'translateY(0) scale(1)'},{transform:`translateY(${dy}px) scale(2.25)`}],{duration:1700});
-  // 2. light travels across the seal, emblem glows
-  seal.classList.add('shine');await wait(450);seal.classList.add('lit');await wait(800);
-  // 3. seal releases
-  const s2=seal.getBoundingClientRect();sparks(s2.left+s2.width/2,s2.top+s2.height/2);
-  anim(seal,[{transform:'translate(-50%,-50%)',opacity:1},{transform:'translate(-50%,-38%) rotate(-10deg) scale(1.04)',opacity:1,offset:.35},{transform:'translate(-50%,40%) rotate(-24deg) scale(1.1)',opacity:0}],{duration:1100,easing:'cubic-bezier(.4,0,.6,1)'});
-  await wait(500);
-  // 4. pull back, flap opens
-  anim(stage,[{transform:`translateY(${dy}px) scale(2.25)`},{transform:'translateY(6vh) scale(1.08)'}],{duration:1400});
-  await wait(250);
-  const fopen=$('#envFlapOpen');
-  await anim(flap,[{transform:'perspective(900px) rotateX(0deg)'},{transform:'perspective(900px) rotateX(-90deg)'}],{duration:560,easing:'cubic-bezier(.5,0,.9,.6)'});
-  flap.style.visibility='hidden';fopen.style.visibility='visible';
-  await anim(fopen,[{transform:'perspective(900px) rotateX(-90deg)'},{transform:'perspective(900px) rotateX(0deg)'}],{duration:620,easing:'cubic-bezier(.1,.4,.4,1)'});
-  // 5. card slides up out of the envelope
-  await anim(card,[{transform:'translateY(0)'},{transform:'translateY(-66%)'}],{duration:1100});
-  await wait(250);
-  // 6. card comes forward and fills the screen, the invitation appears behind it
-  card.style.zIndex=7;
-  const cr=card.getBoundingClientRect();const k=Math.max(innerWidth/cr.width,innerHeight/cr.height)*1.15;
-  const cdx=innerWidth/2-(cr.left+cr.width/2),cdy=innerHeight/2-(cr.top+cr.height/2);
+  const safety=setTimeout(finish,7000);
+  // seal catches the light
+  seal.classList.add('shine');await wait(300);seal.classList.add('lit');
+  const sr=seal.getBoundingClientRect();sparks(sr.left+sr.width/2,sr.top+sr.height/2);await wait(450);
+  // invitation waits underneath
   document.body.classList.add('opened');pages[0].classList.add('active');
-  anim(card,[{transform:'translateY(-66%)'},{transform:`translate(${cdx/1.08}px,calc(-66% + ${cdy/1.08}px)) scale(${k/1.08})`}],{duration:1100,easing:'cubic-bezier(.6,0,.3,1)'});
+  // flap swings up, the seal travels with it
+  anim(pocket,[{opacity:1},{opacity:0}],{duration:900,delay:250});
+  anim(flap,[{transform:'rotateX(0deg)'},{transform:'rotateX(-100deg) translateY(-4%)'}],{duration:1050,easing:'cubic-bezier(.55,0,.25,1)'});
+  anim(seal,[{transform:'translateY(0) scale(1)',opacity:1},{transform:'translateY(-62%) scale(.92)',opacity:1,offset:.55},{transform:'translateY(-150%) scale(.8)',opacity:0}],{duration:1050,easing:'cubic-bezier(.55,0,.25,1)'});
   await wait(650);
-  await anim(op,[{opacity:1},{opacity:0}],{duration:650,easing:'ease-out'});
+  // envelope body drops away and fades, revealing the invitation
+  anim(body,[{transform:'translateY(0)',opacity:1},{transform:'translateY(18%)',opacity:0}],{duration:900,easing:'cubic-bezier(.5,0,.75,0)'});
+  await anim(op,[{opacity:1},{opacity:1,offset:.4},{opacity:0}],{duration:1000,easing:'ease-out'});
   clearTimeout(safety);finish();
  }
  op.addEventListener('click',play);op.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')play()});
- // preload assets before allowing the tap
- const srcs=['wax-seal.webp','goat-bronze.webp','goat-trophy.webp','logo-mark.png','goat-kv.jpg','logo-gold.png'];
- const done=()=>{if(ready)return;ready=true;op.classList.remove('loading');if(location.hash==='#open'){started=true;finish()}};
+ const srcs=['env-portrait.jpg','seal-cut.webp','goat-kv.jpg','logo-gold.png'];
+ const done=()=>{if(ready)return;ready=true;op.classList.remove('loading');seal.classList.add('idle');if(location.hash==='#open'){started=true;finish()}};
  Promise.all(srcs.map(s=>new Promise(r=>{const i=new Image();i.onload=i.onerror=r;i.src=s}))).then(done);setTimeout(done,5000);
 })();
 
