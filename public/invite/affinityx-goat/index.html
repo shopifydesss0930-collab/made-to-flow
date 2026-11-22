@@ -232,6 +232,13 @@ ol.steps li.key{color:var(--gold-hi)}
 .stagecard .tap small{display:block;margin-top:5px;font-family:var(--serif-en);font-size:9px;letter-spacing:.45em;opacity:.75}
 body.lang-en .stagecard .tap small{display:none}
 @keyframes tapGlow{0%,100%{box-shadow:0 0 0 4px rgba(212,176,106,.15),0 8px 24px rgba(0,0,0,.5)}50%{box-shadow:0 0 0 9px rgba(212,176,106,.05),0 0 28px rgba(255,210,120,.45)}}
+
+.guest{position:relative;margin-top:18px;text-align:center}
+.guest small{display:block;font-family:var(--zh);font-size:11px;letter-spacing:.5em;padding-left:.5em;color:#e9d6a6;opacity:.85}
+.guest small .en{font-family:var(--serif-en);letter-spacing:.4em}
+.guest b{display:block;margin-top:6px;font-family:var(--display);font-weight:600;font-size:30px;color:#fff3cf;text-shadow:0 2px 12px rgba(0,0,0,.8),0 0 18px rgba(255,210,120,.35)}
+.dear{font-size:18px;color:var(--gold-hi);margin-bottom:14px;letter-spacing:.06em}
+.dear .en{font-family:var(--display);font-size:22px}
 /* ---------- SCRATCH ---------- */
 .scratch-wrap{display:flex;justify-content:center;gap:14px;margin:18px 0 10px}
 .coin{position:relative;width:86px;height:86px;border-radius:50%;border:1px solid rgba(212,176,106,.55);background:#16130f;display:flex;align-items:center;justify-content:center;flex:none}
@@ -264,6 +271,7 @@ body.opened .top{opacity:1}
     <div class="stage-glow"></div>
     <img class="stage-trophy" src="goat-trophy.webp" alt="AffinityX G.O.A.T.">
     <div class="stage-sub">ANNUAL DINNER 2027</div>
+    <div class="guest" id="guest1" hidden><small><span class="zh">特别邀请</span><span class="en">SPECIALLY FOR</span></small><b class="gname"></b></div>
     <div class="tap"><span class="zh">点击开幕</span><span class="en">TAP TO OPEN</span><small>TAP TO OPEN</small></div>
   </div>
 </div>
@@ -299,6 +307,7 @@ body.opened .top{opacity:1}
   <div class="inner">
     <div class="kicker rv"><span class="zh">感谢与邀请</span><span class="en">A Thank You &amp; Invitation</span></div>
     <div class="rule left rv d1"></div>
+    <p class="dear rv d1" id="dear" hidden><span class="zh">亲爱的 <b class="gname"></b>：</span><span class="en">Dear <b class="gname"></b>,</span></p>
     <div class="zh">
       <p class="p rv d1">感谢每一位 AffinityX 伙伴。这一年的努力、坚持和每一次并肩作战，我们都看在眼里。</p><br>
       <p class="p rv d2">今年的年度晚宴，是我们特别为你准备的一场红毯之夜，属于每一个认真付出的你。</p>
@@ -515,6 +524,14 @@ tick();setInterval(tick,1000);
 $('#ics').onclick=e=>{e.preventDefault();const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//AffinityX//Annual Dinner 2027//EN','BEGIN:VEVENT','UID:affinityx-goat-20270123','DTSTAMP:20261122T000000Z','DTSTART:20270123T100000Z','DTEND:20270123T150000Z','SUMMARY:G.O.A.T. 金羊盛典 · AffinityX Annual Dinner 2027','DESCRIPTION:Red Carpet 6:00pm · Dinner 7:30pm · Dress code: Red Carpet Attire','LOCATION:Dynasty Hotel\\, Level 5 Ballroom\\, Jalan Ipoh\\, Kuala Lumpur','END:VEVENT','END:VCALENDAR'].join('\r\n');
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));a.download='AffinityX-GOAT-2027.ics';a.click()};
 
+
+
+// personalised guest name: ?to=<base64url of UTF-8 name>
+(function(){try{const t=new URLSearchParams(location.search).get('to');if(!t)return;
+ const b=t.replace(/-/g,'+').replace(/_/g,'/');const bytes=Uint8Array.from(atob(b+'==='.slice((b.length+3)%4)),c=>c.charCodeAt(0));
+ const name=new TextDecoder().decode(bytes).trim().slice(0,40);if(!name)return;
+ document.querySelectorAll('.gname').forEach(e=>e.textContent=name);$('#guest1').hidden=false;$('#dear').hidden=false;
+ document.title=name+' · G.O.A.T. 金羊盛典'}catch(e){}})();
 
 // curtain
 (function(){const c=$('#curtain');const open=()=>{if(c.classList.contains('open'))return;c.classList.add('open');document.body.classList.add('opened');pages[0].classList.remove('active');void pages[0].offsetWidth;setTimeout(()=>pages[0].classList.add('active'),500)};
