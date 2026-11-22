@@ -182,6 +182,15 @@ ol.steps li.key{color:var(--gold-hi)}
 .cover .inner{z-index:auto}
 .cover .marquee{max-width:330px;margin-top:8px;padding:22px 16px 20px}
 
+
+.goat-trophy{display:block;width:62%;max-width:240px;height:auto;margin:0 auto 22px;filter:drop-shadow(0 8px 30px rgba(212,176,106,.35))}
+.page.active .goat-trophy.rv{animation:trophyIn 1.4s cubic-bezier(.2,.8,.2,1) both}
+@keyframes trophyIn{0%{opacity:0;transform:translateY(20px) scale(.9)}100%{opacity:1;transform:none}}
+.looks{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px;text-align:left}
+.looks figure{border:1px solid rgba(212,176,106,.35);padding:4px;background:#0f0e0c}
+.looks img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover}
+.looks figcaption{font-size:12px;letter-spacing:.2em;color:var(--gold);padding:8px 4px 4px;text-align:center}
+.looks figcaption .en{font-family:var(--serif-en);font-size:11px}
 /* ---------- CURTAIN INTRO ---------- */
 .curtain{position:fixed;inset:0;z-index:8;pointer-events:none}
 .curtain .half{position:absolute;inset:0;pointer-events:auto;
@@ -401,17 +410,17 @@ body.opened .top{opacity:1}
 <section class="page">
   <div class="inner center">
     <div class="kicker rv"><span class="zh">着装要求</span><span class="en">Dress Code</span></div>
-    <svg class="gown rv d1" viewBox="0 0 120 120" fill="none" stroke="#d4b06a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M38 22 L44 50 L30 104 H58 L52 50 L58 22"/><path d="M42 30 Q48 34 54 30"/><circle cx="48" cy="14" r="5"/>
-      <path d="M68 104 V58 H92 V104"/><path d="M68 58 L80 44 L92 58"/><path d="M76 50 L80 56 L84 50"/><circle cx="80" cy="34" r="5"/><path d="M78 58 V104 M82 58 V104" stroke-width=".6"/>
-      <path d="M18 108 H102" stroke-width=".8"/>
-    </svg>
+    
     <div class="dress-t rv d2">Red Carpet Attire</div>
     <div class="val rv d2" style="margin-top:6px;letter-spacing:.3em"><span class="zh">红毯正装 · 盛装出席</span></div>
     <div class="rule rv d3"></div>
     <p class="p rv d3 zh">这一晚，我们用心准备了每一个细节，也期待你认真装扮，盛装走上属于你的红毯。</p>
     <p class="p en rv d3">We've put our hearts into every detail of this night. Now it's your turn: dress to impress and make your red carpet moment count.</p>
-    <p class="rv d4" style="margin-top:20px;font-size:13px;letter-spacing:.2em;color:var(--gold)"><span class="zh">正式、优雅，颜色不限</span><span class="en" style="font-family:var(--serif-en);font-size:11px">FORMAL &amp; ELEGANT · ANY COLOUR</span></p>
+    <div class="looks rv d4">
+      <figure><img src="dress-1.jpg" alt="Suit references" loading="lazy"><figcaption><span class="zh">西装参考</span><span class="en">Gentlemen</span></figcaption></figure>
+      <figure><img src="dress-2.jpg" alt="Evening wear references" loading="lazy"><figcaption><span class="zh">晚礼服参考</span><span class="en">Evening Wear</span></figcaption></figure>
+    </div>
+    <p class="rv d5" style="margin-top:18px;font-size:13px;letter-spacing:.2em;color:var(--gold)"><span class="zh">正式、优雅，颜色不限</span><span class="en" style="font-family:var(--serif-en);font-size:11px">FORMAL &amp; ELEGANT · ANY COLOUR</span></p>
   </div>
 </section>
 
@@ -440,9 +449,7 @@ body.opened .top{opacity:1}
 <!-- 9 FINALE -->
 <section class="page finale">
   <div class="inner">
-    <svg class="trophy rv" viewBox="0 0 56 90" fill="none" stroke="#d4b06a" stroke-width="1.2">
-      <circle cx="28" cy="10" r="6"/><path d="M28 16 V20 M20 24 Q28 18 36 24 L33 52 Q28 56 23 52 Z"/><path d="M23 52 L22 66 M33 52 L34 66"/><rect x="16" y="66" width="24" height="7"/><rect x="12" y="73" width="32" height="9"/>
-    </svg>
+    <img class="goat-trophy rv" src="goat-trophy.webp" alt="AffinityX G.O.A.T. trophy" width="619" height="640">
     <div class="cn-title rv d1" style="font-size:24px">金羊盛典</div>
     <div class="goat rv d2" style="font-size:52px;margin:10px 0 6px">G.O.A.T.</div>
     <div class="full rv d2">GOLDEN OSCARS OF AFFINITYX TEAM</div>
@@ -451,8 +458,7 @@ body.opened .top{opacity:1}
     <div class="where rv d3">DYNASTY HOTEL · KUALA LUMPUR</div>
     <div class="see rv d4 en">See you on the red carpet.</div>
     <div class="see rv d4 zh">红毯上见</div>
-    <img class="lockup rv d5" src="logo-gold.png" alt="AffinityX" style="width:84px;margin-top:40px;margin-bottom:8px">
-    <div class="foot rv d5" style="margin-top:0">PEOPLE &amp; CULTURE</div>
+        <div class="foot rv d5">AFFINITYX · PEOPLE &amp; CULTURE</div>
   </div>
 </section>
 
