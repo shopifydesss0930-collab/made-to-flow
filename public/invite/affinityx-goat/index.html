@@ -80,7 +80,7 @@ h2.en{font-family:var(--serif-en);font-weight:500;font-size:26px;letter-spacing:
 .btn svg{width:16px;height:16px;flex:none}
 
 /* ---------- COVER ---------- */
-.cover .inner{padding-top:64px;padding-bottom:22dvh;justify-content:center;align-items:center;text-align:center;min-height:100dvh}
+.cover .inner{padding-top:62px;padding-bottom:86px;justify-content:center;align-items:center;text-align:center;min-height:100dvh}
 .beam{position:absolute;top:-10%;width:60%;height:95%;pointer-events:none;mix-blend-mode:screen;opacity:.55;filter:blur(2px)}
 .beam.l{left:-8%;transform-origin:10% 0;background:linear-gradient(170deg,rgba(255,236,190,.38),rgba(255,236,190,0) 70%);clip-path:polygon(0 0,22% 0,100% 100%,40% 100%);animation:swayL 9s ease-in-out infinite}
 .beam.r{right:-8%;transform-origin:90% 0;background:linear-gradient(190deg,rgba(255,236,190,.38),rgba(255,236,190,0) 70%);clip-path:polygon(78% 0,100% 0,60% 100%,0 100%);animation:swayR 9s ease-in-out infinite}
@@ -164,6 +164,24 @@ ol.steps li.key{color:var(--gold-hi)}
 .trophy{width:56px;height:90px;margin:0 auto 6px;display:block}
 
 
+
+/* key visual */
+.kv{position:relative;width:calc(100% + 60px);max-width:560px;margin:6px -30px 4px;aspect-ratio:1240/816}
+.kv img{opacity:0}
+.kv img{display:block;width:100%;height:100%;mix-blend-mode:screen;-webkit-mask:radial-gradient(ellipse 66% 64% at 50% 50%,#000 55%,transparent 100%);mask:radial-gradient(ellipse 66% 64% at 50% 50%,#000 55%,transparent 100%)}
+.kv{isolation:auto}
+.page.active .kv img{animation:kvIn 1.6s cubic-bezier(.2,.8,.2,1) .25s forwards}
+@keyframes kvIn{0%{opacity:0;transform:scale(.82);filter:blur(10px) brightness(.4)}60%{opacity:1;filter:blur(0) brightness(1.35)}100%{opacity:1;transform:scale(1);filter:none}}
+.kv-shine{position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.95) 50%,transparent 60%);background-size:300% 100%;background-position:150% 0;mix-blend-mode:overlay;
+  -webkit-mask:url(kv-mask.png) center/100% 100% no-repeat;mask:url(kv-mask.png) center/100% 100% no-repeat}
+.page.active .kv-shine{animation:kvShine 4.5s ease-in-out 1.8s infinite}
+@keyframes kvShine{0%{background-position:150% 0}45%,100%{background-position:-50% 0}}
+.kv-flash{position:absolute;left:50%;top:45%;width:10px;height:10px;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);box-shadow:0 0 120px 70px rgba(255,236,190,.0)}
+.page.active .kv-flash{animation:flash 1.4s ease-out .9s}
+@keyframes flash{0%{box-shadow:0 0 0 0 rgba(255,236,190,0)}30%{box-shadow:0 0 160px 110px rgba(255,236,190,.55)}100%{box-shadow:0 0 220px 160px rgba(255,236,190,0)}}
+.cover .inner{z-index:auto}
+.cover .marquee{max-width:330px;margin-top:8px;padding:22px 16px 20px}
+
 /* ---------- CURTAIN INTRO ---------- */
 .curtain{position:fixed;inset:0;z-index:8;pointer-events:none}
 .curtain .half{position:absolute;inset:0;pointer-events:auto;
@@ -239,25 +257,17 @@ body.opened .top{opacity:1}
 <section class="page cover active">
   <div class="beam l"></div><div class="beam r"></div><div class="spot"></div>
   <div class="inner">
+    <img class="lockup rv" src="logo-gold.png" alt="AffinityX" style="width:78px;margin-bottom:8px">
+    <div class="annual rv">ANNUAL DINNER 2027</div>
+    <div class="kv" id="kv"><img src="goat-kv.jpg" alt="G.O.A.T. Golden Oscars of AffinityX Team" width="1240" height="816"><i class="kv-shine"></i><i class="kv-flash"></i></div>
     <div class="marquee" id="marquee">
-      <img class="lockup rv" src="logo-gold.png" alt="AffinityX">
-      <div class="annual rv">ANNUAL DINNER 2027</div>
-      <div class="goat rv d1" data-t="G.O.A.T.">G.O.A.T.</div>
-      <div class="full rv d2">GOLDEN OSCARS OF AFFINITYX TEAM</div>
-      <svg class="horns rv d3" viewBox="0 0 150 34" fill="none" stroke="url(#hg)" stroke-width="1.3" stroke-linecap="round">
-        <defs><linearGradient id="hg" x1="0" x2="1"><stop offset="0" stop-color="#8a6a32"/><stop offset=".5" stop-color="#f3dc9c"/><stop offset="1" stop-color="#8a6a32"/></linearGradient></defs>
-        <path d="M68 20 C58 6 38 2 26 10 C16 17 18 30 29 30 C37 30 39 21 33 18 C29 16 25 20 28 23"/>
-        <path d="M82 20 C92 6 112 2 124 10 C134 17 132 30 121 30 C113 30 111 21 117 18 C121 16 125 20 122 23"/>
-        <path d="M2 20 H20 M130 20 H148" stroke-width="1"/>
-        <path d="M75 13 L78.5 20 L75 27 L71.5 20 Z" fill="#d4b06a" stroke="none"/>
-      </svg>
       <div class="cn-title rv d3">金羊盛典</div>
       <div class="theme rv d4"><span class="en">An Oscar Night</span><span class="zh">奥 斯 卡 之 夜 · OSCAR NIGHT</span></div>
       <div class="when rv d5">23 · 01 · 2027</div>
       <div class="where rv d5">DYNASTY HOTEL · KUALA LUMPUR</div>
     </div>
   </div>
-  <div class="carpet"><i></i></div>
+  
   <div class="swipe"><span class="zh">向下滑动 · SCROLL</span><span class="en">SCROLL DOWN</span><br><span style="font-size:16px">↓</span></div>
 </section>
 
