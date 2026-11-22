@@ -38,7 +38,7 @@ body.lang-en .zh{display:none!important}
 .page::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 70% at 50% -10%,rgba(212,176,106,.10),transparent 60%),radial-gradient(90% 60% at 50% 115%,rgba(158,42,36,.16),transparent 65%)}
 
 /* top bar */
-.top{position:fixed;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:calc(env(safe-area-inset-top) + 16px) 20px 12px;pointer-events:none}
+.top{position:fixed;top:0;left:0;right:0;z-index:9;opacity:0;transition:opacity .8s 1.2s;display:flex;justify-content:space-between;align-items:center;padding:calc(env(safe-area-inset-top) + 16px) 20px 12px;pointer-events:none}
 .brand{font-family:var(--serif-en);font-size:11px;letter-spacing:.32em;color:var(--gold);opacity:.85}
 .lang{pointer-events:auto;display:flex;border:1px solid rgba(212,176,106,.45);border-radius:20px;overflow:hidden;background:rgba(11,10,9,.6);backdrop-filter:blur(6px)}
 .lang button{all:unset;cursor:pointer;font-family:var(--serif-en);font-size:11px;letter-spacing:.12em;padding:6px 12px;color:var(--muted)}
@@ -160,12 +160,69 @@ ol.steps li.key{color:var(--gold-hi)}
 .foot{margin-top:40px;font-family:var(--serif-en);font-size:10px;letter-spacing:.3em;color:var(--muted)}
 .trophy{width:56px;height:90px;margin:0 auto 6px;display:block}
 
+
+/* ---------- CURTAIN INTRO ---------- */
+.curtain{position:fixed;inset:0;z-index:8;pointer-events:none}
+.curtain .half{position:absolute;inset:0;pointer-events:auto;
+  background:
+   linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,0) 18%,rgba(0,0,0,0) 70%,rgba(0,0,0,.45) 100%),
+   repeating-linear-gradient(90deg,#4a0f0c 0,#7d1c17 1.6%,#b8352b 3.1%,#d0473a 3.7%,#9e2a24 5%,#5c1512 7%);
+  transition:clip-path 2.1s cubic-bezier(.7,0,.2,1),filter 2.1s;filter:drop-shadow(0 0 18px rgba(0,0,0,.6))}
+.curtain .half.l{clip-path:polygon(0 0,50.4% 0,50.4% 50%,50.4% 100%,0 100%)}
+.curtain .half.r{clip-path:polygon(49.6% 0,100% 0,100% 100%,49.6% 100%,49.6% 50%)}
+.curtain.open .half{pointer-events:none}
+.curtain.open .half.l{clip-path:polygon(0 0,23% 0,15% 9%,5% 19%,0 21%)}
+.curtain.open .half.r{clip-path:polygon(77% 0,100% 0,100% 21%,95% 19%,85% 9%)}
+.valance{position:absolute;left:0;right:0;top:0;height:54px;pointer-events:none;
+  background:repeating-linear-gradient(90deg,#5c1512 0,#a52a23 2.5%,#5c1512 5%);
+  -webkit-mask:radial-gradient(circle at 50% 0,#000 38px,transparent 39px) 0 0/76px 54px repeat-x,linear-gradient(#000,#000) 0 0/100% 24px no-repeat;
+          mask:radial-gradient(circle at 50% 0,#000 38px,transparent 39px) 0 0/76px 54px repeat-x,linear-gradient(#000,#000) 0 0/100% 24px no-repeat;
+  filter:drop-shadow(0 3px 0 rgba(212,176,106,.85)) drop-shadow(0 6px 10px rgba(0,0,0,.6));transition:transform 1.4s .4s ease}
+.curtain.open .valance{transform:translateY(-24px)}
+.stagecard{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;pointer-events:auto;cursor:pointer;transition:opacity .6s}
+.curtain.open .stagecard{opacity:0;pointer-events:none}
+.stagecard .em{width:132px;height:132px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 35% 30%,#fff1c4,#e2bf72 40%,#a17a37 78%,#6e4f1d);box-shadow:0 0 0 4px rgba(11,10,9,.55),0 0 0 5px #d4b06a,0 10px 40px rgba(0,0,0,.6);color:#2a1d08;animation:pulse 2.4s ease-in-out infinite}
+.stagecard .em b{font-family:var(--serif-en);font-size:23px;letter-spacing:.02em}
+.stagecard .em small{font-family:var(--serif-en);font-size:8.5px;letter-spacing:.3em;margin-top:4px}
+.stagecard .tap{font-family:var(--serif-en);font-size:12px;letter-spacing:.42em;color:#f3dc9c;text-shadow:0 2px 8px rgba(0,0,0,.8)}
+.stagecard .tap i{font-style:normal;font-family:var(--zh);letter-spacing:.5em}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+
+/* ---------- SCRATCH ---------- */
+.scratch-wrap{display:flex;justify-content:center;gap:14px;margin:18px 0 10px}
+.coin{position:relative;width:86px;height:86px;border-radius:50%;border:1px solid rgba(212,176,106,.55);background:#16130f;display:flex;align-items:center;justify-content:center;flex:none}
+.coin.yr{width:104px;border-radius:44px}
+.coin span{font-family:var(--serif-en);font-weight:600;font-size:28px;color:var(--gold-hi)}
+.coin.yr span{font-size:24px}
+.coin canvas{position:absolute;inset:0;width:100%;height:100%;border-radius:inherit;touch-action:none;cursor:grab;transition:opacity .6s}
+.coin.done canvas{opacity:0;pointer-events:none}
+.hint{display:flex;align-items:center;justify-content:center;gap:8px;font-family:var(--serif-en);font-size:10.5px;letter-spacing:.3em;color:var(--muted);margin-top:6px}
+.hint .zh{font-family:var(--zh)}
+.hint svg{width:18px;height:18px;animation:wig 1.6s ease-in-out infinite}
+@keyframes wig{0%,100%{transform:translateX(-4px) rotate(-8deg)}50%{transform:translateX(4px) rotate(8deg)}}
+.after{opacity:0;transform:translateY(8px);transition:all .8s ease .3s}
+.revealed .after{opacity:1;transform:none}
+.page.active .revealed .hint{opacity:0;transition:opacity .4s}
+body.opened .top{opacity:1}
+#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:7}
+
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
 @media (min-height:820px){.inner{padding-top:96px}}
 </style>
 </head>
 <body class="lang-zh">
 <canvas id="stars"></canvas>
+<canvas id="confetti"></canvas>
+<div class="curtain" id="curtain">
+  <div class="half l"></div><div class="half r"></div>
+  <div class="valance"></div>
+  <div class="stagecard" id="stagecard">
+    <div class="em"><b>G.O.A.T.</b><small>2027</small></div>
+    <div class="tap"><span class="zh"><i>点击开幕</i> · TAP TO OPEN</span><span class="en">TAP TO OPEN</span></div>
+  </div>
+</div>
+
 
 <div class="top">
   <div class="brand">AFFINITYX</div>
@@ -226,8 +283,13 @@ ol.steps li.key{color:var(--gold-hi)}
   <div class="inner">
     <div class="film rv"></div>
     <div class="kicker rv"><span class="zh">日期与时间</span><span class="en">Date &amp; Time</span></div>
-    <div class="bigdate rv d1" style="margin-top:14px">23.01.2027</div>
-    <div class="val rv d2" style="margin-top:6px"><span class="zh">2027年1月23日（星期六）</span><span class="en" style="font-family:var(--body-en);font-size:22px">Saturday, 23 January 2027</span></div>
+    <div class="scratch-wrap rv d1" id="scratch">
+      <div class="coin"><span>23</span><canvas></canvas></div>
+      <div class="coin"><span>01</span><canvas></canvas></div>
+      <div class="coin yr"><span>2027</span><canvas></canvas></div>
+    </div>
+    <div class="hint rv d2"><svg viewBox="0 0 24 24" fill="none" stroke="#d4b06a" stroke-width="1.4" stroke-linecap="round"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11m0-1.5a1.5 1.5 0 0 1 3 0V11m0-.5a1.5 1.5 0 0 1 3 0V15a6 6 0 0 1-6 6h-1a6 6 0 0 1-5-2.7L4 14.5a1.5 1.5 0 0 1 2.4-1.8L9 15"/></svg><span class="zh">刮开金币 · 揭晓日期</span><span class="en">SCRATCH TO REVEAL</span></div>
+    <div class="val after" style="margin-top:4px;text-align:center"><span class="zh">2027年1月23日（星期六）</span><span class="en" style="font-family:var(--body-en);font-size:22px">Saturday, 23 January 2027</span></div>
     <div class="sched rv d3">
       <div><span class="n zh">红毯入场</span><span class="n en">RED CARPET</span><span class="t">6:00 PM</span></div>
       <div><span class="n zh">晚宴开始</span><span class="n en">DINNER</span><span class="t">7:30 PM</span></div>
@@ -388,7 +450,7 @@ const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const deck=$('#deck'),pages=$$('.page'),dots=$('#dots'),count=$('#count');
 
 // language
-const setLang=l=>{document.body.className='lang-'+l;document.documentElement.lang=l==='zh'?'zh':'en';$$('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));try{localStorage.setItem('goat-lang',l)}catch(e){}};
+const setLang=l=>{document.body.classList.remove('lang-zh','lang-en');document.body.classList.add('lang-'+l);document.documentElement.lang=l==='zh'?'zh':'en';$$('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));try{localStorage.setItem('goat-lang',l)}catch(e){}};
 $$('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
 try{const s=localStorage.getItem('goat-lang');if(s)setLang(s)}catch(e){}
 
@@ -422,6 +484,43 @@ tick();setInterval(tick,1000);
 // add to calendar
 $('#ics').onclick=e=>{e.preventDefault();const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//AffinityX//Annual Dinner 2027//EN','BEGIN:VEVENT','UID:affinityx-goat-20270123','DTSTAMP:20261122T000000Z','DTSTART:20270123T100000Z','DTEND:20270123T150000Z','SUMMARY:G.O.A.T. 金羊盛典 · AffinityX Annual Dinner 2027','DESCRIPTION:Red Carpet 6:00pm · Dinner 7:30pm · Dress code: Red Carpet Attire','LOCATION:Dynasty Hotel\\, Level 5 Ballroom\\, Jalan Ipoh\\, Kuala Lumpur','END:VEVENT','END:VCALENDAR'].join('\r\n');
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));a.download='AffinityX-GOAT-2027.ics';a.click()};
+
+
+// curtain
+(function(){const c=$('#curtain');const open=()=>{if(c.classList.contains('open'))return;c.classList.add('open');document.body.classList.add('opened');pages[0].classList.remove('active');void pages[0].offsetWidth;setTimeout(()=>pages[0].classList.add('active'),500)};
+ $('#stagecard').onclick=open;c.querySelectorAll('.half').forEach(h=>h.addEventListener('click',open));
+ pages[0].classList.remove('active');})();
+
+// confetti
+const confetti=(function(){const c=$('#confetti'),x=c.getContext('2d');let P=[],run=false;const dpr=Math.min(2,devicePixelRatio||1);
+ const rs=()=>{c.width=innerWidth*dpr;c.height=innerHeight*dpr};rs();addEventListener('resize',rs);
+ const cols=['#f3dc9c','#d4b06a','#b8902f','#9e2a24','#c23a30','#fff3cf'];
+ const step=()=>{x.clearRect(0,0,c.width,c.height);P=P.filter(p=>p.y<c.height+40);
+  for(const p of P){p.vy+=.06*dpr;p.vx*=.99;p.x+=p.vx+Math.sin(p.t+=.08)*.6*dpr;p.y+=p.vy;p.r+=p.vr;
+   x.save();x.translate(p.x,p.y);x.rotate(p.r);x.scale(1,Math.cos(p.t*1.7));x.fillStyle=p.c;x.fillRect(-p.w/2,-p.h/2,p.w,p.h);x.restore()}
+  if(P.length)requestAnimationFrame(step);else{run=false;x.clearRect(0,0,c.width,c.height)}};
+ return(ox,oy)=>{for(let i=0;i<170;i++){const a=-Math.PI/2+(Math.random()-.5)*2.2,v=(Math.random()*9+5)*dpr;
+   P.push({x:ox*dpr,y:oy*dpr,vx:Math.cos(a)*v,vy:Math.sin(a)*v,w:(Math.random()*5+4)*dpr,h:(Math.random()*9+6)*dpr,r:Math.random()*6,vr:(Math.random()-.5)*.3,t:Math.random()*6,c:cols[i%cols.length]})}
+  if(!run){run=true;step()}}})();
+
+// scratch to reveal
+(function(){const wrap=$('#scratch'),coins=[...wrap.querySelectorAll('.coin')];let left=coins.length;
+ coins.forEach(coin=>{const cv=coin.querySelector('canvas'),x=cv.getContext('2d');let drawing=false,done=false;
+  const paint=()=>{const r=cv.getBoundingClientRect();if(!r.width)return;const d=2;cv.width=r.width*d;cv.height=r.height*d;
+   const g=x.createRadialGradient(cv.width*.35,cv.height*.3,4,cv.width/2,cv.height/2,cv.width*.7);
+   g.addColorStop(0,'#fff1c4');g.addColorStop(.35,'#e2bf72');g.addColorStop(.75,'#a17a37');g.addColorStop(1,'#6e4f1d');
+   x.globalCompositeOperation='source-over';x.fillStyle=g;x.fillRect(0,0,cv.width,cv.height);
+   x.strokeStyle='rgba(110,79,29,.35)';x.lineWidth=1;for(let i=0;i<cv.width;i+=5){x.beginPath();x.moveTo(i,0);x.lineTo(i-cv.height*.4,cv.height);x.stroke()}
+   x.fillStyle='rgba(60,40,10,.55)';x.font=`600 ${cv.height*.13}px Cinzel,serif`;x.textAlign='center';x.textBaseline='middle';x.fillText('G.O.A.T.',cv.width/2,cv.height/2)};
+  const pos=e=>{const r=cv.getBoundingClientRect();return[(e.clientX-r.left)*cv.width/r.width,(e.clientY-r.top)*cv.height/r.height]};
+  const scr=e=>{const[a,b]=pos(e);x.globalCompositeOperation='destination-out';x.beginPath();x.arc(a,b,cv.width*.13,0,7);x.fill()};
+  const check=()=>{const d=x.getImageData(0,0,cv.width,cv.height).data;let n=0;for(let i=3;i<d.length;i+=32)if(d[i]<20)n++;
+   if(n/(d.length/32)>.45&&!done){done=true;coin.classList.add('done');if(--left===0){wrap.parentElement.classList.add('revealed');const r=wrap.getBoundingClientRect();confetti(r.left+r.width/2,r.top+r.height/2)}}};
+  cv.addEventListener('pointerdown',e=>{drawing=true;cv.setPointerCapture(e.pointerId);scr(e)});
+  cv.addEventListener('pointermove',e=>{if(drawing)scr(e)});
+  ['pointerup','pointercancel'].forEach(t=>cv.addEventListener(t,()=>{if(drawing){drawing=false;check()}}));
+  paint();addEventListener('resize',()=>{if(!done)paint()});document.fonts&&document.fonts.ready.then(()=>{if(!done)paint()});
+ })})();
 
 // gold sparkles
 (function(){const c=$('#stars'),x=c.getContext('2d');let W,H,S=[];const dpr=Math.min(2,window.devicePixelRatio||1);
