@@ -210,19 +210,23 @@ ol.steps li.key{color:var(--gold-hi)}
 .opener{position:fixed;inset:0;z-index:8;overflow:hidden;-webkit-user-select:none;user-select:none;cursor:pointer;touch-action:manipulation;background:radial-gradient(110% 70% at 50% 40%,#3a0a12,#120306 75%);perspective:1100px}
 .envx-card{position:absolute;left:7%;top:37%;width:86%;aspect-ratio:3/2;will-change:transform}
 .envx-card img{display:block;width:100%;height:100%;border-radius:3px;box-shadow:0 14px 30px rgba(0,0,0,.55),0 0 0 1px rgba(212,176,106,.35)}
-.envx-card.glow img{box-shadow:0 18px 40px rgba(0,0,0,.6),0 0 40px rgba(255,190,120,.35),0 0 0 1px rgba(212,176,106,.6);transition:box-shadow 1s}
+.envx-card::after{content:"";position:absolute;inset:-6%;border-radius:12px;background:radial-gradient(closest-side,rgba(255,190,120,.35),transparent);opacity:0;z-index:-1;transition:opacity 1s ease}
+.envx-card.glow::after{opacity:1}
+.envx-card img{backface-visibility:hidden}
 .opener.gone{display:none}
 .envx{position:absolute;left:50%;top:0;width:max(100vw,52.94dvh);aspect-ratio:900/1700;transform:translateX(-50%);will-change:transform}
 .envx-body,.envx-flap{position:absolute;inset:0;background:url(env-portrait.jpg) center/100% 100% no-repeat}
 .envx-body{clip-path:polygon(0 18.39%,54.67% 35.65%,100% 16.72%,100% 100%,0 100%);will-change:transform,opacity}
 .envx-pocket{position:absolute;inset:0;clip-path:polygon(0 0,0 18.39%,54.67% 35.65%,100% 16.72%,100% 0);background:linear-gradient(180deg,#14040a,#2a0811);transition:opacity .9s}
-.envx-flap{clip-path:polygon(0 0,0 18.39%,54.67% 35.65%,100% 16.72%,100% 0);transform-origin:50% 0;will-change:transform;filter:drop-shadow(0 10px 14px rgba(0,0,0,.45))}
+.envx-flap{clip-path:polygon(0 0,0 18.39%,54.67% 35.65%,100% 16.72%,100% 0);transform-origin:50% 0;will-change:transform;backface-visibility:hidden}
 .envx-seal{position:absolute;left:21.33%;top:12.93%;width:58.11%;height:33.54%;transform-origin:50% 0;will-change:transform,opacity}
-.envx-seal img{display:block;width:100%;height:100%;filter:drop-shadow(0 10px 14px rgba(0,0,0,.5));transition:filter .8s}
-.envx-seal.lit img{filter:drop-shadow(0 10px 14px rgba(0,0,0,.5)) drop-shadow(0 0 22px rgba(255,200,140,.8)) brightness(1.15)}
+.envx-seal img{display:block;width:100%;height:100%;filter:drop-shadow(0 10px 14px rgba(0,0,0,.5))}
+.envx-seal::after{content:"";position:absolute;inset:-12%;border-radius:50%;background:radial-gradient(circle,rgba(255,205,150,.55),rgba(255,180,110,0) 62%);opacity:0;pointer-events:none;mix-blend-mode:screen;transition:opacity .6s ease}
+.envx-seal.lit::after{opacity:1}
+
 .envx-seal i{position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(255,240,215,.95) 50%,transparent 65%) no-repeat;background-size:250% 100%;background-position:150% 0;mix-blend-mode:overlay;
   -webkit-mask:url(wax-seal.webp) center/100% 100% no-repeat;mask:url(wax-seal.webp) center/100% 100% no-repeat}
-.envx-seal.shine i{animation:sealShine .9s ease-in-out forwards}
+.envx-seal.shine i{animation:sealShine .8s cubic-bezier(.4,0,.2,1) forwards}
 @keyframes sealShine{to{background-position:-50% 0}}
 .envx-seal.idle{animation:sealBreath 2.6s ease-in-out infinite}
 @keyframes sealBreath{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
@@ -567,27 +571,28 @@ $('#ics').onclick=e=>{e.preventDefault();const ics=['BEGIN:VCALENDAR','VERSION:2
   if(!ready||started)return;started=true;op.classList.add('go');seal.classList.remove('idle');
   if(reduce){await anim(op,[{opacity:1},{opacity:0}],{duration:500});return finish()}
   const safety=setTimeout(finish,11000);
-  // seal catches the light
-  seal.classList.add('shine');await wait(300);seal.classList.add('lit');
-  const sr=seal.getBoundingClientRect();sparks(sr.left+sr.width/2,sr.top+sr.height/2);await wait(450);
   const card=$('#envCard');
-  // flap swings up, the seal travels with it
-  anim(flap,[{transform:'rotateX(0deg)'},{transform:'rotateX(-100deg) translateY(-4%)'}],{duration:1050,easing:'cubic-bezier(.55,0,.25,1)'});
-  anim(seal,[{transform:'translateY(0) scale(1)',opacity:1},{transform:'translateY(-62%) scale(.92)',opacity:1,offset:.55},{transform:'translateY(-150%) scale(.8)',opacity:0}],{duration:1050,easing:'cubic-bezier(.55,0,.25,1)'});
-  await wait(850);
-  // the card rises out of the envelope
-  await anim(card,[{transform:'translateY(0)'},{transform:'translateY(-100%)'}],{duration:1100,easing:'cubic-bezier(.45,0,.2,1)'});
-  // envelope drops away, card settles in the centre
-  card.style.zIndex=5;
-  anim(body,[{transform:'translateY(0)',opacity:1},{transform:'translateY(22%)',opacity:0}],{duration:900,easing:'cubic-bezier(.5,0,.75,0)'});
-  anim(pocket,[{opacity:1},{opacity:0}],{duration:700});
-  const cr=card.getBoundingClientRect(),k=Math.min(1.12,(innerWidth*.92)/cr.width);
+  const E='cubic-bezier(.45,0,.2,1)';
+  // measure the card once, before anything moves
+  const cr=card.getBoundingClientRect(),rise=-cr.height,k=Math.min(1.12,(innerWidth*.92)/cr.width);
   const dx=innerWidth/2-(cr.left+cr.width/2),dy=innerHeight/2-(cr.top+cr.height/2);
-  await anim(card,[{transform:'translateY(-100%)'},{transform:`translate(${dx}px,calc(-100% + ${dy}px)) scale(${k})`}],{duration:1000,easing:'cubic-bezier(.3,0,.2,1)'});
-  card.classList.add('glow');await wait(1300);
-  // into the invitation
+  // 0ms  seal catches the light
+  seal.classList.add('shine');setTimeout(()=>seal.classList.add('lit'),200);
+  setTimeout(()=>{const r=seal.getBoundingClientRect();sparks(r.left+r.width/2,r.top+r.height*.45)},450);
+  // 550ms flap and seal lift together
+  flap.animate([{transform:'rotateX(0deg)'},{transform:'rotateX(-100deg) translateY(-4%)'}],{duration:1100,delay:550,easing:'cubic-bezier(.5,0,.2,1)',fill:'forwards'});
+  seal.animate([{transform:'translateY(0) scale(1)',opacity:1},{transform:'translateY(-70%) scale(.92)',opacity:1,offset:.55},{transform:'translateY(-150%) scale(.82)',opacity:0}],{duration:1100,delay:550,easing:'cubic-bezier(.5,0,.2,1)',fill:'forwards'});
+  // 1150ms card rises and glides to the centre in one continuous move
+  card.animate([{transform:'translate(0,0) scale(1)'},{transform:`translate(0,${rise}px) scale(1)`,offset:.48,easing:'cubic-bezier(.35,0,.25,1)'},{transform:`translate(${dx}px,${dy}px) scale(${k})`}],{duration:2000,delay:1150,easing:'cubic-bezier(.35,0,.35,1)',fill:'forwards'});
+  setTimeout(()=>{card.style.zIndex=5},1150+960);
+  // 2050ms envelope sinks away beneath it
+  body.animate([{transform:'translateY(0)',opacity:1},{transform:'translateY(20%)',opacity:0}],{duration:1000,delay:2050,easing:'cubic-bezier(.4,0,.6,1)',fill:'forwards'});
+  pocket.animate([{opacity:1},{opacity:0}],{duration:800,delay:2150,easing:'ease',fill:'forwards'});
+  setTimeout(()=>card.classList.add('glow'),2900);
+  // 4050ms dissolve into the invitation
+  await wait(3950);
   document.body.classList.add('opened');pages[0].classList.add('active');
-  await anim(op,[{opacity:1},{opacity:0}],{duration:800,easing:'ease-out'});
+  await anim(op,[{opacity:1},{opacity:0}],{duration:900,easing:'cubic-bezier(.4,0,.2,1)'});
   clearTimeout(safety);finish();
  }
  op.addEventListener('click',play);op.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')play()});
