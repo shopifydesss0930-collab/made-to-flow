@@ -191,19 +191,37 @@ ol.steps li.key{color:var(--gold-hi)}
 .looks img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover}
 .looks figcaption{font-size:12px;letter-spacing:.2em;color:var(--gold);padding:8px 4px 4px;text-align:center}
 .looks figcaption .en{font-family:var(--serif-en);font-size:11px}
+
+.carousel{margin:4px -30px 22px;position:relative}
+.carousel .track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 30px;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+.carousel .track::-webkit-scrollbar{display:none}
+.carousel .slide{flex:0 0 100%;scroll-snap-align:center;margin:0;border:1px solid rgba(212,176,106,.35);padding:5px;background:#0f0e0c}
+.carousel .slide img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
+.carousel figcaption{display:flex;gap:10px;align-items:baseline;padding:9px 4px 4px;font-size:14px;line-height:1.5;color:#e8dfcf}
+.carousel figcaption b{font-family:var(--serif-en);font-size:13px;color:var(--gold);flex:none}
+.carousel figcaption .en{font-family:var(--body-en);font-size:16px}
+.car-nav{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:10px}
+.car-nav button{all:unset;cursor:pointer;width:34px;height:34px;border:1px solid rgba(212,176,106,.5);border-radius:50%;text-align:center;line-height:32px;font-size:20px;color:var(--gold)}
+.car-nav button:disabled{opacity:.25;cursor:default}
+.car-count{font-family:var(--serif-en);font-size:12px;letter-spacing:.2em;color:var(--muted);min-width:64px;text-align:center}
+.car-hint{text-align:center;margin-top:6px;font-size:11px;letter-spacing:.2em;color:var(--muted)}
+.car-hint .en{font-family:var(--serif-en)}
 /* ---------- ENVELOPE OPENING ---------- */
-.opener{position:fixed;inset:0;z-index:8;overflow:hidden;-webkit-user-select:none;user-select:none;cursor:pointer;touch-action:manipulation;background:transparent;perspective:1100px}
+.opener{position:fixed;inset:0;z-index:8;overflow:hidden;-webkit-user-select:none;user-select:none;cursor:pointer;touch-action:manipulation;background:radial-gradient(110% 70% at 50% 40%,#3a0a12,#120306 75%);perspective:1100px}
+.envx-card{position:absolute;left:7%;top:37%;width:86%;aspect-ratio:3/2;will-change:transform}
+.envx-card img{display:block;width:100%;height:100%;border-radius:3px;box-shadow:0 14px 30px rgba(0,0,0,.55),0 0 0 1px rgba(212,176,106,.35)}
+.envx-card.glow img{box-shadow:0 18px 40px rgba(0,0,0,.6),0 0 40px rgba(255,190,120,.35),0 0 0 1px rgba(212,176,106,.6);transition:box-shadow 1s}
 .opener.gone{display:none}
 .envx{position:absolute;left:50%;top:0;width:max(100vw,52.94dvh);aspect-ratio:900/1700;transform:translateX(-50%);will-change:transform}
 .envx-body,.envx-flap{position:absolute;inset:0;background:url(env-portrait.jpg) center/100% 100% no-repeat}
 .envx-body{clip-path:polygon(0 18.39%,54.67% 35.65%,100% 16.72%,100% 100%,0 100%);will-change:transform,opacity}
 .envx-pocket{position:absolute;inset:0;clip-path:polygon(0 0,0 18.39%,54.67% 35.65%,100% 16.72%,100% 0);background:linear-gradient(180deg,#14040a,#2a0811);transition:opacity .9s}
 .envx-flap{clip-path:polygon(0 0,0 18.39%,54.67% 35.65%,100% 16.72%,100% 0);transform-origin:50% 0;will-change:transform;filter:drop-shadow(0 10px 14px rgba(0,0,0,.45))}
-.envx-seal{position:absolute;left:21.33%;top:13.76%;width:58.11%;height:31.88%;transform-origin:50% 0;will-change:transform,opacity}
+.envx-seal{position:absolute;left:21.33%;top:12.93%;width:58.11%;height:33.54%;transform-origin:50% 0;will-change:transform,opacity}
 .envx-seal img{display:block;width:100%;height:100%;filter:drop-shadow(0 10px 14px rgba(0,0,0,.5));transition:filter .8s}
 .envx-seal.lit img{filter:drop-shadow(0 10px 14px rgba(0,0,0,.5)) drop-shadow(0 0 22px rgba(255,200,140,.8)) brightness(1.15)}
 .envx-seal i{position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(255,240,215,.95) 50%,transparent 65%) no-repeat;background-size:250% 100%;background-position:150% 0;mix-blend-mode:overlay;
-  -webkit-mask:url(seal-cut.webp) center/100% 100% no-repeat;mask:url(seal-cut.webp) center/100% 100% no-repeat}
+  -webkit-mask:url(wax-seal.webp) center/100% 100% no-repeat;mask:url(wax-seal.webp) center/100% 100% no-repeat}
 .envx-seal.shine i{animation:sealShine .9s ease-in-out forwards}
 @keyframes sealShine{to{background-position:-50% 0}}
 .envx-seal.idle{animation:sealBreath 2.6s ease-in-out infinite}
@@ -249,9 +267,10 @@ body.opened .top{opacity:1}
 <div class="opener loading" id="opener" role="button" aria-label="Tap to open the invitation" tabindex="0">
   <div class="envx" id="envx">
     <div class="envx-pocket" id="envPocket"></div>
+    <div class="envx-card" id="envCard"><img src="invite-card.jpg" alt="AffinityX"></div>
     <div class="envx-body" id="envBody"></div>
     <div class="envx-flap" id="envFlap"></div>
-    <div class="envx-seal" id="envSeal"><img src="seal-cut.webp" alt="AffinityX wax seal"><i></i></div>
+    <div class="envx-seal" id="envSeal"><img src="wax-seal.webp" alt="AffinityX wax seal"><i></i></div>
   </div>
   <canvas id="dust"></canvas>
   <div class="env-copy">
@@ -325,7 +344,7 @@ body.opened .top{opacity:1}
     <div class="val after" style="margin-top:4px;text-align:center"><span class="zh">2027年1月23日（星期六）</span><span class="en" style="font-family:var(--body-en);font-size:22px">Saturday, 23 January 2027</span></div>
     <div class="sched rv d3">
       <div><span class="n zh">红毯入场</span><span class="n en">RED CARPET</span><span class="t">6:00 PM</span></div>
-      <div><span class="n zh">晚宴开始</span><span class="n en">DINNER</span><span class="t">7:30 PM</span></div>
+      <div><span class="n zh">晚宴开始</span><span class="n en">DINNER</span><span class="t">7:00 PM</span></div>
       <div><span class="n zh">结束</span><span class="n en">ENDS</span><span class="t">11:00 PM</span></div>
     </div>
     <div class="cd rv d4" id="cd">
@@ -366,8 +385,9 @@ body.opened .top{opacity:1}
       <div><div class="lbl"><span class="zh">停车费</span><span class="en">PARKING</span></div><b>RM5</b></div>
       <div><div class="lbl"><span class="zh">限高</span><span class="en">HEIGHT LIMIT</span></div><b>1.8m</b></div>
     </div>
-    <figure class="photo rv d2"><img src="drive.jpg" alt="Jalan Ipoh: hotel lobby on the left, car park entrance ahead" loading="lazy">
-      <figcaption class="zh">经过酒店正门（左），继续往前到停车场入口</figcaption><figcaption class="en">Drive past the hotel lobby (left) and continue to the car park</figcaption></figure>
+    <div class="carousel rv d2" id="carDrive"><div class="track"><figure class="slide"><img src="route/d01.jpg" alt="Drive past the hotel lobby on Jalan Ipoh" loading="lazy" width="900" height="600"><figcaption><b>01</b><span class="zh">沿 Jalan Ipoh 经过酒店正门，继续往前</span><span class="en">Drive past the hotel lobby on Jalan Ipoh</span></figcaption></figure><figure class="slide"><img src="route/d02.jpg" alt="Turn left" loading="lazy" width="900" height="600"><figcaption><b>02</b><span class="zh">左转</span><span class="en">Turn left</span></figcaption></figure><figure class="slide"><img src="route/d03.jpg" alt="Turn left again" loading="lazy" width="900" height="600"><figcaption><b>03</b><span class="zh">再左转</span><span class="en">Turn left again</span></figcaption></figure><figure class="slide"><img src="route/d04.jpg" alt="Enter at the Dynasty Hotel · Golden City Condominium car park" loading="lazy" width="900" height="600"><figcaption><b>04</b><span class="zh">从 Dynasty Hotel · Golden City Condominium 入口进停车场</span><span class="en">Enter at the Dynasty Hotel · Golden City Condominium car park</span></figcaption></figure><figure class="slide"><img src="route/d05.jpg" alt="Drive up the ramp (height limit 1.8m)" loading="lazy" width="900" height="600"><figcaption><b>05</b><span class="zh">沿斜坡上停车场（限高 1.8m）</span><span class="en">Drive up the ramp (height limit 1.8m)</span></figcaption></figure><figure class="slide"><img src="route/d06.jpg" alt="Find a parking spot" loading="lazy" width="900" height="600"><figcaption><b>06</b><span class="zh">自行找车位</span><span class="en">Find a parking spot</span></figcaption></figure><figure class="slide"><img src="route/d07.jpg" alt="Take the "Lift to Hotel Lobby" to G Floor" loading="lazy" width="900" height="600"><figcaption><b>07</b><span class="zh">停好车，找「Lift to Hotel Lobby」电梯到 G 楼</span><span class="en">Take the "Lift to Hotel Lobby" to G Floor</span></figcaption></figure><figure class="slide"><img src="route/d08.jpg" alt="Turn right out of the lift" loading="lazy" width="900" height="600"><figcaption><b>08</b><span class="zh">出电梯后右转</span><span class="en">Turn right out of the lift</span></figcaption></figure><figure class="slide"><img src="route/d09.jpg" alt="Go straight, then turn right" loading="lazy" width="900" height="600"><figcaption><b>09</b><span class="zh">直走，再右转</span><span class="en">Go straight, then turn right</span></figcaption></figure><figure class="slide"><img src="route/d10.jpg" alt="Walk straight to the hotel lobby" loading="lazy" width="900" height="600"><figcaption><b>10</b><span class="zh">直走到酒店大堂</span><span class="en">Walk straight to the hotel lobby</span></figcaption></figure><figure class="slide"><img src="route/d11.jpg" alt="Take this lift to Level 5" loading="lazy" width="900" height="600"><figcaption><b>11</b><span class="zh">搭这里的电梯到 5 楼</span><span class="en">Take this lift to Level 5</span></figcaption></figure></div>
+      <div class="car-nav"><button class="prev" aria-label="Previous">‹</button><span class="car-count">01 / 11</span><button class="next" aria-label="Next">›</button></div>
+      <div class="car-hint"><span class="zh">左右滑动查看路线 →</span><span class="en">Swipe for each step →</span></div></div>
     <ol class="steps rv d3 zh">
       <li>沿 Jalan Ipoh 经过酒店正门，继续往前</li>
       <li>左转</li>
@@ -402,8 +422,9 @@ body.opened .top{opacity:1}
   <div class="inner">
     <div class="kicker rv"><span class="zh">停车与路线 · 搭 Grab</span><span class="en">Directions · Taking Grab</span></div>
     <div class="rule left rv d1"></div>
-    <figure class="photo rv d2"><img src="grab.jpg" alt="Dynasty Hotel main entrance, Grab drop-off point" loading="lazy">
-      <figcaption class="zh">在酒店正门（Jalan Ipoh）下车</figcaption><figcaption class="en">Drop off at the main entrance on Jalan Ipoh</figcaption></figure>
+    <div class="carousel rv d2" id="carGrab"><div class="track"><figure class="slide"><img src="route/g01.jpg" alt="Drop off at the main entrance on Jalan Ipoh" loading="lazy" width="900" height="600"><figcaption><b>01</b><span class="zh">在酒店正门（Jalan Ipoh）下车</span><span class="en">Drop off at the main entrance on Jalan Ipoh</span></figcaption></figure><figure class="slide"><img src="route/g02.jpg" alt="Take the lobby lift to Level 5" loading="lazy" width="900" height="600"><figcaption><b>02</b><span class="zh">进大堂，搭电梯到 5 楼</span><span class="en">Take the lobby lift to Level 5</span></figcaption></figure></div>
+      <div class="car-nav"><button class="prev" aria-label="Previous">‹</button><span class="car-count">01 / 02</span><button class="next" aria-label="Next">›</button></div>
+      <div class="car-hint"><span class="zh">左右滑动查看路线 →</span><span class="en">Swipe for each step →</span></div></div>
     <ol class="steps rv d3 zh">
       <li>在酒店正门（Jalan Ipoh）下车</li>
       <li class="key">进大堂，搭电梯到 5 楼</li>
@@ -428,6 +449,10 @@ body.opened .top{opacity:1}
     <div class="looks rv d4">
       <figure><img src="dress-1.jpg" alt="Suit references" loading="lazy"><figcaption><span class="zh">西装参考</span><span class="en">Gentlemen</span></figcaption></figure>
       <figure><img src="dress-2.jpg" alt="Evening wear references" loading="lazy"><figcaption><span class="zh">晚礼服参考</span><span class="en">Evening Wear</span></figcaption></figure>
+      <figure><img src="dress-3.jpg" alt="Evening gown references" loading="lazy"><figcaption><span class="zh">女士晚礼服</span><span class="en">Ladies</span></figcaption></figure>
+      <figure><img src="dress-4.jpg" alt="Suit references" loading="lazy"><figcaption><span class="zh">男士西装</span><span class="en">Gentlemen</span></figcaption></figure>
+      <figure><img src="dress-5.jpg" alt="Smart evening references" loading="lazy"><figcaption><span class="zh">男士穿搭</span><span class="en">Gentlemen</span></figcaption></figure>
+      <figure><img src="dress-6.jpg" alt="Couple references" loading="lazy"><figcaption><span class="zh">男女穿搭</span><span class="en">Couple</span></figcaption></figure>
     </div>
     <p class="rv d5" style="margin-top:18px;font-size:13px;letter-spacing:.2em;color:var(--gold)"><span class="zh">正式、优雅，颜色不限</span><span class="en" style="font-family:var(--serif-en);font-size:11px">FORMAL &amp; ELEGANT · ANY COLOUR</span></p>
   </div>
@@ -507,7 +532,7 @@ const tick=()=>{let d=Math.max(0,T-Date.now())/1000;const p=n=>String(Math.floor
 tick();setInterval(tick,1000);
 
 // add to calendar
-$('#ics').onclick=e=>{e.preventDefault();const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//AffinityX//Annual Dinner 2027//EN','BEGIN:VEVENT','UID:affinityx-goat-20270123','DTSTAMP:20261122T000000Z','DTSTART:20270123T100000Z','DTEND:20270123T150000Z','SUMMARY:G.O.A.T. 金羊盛典 · AffinityX Annual Dinner 2027','DESCRIPTION:Red Carpet 6:00pm · Dinner 7:30pm · Dress code: Red Carpet Attire','LOCATION:Dynasty Hotel\\, Level 5 Ballroom\\, Jalan Ipoh\\, Kuala Lumpur','END:VEVENT','END:VCALENDAR'].join('\r\n');
+$('#ics').onclick=e=>{e.preventDefault();const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//AffinityX//Annual Dinner 2027//EN','BEGIN:VEVENT','UID:affinityx-goat-20270123','DTSTAMP:20261122T000000Z','DTSTART:20270123T100000Z','DTEND:20270123T150000Z','SUMMARY:G.O.A.T. 金羊盛典 · AffinityX Annual Dinner 2027','DESCRIPTION:Red Carpet 6:00pm · Dinner 7:00pm · Dress code: Red Carpet Attire','LOCATION:Dynasty Hotel\\, Level 5 Ballroom\\, Jalan Ipoh\\, Kuala Lumpur','END:VEVENT','END:VCALENDAR'].join('\r\n');
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));a.download='AffinityX-GOAT-2027.ics';a.click()};
 
 
@@ -541,27 +566,43 @@ $('#ics').onclick=e=>{e.preventDefault();const ics=['BEGIN:VCALENDAR','VERSION:2
  async function play(){
   if(!ready||started)return;started=true;op.classList.add('go');seal.classList.remove('idle');
   if(reduce){await anim(op,[{opacity:1},{opacity:0}],{duration:500});return finish()}
-  const safety=setTimeout(finish,7000);
+  const safety=setTimeout(finish,11000);
   // seal catches the light
   seal.classList.add('shine');await wait(300);seal.classList.add('lit');
   const sr=seal.getBoundingClientRect();sparks(sr.left+sr.width/2,sr.top+sr.height/2);await wait(450);
-  // invitation waits underneath
-  document.body.classList.add('opened');pages[0].classList.add('active');
+  const card=$('#envCard');
   // flap swings up, the seal travels with it
-  anim(pocket,[{opacity:1},{opacity:0}],{duration:900,delay:250});
   anim(flap,[{transform:'rotateX(0deg)'},{transform:'rotateX(-100deg) translateY(-4%)'}],{duration:1050,easing:'cubic-bezier(.55,0,.25,1)'});
   anim(seal,[{transform:'translateY(0) scale(1)',opacity:1},{transform:'translateY(-62%) scale(.92)',opacity:1,offset:.55},{transform:'translateY(-150%) scale(.8)',opacity:0}],{duration:1050,easing:'cubic-bezier(.55,0,.25,1)'});
-  await wait(650);
-  // envelope body drops away and fades, revealing the invitation
-  anim(body,[{transform:'translateY(0)',opacity:1},{transform:'translateY(18%)',opacity:0}],{duration:900,easing:'cubic-bezier(.5,0,.75,0)'});
-  await anim(op,[{opacity:1},{opacity:1,offset:.4},{opacity:0}],{duration:1000,easing:'ease-out'});
+  await wait(850);
+  // the card rises out of the envelope
+  await anim(card,[{transform:'translateY(0)'},{transform:'translateY(-100%)'}],{duration:1100,easing:'cubic-bezier(.45,0,.2,1)'});
+  // envelope drops away, card settles in the centre
+  card.style.zIndex=5;
+  anim(body,[{transform:'translateY(0)',opacity:1},{transform:'translateY(22%)',opacity:0}],{duration:900,easing:'cubic-bezier(.5,0,.75,0)'});
+  anim(pocket,[{opacity:1},{opacity:0}],{duration:700});
+  const cr=card.getBoundingClientRect(),k=Math.min(1.12,(innerWidth*.92)/cr.width);
+  const dx=innerWidth/2-(cr.left+cr.width/2),dy=innerHeight/2-(cr.top+cr.height/2);
+  await anim(card,[{transform:'translateY(-100%)'},{transform:`translate(${dx}px,calc(-100% + ${dy}px)) scale(${k})`}],{duration:1000,easing:'cubic-bezier(.3,0,.2,1)'});
+  card.classList.add('glow');await wait(1300);
+  // into the invitation
+  document.body.classList.add('opened');pages[0].classList.add('active');
+  await anim(op,[{opacity:1},{opacity:0}],{duration:800,easing:'ease-out'});
   clearTimeout(safety);finish();
  }
  op.addEventListener('click',play);op.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')play()});
- const srcs=['env-portrait.jpg','seal-cut.webp','goat-kv.jpg','logo-gold.png'];
+ const srcs=['env-portrait.jpg','wax-seal.webp','invite-card.jpg','goat-kv.jpg','logo-gold.png'];
  const done=()=>{if(ready)return;ready=true;op.classList.remove('loading');seal.classList.add('idle');if(location.hash==='#open'){started=true;finish()}};
  Promise.all(srcs.map(s=>new Promise(r=>{const i=new Image();i.onload=i.onerror=r;i.src=s}))).then(done);setTimeout(done,5000);
 })();
+
+
+// step carousels
+document.querySelectorAll('.carousel').forEach(c=>{const t=c.querySelector('.track'),n=t.children.length,cnt=c.querySelector('.car-count'),pv=c.querySelector('.prev'),nx=c.querySelector('.next');
+ const idx=()=>Math.round(t.scrollLeft/(t.children[0].offsetWidth+12));
+ const upd=()=>{const i=idx();cnt.textContent=String(i+1).padStart(2,'0')+' / '+String(n).padStart(2,'0');pv.disabled=i<=0;nx.disabled=i>=n-1};
+ const go=d=>{const i=Math.max(0,Math.min(n-1,idx()+d));t.children[i].scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'})};
+ pv.onclick=()=>go(-1);nx.onclick=()=>go(1);t.addEventListener('scroll',()=>requestAnimationFrame(upd),{passive:true});upd()});
 
 // confetti
 const confetti=(function(){const c=$('#confetti'),x=c.getContext('2d');let P=[],run=false;const dpr=Math.min(2,devicePixelRatio||1);
