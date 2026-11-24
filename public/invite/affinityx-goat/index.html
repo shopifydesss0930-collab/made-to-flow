@@ -231,6 +231,7 @@ ol.steps li.key{color:var(--gold-hi)}
 .hero-vid .inner{justify-content:space-between;text-align:center;align-items:center;padding-top:108px;padding-bottom:70px}
 .hero-vid .closing{margin-top:auto;max-width:330px}
 .hero-vid .closing p{font-family:var(--serif-en);font-size:13px;letter-spacing:.16em;line-height:1.75;text-transform:uppercase;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.7);margin:0 0 14px}
+.hero-vid .closing p.zh{font-family:var(--zh);font-size:15px;letter-spacing:.12em;line-height:1.9;text-transform:none}
 .hero-vid .cheers{margin-top:8px;font-size:30px;text-shadow:0 2px 14px rgba(0,0,0,.7)}
 .hero-vid .foot{margin-top:26px;color:rgba(255,255,255,.7)}
 /* ---------- ENVELOPE OPENING ---------- */
@@ -246,7 +247,7 @@ ol.steps li.key{color:var(--gold-hi)}
 .envx-body{clip-path:polygon(0 18.4%,50% 35%,100% 18.4%,100% 100%,0 100%);will-change:transform,opacity}
 .envx-pocket{position:absolute;inset:0;clip-path:polygon(0 0,0 18.4%,50% 35%,100% 18.4%,100% 0);background:linear-gradient(180deg,#14040a,#2a0811);transition:opacity .9s}
 .envx-flap{clip-path:polygon(0 0,0 18.4%,50% 35%,100% 18.4%,100% 0);transform-origin:50% 0;will-change:transform;backface-visibility:hidden}
-.envx-seal{position:absolute;left:30%;top:22.45%;width:40%;height:23.09%;transform-origin:50% 0;will-change:transform,opacity}
+.envx-seal{position:absolute;left:30%;top:22.4%;width:40%;height:23.2%;transform-origin:50% 0;will-change:transform,opacity}
 .envx-seal img{display:block;width:100%;height:100%;filter:drop-shadow(0 1px 1px rgba(0,0,0,.6)) drop-shadow(0 4px 6px rgba(0,0,0,.4))}
 .envx-seal::after{content:"";position:absolute;inset:-12%;border-radius:50%;background:radial-gradient(circle,rgba(255,205,150,.55),rgba(255,180,110,0) 62%);opacity:0;pointer-events:none;mix-blend-mode:screen;transition:opacity .6s ease}
 .envx-seal.lit::after{opacity:1}
@@ -519,8 +520,10 @@ body.opened .top{opacity:1}
   <div class="inner">
     <img class="goat-trophy rv" src="logo-goat-gold.webp" alt="AffinityX" width="513" height="520" style="width:110px">
     <div class="closing rv d2">
-      <p>Thank you for every moment, every effort, and every milestone shared in 2026.</p>
-      <p>Here’s to new beginnings, greater success, and an even brighter 2027.</p>
+      <p class="en">Thank you for every moment, every effort, and every milestone shared in 2026.</p>
+      <p class="en">Here’s to new beginnings, greater success, and an even brighter 2027.</p>
+      <p class="zh">感谢2026年的每一个珍贵时刻、每一份努力，以及我们共同创造的每一个里程碑。</p>
+      <p class="zh">愿我们在2027年迎来全新的开始、更多的成功，以及更加美好的未来。</p>
     </div>
     <div class="cheers rv d3">The best is yet to come.</div>
     <div class="foot rv d4">AFFINITYX · PEOPLE &amp; CULTURE</div>
