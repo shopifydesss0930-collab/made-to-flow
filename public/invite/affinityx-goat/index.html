@@ -214,13 +214,13 @@ ol.steps li.key{color:var(--gold-hi)}
 .envx-card.glow::after{opacity:1}
 .envx-card img{backface-visibility:hidden}
 .opener.gone{display:none}
-.envx{position:absolute;left:50%;top:0;width:max(100vw,52.94dvh);aspect-ratio:900/1700;transform:translateX(-50%);will-change:transform}
+.envx{position:absolute;left:50%;top:0;width:max(100vw,52.94dvh);aspect-ratio:1080/2040;transform:translateX(-50%);will-change:transform}
 .envx-body,.envx-flap{position:absolute;inset:0;background:url(env-portrait.jpg) center/100% 100% no-repeat}
-.envx-body{clip-path:polygon(0 18.39%,54.67% 35.65%,100% 16.72%,100% 100%,0 100%);will-change:transform,opacity}
-.envx-pocket{position:absolute;inset:0;clip-path:polygon(0 0,0 18.39%,54.67% 35.65%,100% 16.72%,100% 0);background:linear-gradient(180deg,#14040a,#2a0811);transition:opacity .9s}
-.envx-flap{clip-path:polygon(0 0,0 18.39%,54.67% 35.65%,100% 16.72%,100% 0);transform-origin:50% 0;will-change:transform;backface-visibility:hidden}
-.envx-seal{position:absolute;left:21.33%;top:12.93%;width:58.11%;height:33.54%;transform-origin:50% 0;will-change:transform,opacity}
-.envx-seal img{display:block;width:100%;height:100%;filter:drop-shadow(0 10px 14px rgba(0,0,0,.5))}
+.envx-body{clip-path:polygon(0 18.4%,50% 35%,100% 18.4%,100% 100%,0 100%);will-change:transform,opacity}
+.envx-pocket{position:absolute;inset:0;clip-path:polygon(0 0,0 18.4%,50% 35%,100% 18.4%,100% 0);background:linear-gradient(180deg,#14040a,#2a0811);transition:opacity .9s}
+.envx-flap{clip-path:polygon(0 0,0 18.4%,50% 35%,100% 18.4%,100% 0);transform-origin:50% 0;will-change:transform;backface-visibility:hidden}
+.envx-seal{position:absolute;left:30%;top:22.45%;width:40%;height:23.09%;transform-origin:50% 0;will-change:transform,opacity}
+.envx-seal img{display:block;width:100%;height:100%;filter:drop-shadow(0 1px 1px rgba(0,0,0,.6)) drop-shadow(0 4px 6px rgba(0,0,0,.4))}
 .envx-seal::after{content:"";position:absolute;inset:-12%;border-radius:50%;background:radial-gradient(circle,rgba(255,205,150,.55),rgba(255,180,110,0) 62%);opacity:0;pointer-events:none;mix-blend-mode:screen;transition:opacity .6s ease}
 .envx-seal.lit::after{opacity:1}
 
@@ -228,7 +228,7 @@ ol.steps li.key{color:var(--gold-hi)}
   -webkit-mask:url(wax-seal.webp) center/100% 100% no-repeat;mask:url(wax-seal.webp) center/100% 100% no-repeat}
 .envx-seal.shine i{animation:sealShine .8s cubic-bezier(.4,0,.2,1) forwards}
 @keyframes sealShine{to{background-position:-50% 0}}
-.envx-seal.idle{animation:sealBreath 2.6s ease-in-out infinite}
+
 @keyframes sealBreath{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
 #dust{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
 .env-copy{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom) + 12dvh);z-index:3;text-align:center;transition:opacity .5s,transform .5s;pointer-events:none}
@@ -567,8 +567,20 @@ $('#ics').onclick=e=>{e.preventDefault();const ics=['BEGIN:VCALENDAR','VERSION:2
  const wait=ms=>new Promise(r=>setTimeout(r,ms));
  const anim=(el,kf,o)=>el.animate(kf,Object.assign({fill:'forwards',easing:'cubic-bezier(.65,0,.35,1)'},o)).finished.catch(()=>{});
  const finish=()=>{op.classList.add('gone');document.body.classList.add('opened');if(!pages[0].classList.contains('active')){void pages[0].offsetWidth;pages[0].classList.add('active')}};
+
+ // soft opening sound (synthesised, starts on the tap so iPhone allows it)
+ const chime=()=>{try{const A=window.AudioContext||window.webkitAudioContext;if(!A)return;const c=new A();const t=c.currentTime;const out=c.createGain();out.gain.value=.55;out.connect(c.destination);
+  const noise=(dur)=>{const b=c.createBuffer(1,c.sampleRate*dur,c.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;const s=c.createBufferSource();s.buffer=b;return s};
+  // 1. wax seal lifting: soft muted snap
+  {const s=noise(.12),f=c.createBiquadFilter(),g=c.createGain();f.type='bandpass';f.frequency.value=1400;f.Q.value=.9;g.gain.setValueAtTime(.0001,t+.42);g.gain.exponentialRampToValueAtTime(.5,t+.43);g.gain.exponentialRampToValueAtTime(.0001,t+.52);s.connect(f).connect(g).connect(out);s.start(t+.42);}
+  // 2. paper flap: gentle swoosh
+  {const s=noise(1.2),f=c.createBiquadFilter(),g=c.createGain();f.type='bandpass';f.Q.value=.7;f.frequency.setValueAtTime(600,t+.55);f.frequency.exponentialRampToValueAtTime(2600,t+1.4);g.gain.setValueAtTime(.0001,t+.55);g.gain.exponentialRampToValueAtTime(.16,t+.85);g.gain.exponentialRampToValueAtTime(.0001,t+1.6);s.connect(f).connect(g).connect(out);s.start(t+.55);}
+  // 3. warm bell chord as the card rises
+  [[523.25,0],[659.25,.09],[783.99,.18],[1046.5,.3]].forEach(([fr,dl])=>{const o=c.createOscillator(),o2=c.createOscillator(),g=c.createGain();o.type='sine';o2.type='sine';o.frequency.value=fr;o2.frequency.value=fr*2.01;const st=t+1.2+dl;
+   g.gain.setValueAtTime(.0001,st);g.gain.exponentialRampToValueAtTime(.12,st+.02);g.gain.exponentialRampToValueAtTime(.0001,st+2.6);const g2=c.createGain();g2.gain.value=.25;o.connect(g);o2.connect(g2).connect(g);g.connect(out);o.start(st);o2.start(st);o.stop(st+2.7);o2.stop(st+2.7)});
+  setTimeout(()=>c.close&&c.close(),5000)}catch(e){}};
  async function play(){
-  if(!ready||started)return;started=true;op.classList.add('go');seal.classList.remove('idle');
+  if(!ready||started)return;started=true;op.classList.add('go');chime();seal.classList.remove('idle');
   if(reduce){await anim(op,[{opacity:1},{opacity:0}],{duration:500});return finish()}
   const safety=setTimeout(finish,11000);
   const card=$('#envCard');
@@ -597,7 +609,7 @@ $('#ics').onclick=e=>{e.preventDefault();const ics=['BEGIN:VCALENDAR','VERSION:2
  }
  op.addEventListener('click',play);op.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')play()});
  const srcs=['env-portrait.jpg','wax-seal.webp','invite-card.jpg','goat-kv.jpg','logo-gold.png'];
- const done=()=>{if(ready)return;ready=true;op.classList.remove('loading');seal.classList.add('idle');if(location.hash==='#open'){started=true;finish()}};
+ const done=()=>{if(ready)return;ready=true;op.classList.remove('loading');if(location.hash==='#open'){started=true;finish()}};
  Promise.all(srcs.map(s=>new Promise(r=>{const i=new Image();i.onload=i.onerror=r;i.src=s}))).then(done);setTimeout(done,5000);
 })();
 
