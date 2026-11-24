@@ -206,6 +206,21 @@ ol.steps li.key{color:var(--gold-hi)}
 .car-count{font-family:var(--serif-en);font-size:12px;letter-spacing:.2em;color:var(--muted);min-width:64px;text-align:center}
 .car-hint{text-align:center;margin-top:6px;font-size:11px;letter-spacing:.2em;color:var(--muted)}
 .car-hint .en{font-family:var(--serif-en)}
+
+.top-r{display:flex;align-items:center;gap:10px;pointer-events:auto}
+.music{all:unset;cursor:pointer;width:32px;height:32px;border:1px solid rgba(212,176,106,.45);border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(11,10,9,.6);backdrop-filter:blur(6px)}
+.music .bars{display:flex;align-items:flex-end;gap:2px;height:12px}
+.music .bars i{width:2px;height:4px;background:var(--gold);border-radius:1px}
+.music.on .bars i{animation:eq 1s ease-in-out infinite}
+.music.on .bars i:nth-child(2){animation-delay:.25s}.music.on .bars i:nth-child(3){animation-delay:.5s}
+@keyframes eq{0%,100%{height:3px}50%{height:12px}}
+.recap{margin-top:44px;width:100%;text-align:center}
+.recap .kicker{margin-bottom:16px}
+.recap .vid{border:1px solid rgba(212,176,106,.45);padding:5px;background:#0f0e0c;max-width:300px;margin:0 auto 22px;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.recap video{display:block;width:100%;aspect-ratio:9/16;background:#000;object-fit:cover}
+.recap .p{text-align:center}
+.cheers{margin-top:18px;font-family:var(--display);font-size:28px;color:var(--gold-hi)}
+.cheers .zh{font-family:var(--zh);font-weight:600;font-size:22px;letter-spacing:.3em}
 /* ---------- ENVELOPE OPENING ---------- */
 .opener{position:fixed;inset:0;z-index:8;overflow:hidden;-webkit-user-select:none;user-select:none;cursor:pointer;touch-action:manipulation;background:radial-gradient(110% 70% at 50% 40%,#3a0a12,#120306 75%);perspective:1100px}
 .envx-card{position:absolute;left:7%;top:37%;width:86%;aspect-ratio:3/2;will-change:transform}
@@ -267,6 +282,7 @@ body.opened .top{opacity:1}
 </head>
 <body class="lang-zh">
 <canvas id="stars"></canvas>
+<audio id="bgm" src="waltz.m4a" loop preload="auto"></audio>
 <canvas id="confetti"></canvas>
 <div class="opener loading" id="opener" role="button" aria-label="Tap to open the invitation" tabindex="0">
   <div class="envx" id="envx">
@@ -288,7 +304,7 @@ body.opened .top{opacity:1}
 
 <div class="top">
   <div class="brand"><img src="logo-mark.png" alt="AffinityX"></div>
-  <div class="lang"><button data-l="en">EN</button><button data-l="zh" class="on">中</button></div>
+  <div class="top-r"><button class="music" id="musicBtn" aria-label="Music on/off"><span class="bars"><i></i><i></i><i></i></span></button><div class="lang"><button data-l="en">EN</button><button data-l="zh" class="on">中</button></div></div>
 </div>
 
 <main class="deck" id="deck">
@@ -297,7 +313,7 @@ body.opened .top{opacity:1}
 <section class="page cover active">
   <div class="beam l"></div><div class="beam r"></div><div class="spot"></div>
   <div class="inner">
-    <img class="lockup rv" src="logo-gold.png" alt="AffinityX" style="width:78px;margin-bottom:8px">
+    <img class="lockup rv" src="logo-goat-gold.webp" alt="AffinityX" style="width:132px;margin-bottom:10px">
     <div class="annual rv">ANNUAL DINNER 2027</div>
     <div class="kv" id="kv"><img src="goat-kv.jpg" alt="G.O.A.T. Golden Oscars of AffinityX Team" width="1240" height="816"><i class="kv-shine"></i><i class="kv-flash"></i></div>
     <div class="marquee" id="marquee">
@@ -496,7 +512,14 @@ body.opened .top{opacity:1}
     <div class="where rv d3">DYNASTY HOTEL · KUALA LUMPUR</div>
     <div class="see rv d4 en">See you on the red carpet.</div>
     <div class="see rv d4 zh">红毯上见</div>
-        <div class="foot rv d5">AFFINITYX · PEOPLE &amp; CULTURE</div>
+    <div class="recap rv d5">
+      <div class="kicker"><span class="zh">回顾 2026</span><span class="en">Looking Back · 2026</span></div>
+      <div class="vid"><video id="recap" src="recap.mp4" poster="recap-poster.jpg" controls playsinline preload="none"></video></div>
+      <p class="p zh">谢谢每一位伙伴，2026 年我们一起拼过、笑过，也一起成长。<br>2027，愿我们更团结、更出色，一起写下更精彩的一页。</p>
+      <p class="p en">Thank you for every moment of 2026: the hard work, the laughter and the growth we shared. Here's to an even greater 2027, together.</p>
+      <div class="cheers"><span class="zh">今年，会更好。</span><span class="en">The best is yet to come.</span></div>
+    </div>
+    <div class="foot rv d5">AFFINITYX · PEOPLE &amp; CULTURE</div>
   </div>
 </section>
 
@@ -548,6 +571,20 @@ $('#ics').onclick=e=>{e.preventDefault();const ics=['BEGIN:VCALENDAR','VERSION:2
  document.querySelectorAll('.gname').forEach(e=>e.textContent=name);$('#guest1').hidden=false;$('#dear').hidden=false;
  document.title=name+' · G.O.A.T. 金羊盛典'}catch(e){}})();
 
+
+// background music (starts with the envelope tap; Web Audio gain so the fade also works on iPhone)
+const bgm=$('#bgm'),mBtn=$('#musicBtn');let wantMusic=true,actx,gain;
+const level=(v,sec)=>{if(gain){const t=actx.currentTime;gain.gain.cancelScheduledValues(t);gain.gain.setValueAtTime(gain.gain.value,t);gain.gain.linearRampToValueAtTime(v,t+sec)}else bgm.volume=v};
+const musicOn=(delay=0)=>{try{if(!actx){const A=window.AudioContext||window.webkitAudioContext;if(A){actx=new A();gain=actx.createGain();gain.gain.value=0;actx.createMediaElementSource(bgm).connect(gain).connect(actx.destination)}}
+  if(actx&&actx.state==='suspended')actx.resume();}catch(e){}
+  const p=bgm.play();if(p&&p.catch)p.catch(()=>{});
+  if(gain){const t=actx.currentTime;gain.gain.cancelScheduledValues(t);gain.gain.setValueAtTime(0,t);gain.gain.setValueAtTime(0,t+delay);gain.gain.linearRampToValueAtTime(.55,t+delay+2)}
+  mBtn.classList.add('on')};
+const musicOff=()=>{level(0,.5);setTimeout(()=>{if(!mBtn.classList.contains('on'))bgm.pause()},600);mBtn.classList.remove('on')};
+mBtn.onclick=()=>{wantMusic=!wantMusic;wantMusic?musicOn():musicOff()};
+const rv=$('#recap');rv.addEventListener('play',()=>{if(mBtn.classList.contains('on'))musicOff()});
+['pause','ended'].forEach(ev=>rv.addEventListener(ev,()=>{if(wantMusic)musicOn()}));
+
 // envelope opening (full-screen envelope, flap lifts with the wax seal)
 (function(){
  const op=$('#opener'),env=$('#envx'),body=$('#envBody'),flap=$('#envFlap'),seal=$('#envSeal'),pocket=$('#envPocket');
@@ -580,7 +617,7 @@ $('#ics').onclick=e=>{e.preventDefault();const ics=['BEGIN:VCALENDAR','VERSION:2
    g.gain.setValueAtTime(.0001,st);g.gain.exponentialRampToValueAtTime(.12,st+.02);g.gain.exponentialRampToValueAtTime(.0001,st+2.6);const g2=c.createGain();g2.gain.value=.25;o.connect(g);o2.connect(g2).connect(g);g.connect(out);o.start(st);o2.start(st);o.stop(st+2.7);o2.stop(st+2.7)});
   setTimeout(()=>c.close&&c.close(),5000)}catch(e){}};
  async function play(){
-  if(!ready||started)return;started=true;op.classList.add('go');chime();seal.classList.remove('idle');
+  if(!ready||started)return;started=true;op.classList.add('go');chime();musicOn(1.4);seal.classList.remove('idle');
   if(reduce){await anim(op,[{opacity:1},{opacity:0}],{duration:500});return finish()}
   const safety=setTimeout(finish,11000);
   const card=$('#envCard');
