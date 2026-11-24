@@ -222,6 +222,17 @@ ol.steps li.key{color:var(--gold-hi)}
 .closing p{font-family:var(--body-en);font-size:18px;line-height:1.6;color:#e8dfcf;margin:0 0 14px}
 .cheers{margin-top:18px;font-family:var(--display);font-size:28px;color:var(--gold-hi)}
 .cheers .zh{font-family:var(--zh);font-weight:600;font-size:22px;letter-spacing:.3em}
+
+.hero-vid{min-height:100dvh}
+.hero-vid::before{display:none}
+.bgv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;transition:opacity 1.6s ease}
+.bgv.on{opacity:1}
+.bgv-shade{position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(8,6,5,.75) 0%,rgba(8,6,5,.15) 28%,rgba(8,6,5,.15) 50%,rgba(8,6,5,.82) 100%)}
+.hero-vid .inner{justify-content:space-between;text-align:center;align-items:center;padding-top:108px;padding-bottom:70px}
+.hero-vid .closing{margin-top:auto;max-width:330px}
+.hero-vid .closing p{font-family:var(--serif-en);font-size:13px;letter-spacing:.16em;line-height:1.75;text-transform:uppercase;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.7);margin:0 0 14px}
+.hero-vid .cheers{margin-top:8px;font-size:30px;text-shadow:0 2px 14px rgba(0,0,0,.7)}
+.hero-vid .foot{margin-top:26px;color:rgba(255,255,255,.7)}
 /* ---------- ENVELOPE OPENING ---------- */
 .opener{position:fixed;inset:0;z-index:8;overflow:hidden;-webkit-user-select:none;user-select:none;cursor:pointer;touch-action:manipulation;background:radial-gradient(110% 70% at 50% 40%,#3a0a12,#120306 75%);perspective:1100px}
 .envx-card{position:absolute;left:7%;top:37%;width:86%;aspect-ratio:3/2;will-change:transform}
@@ -502,21 +513,17 @@ body.opened .top{opacity:1}
 </section>
 
 <!-- 9 FINALE -->
-<section class="page finale">
+<section class="page finale hero-vid">
+  <video class="bgv" id="recap" src="recap-bg.mp4" poster="recap-poster.jpg" muted loop playsinline preload="metadata" aria-hidden="true"></video>
+  <div class="bgv-shade"></div>
   <div class="inner">
-    <img class="goat-trophy rv" src="logo-goat-gold.webp" alt="AffinityX" width="513" height="520" style="width:150px">
-    <div class="recap rv d5">
-      <div class="kicker"><span class="zh">回顾 2026</span><span class="en">Looking Back · 2026</span></div>
-      <div class="vid"><video id="recap" src="recap.mp4" poster="recap-poster.jpg" controls playsinline preload="none"></video></div>
-      <div class="closing">
-        <p>As 2026 comes to a close, we want to thank you for being part of our journey.</p>
-        <p>For every challenge we’ve overcome, every laugh we’ve shared, and every milestone we’ve achieved — it has been a year of growth, dedication, and unforgettable moments.</p>
-        <p>Here’s to new possibilities, greater achievements, and an even brighter 2027.</p>
-        <p>Together, we’ll make it extraordinary.</p>
-      </div>
-      <div class="cheers">The best is yet to come.</div>
+    <img class="goat-trophy rv" src="logo-goat-gold.webp" alt="AffinityX" width="513" height="520" style="width:110px">
+    <div class="closing rv d2">
+      <p>Thank you for every moment, every effort, and every milestone shared in 2026.</p>
+      <p>Here’s to new beginnings, greater success, and an even brighter 2027.</p>
     </div>
-    <div class="foot rv d5">AFFINITYX · PEOPLE &amp; CULTURE</div>
+    <div class="cheers rv d3">The best is yet to come.</div>
+    <div class="foot rv d4">AFFINITYX · PEOPLE &amp; CULTURE</div>
   </div>
 </section>
 
@@ -579,8 +586,8 @@ const musicOn=(delay=0)=>{try{if(!actx){const A=window.AudioContext||window.webk
   mBtn.classList.add('on')};
 const musicOff=()=>{level(0,.5);setTimeout(()=>{if(!mBtn.classList.contains('on'))bgm.pause()},600);mBtn.classList.remove('on')};
 mBtn.onclick=()=>{wantMusic=!wantMusic;wantMusic?musicOn():musicOff()};
-const rv=$('#recap');rv.addEventListener('play',()=>{if(mBtn.classList.contains('on'))musicOff()});
-['pause','ended'].forEach(ev=>rv.addEventListener(ev,()=>{if(wantMusic)musicOn()}));
+const rv=$('#recap');
+new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){rv.preload='auto';const p=rv.play();if(p&&p.catch)p.catch(()=>{});rv.classList.add('on')}else rv.pause()}),{root:deck,threshold:.15}).observe(rv.closest('.page'));
 
 // envelope opening (full-screen envelope, flap lifts with the wax seal)
 (function(){
