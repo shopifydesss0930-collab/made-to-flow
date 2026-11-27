@@ -236,7 +236,7 @@ ol.steps li.key{color:var(--gold-hi)}
 .hero-vid .foot{margin-top:26px;color:rgba(255,255,255,.7)}
 /* ---------- ENVELOPE OPENING ---------- */
 .opener{position:fixed;inset:0;z-index:8;overflow:hidden;-webkit-user-select:none;user-select:none;cursor:pointer;touch-action:manipulation;background:radial-gradient(110% 70% at 50% 40%,#3a0a12,#120306 75%);perspective:1100px}
-.envx-card{position:absolute;left:7%;top:37%;width:86%;aspect-ratio:3/2;will-change:transform}
+.envx-card{position:absolute;left:7%;top:37%;width:86%;aspect-ratio:3/2;will-change:transform;transform-origin:50% 60%}
 .envx-card img{display:block;width:100%;height:100%;border-radius:3px;box-shadow:0 14px 30px rgba(0,0,0,.55),0 0 0 1px rgba(212,176,106,.35)}
 .envx-card::after{content:"";position:absolute;inset:-6%;border-radius:12px;background:radial-gradient(closest-side,rgba(255,190,120,.35),transparent);opacity:0;z-index:-1;transition:opacity 1s ease}
 .envx-card.glow::after{opacity:1}
@@ -247,7 +247,7 @@ ol.steps li.key{color:var(--gold-hi)}
 .envx-body{clip-path:polygon(0 18.4%,50% 35%,100% 18.4%,100% 100%,0 100%);will-change:transform,opacity}
 .envx-pocket{position:absolute;inset:0;clip-path:polygon(0 0,0 18.4%,50% 35%,100% 18.4%,100% 0);background:linear-gradient(180deg,#14040a,#2a0811);transition:opacity .9s}
 .envx-flap{clip-path:polygon(0 0,0 18.4%,50% 35%,100% 18.4%,100% 0);transform-origin:50% 0;will-change:transform;backface-visibility:hidden}
-.envx-seal{position:absolute;left:30%;top:22.4%;width:40%;height:23.2%;transform-origin:50% 0;will-change:transform,opacity}
+.envx-seal{position:absolute;left:30%;top:22.8%;width:40%;height:22.4%;transform-origin:50% 0;will-change:transform,opacity}
 .envx-seal img{display:block;width:100%;height:100%;filter:drop-shadow(0 1px 1px rgba(0,0,0,.6)) drop-shadow(0 4px 6px rgba(0,0,0,.4))}
 .envx-seal::after{content:"";position:absolute;inset:-12%;border-radius:50%;background:radial-gradient(circle,rgba(255,205,150,.55),rgba(255,180,110,0) 62%);opacity:0;pointer-events:none;mix-blend-mode:screen;transition:opacity .6s ease}
 .envx-seal.lit::after{opacity:1}
@@ -316,7 +316,7 @@ body.opened .top{opacity:1}
 
 
 <div class="top">
-  <div class="brand"><img src="logo-mark.png" alt="AffinityX"></div>
+  <div class="brand"><img src="logo-mark-blue.png" alt="AffinityX"></div>
   <div class="top-r"><button class="music" id="musicBtn" aria-label="Music on/off"><span class="bars"><i></i><i></i><i></i></span></button><div class="lang"><button data-l="en">EN</button><button data-l="zh" class="on">中</button></div></div>
 </div>
 
@@ -520,9 +520,7 @@ body.opened .top{opacity:1}
   <div class="inner">
     <img class="goat-trophy rv" src="logo-goat-gold.webp" alt="AffinityX" width="513" height="520" style="width:110px">
     <div class="closing rv d2">
-      <p class="en">Thank you for every moment, every effort, and every milestone shared in 2026.</p>
       <p class="en">Here’s to new beginnings, greater success, and an even brighter 2027.</p>
-      <p class="zh">感谢2026年的每一个珍贵时刻、每一份努力，以及我们共同创造的每一个里程碑。</p>
       <p class="zh">愿我们在2027年迎来全新的开始、更多的成功，以及更加美好的未来。</p>
     </div>
     <div class="cheers rv d3">The best is yet to come.</div>
@@ -638,15 +636,21 @@ new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){rv.preload='aut
   // 550ms flap and seal lift together
   flap.animate([{transform:'rotateX(0deg)'},{transform:'rotateX(-100deg) translateY(-4%)'}],{duration:1100,delay:550,easing:'cubic-bezier(.5,0,.2,1)',fill:'forwards'});
   seal.animate([{transform:'translateY(0) scale(1)',opacity:1},{transform:'translateY(-70%) scale(.92)',opacity:1,offset:.55},{transform:'translateY(-150%) scale(.82)',opacity:0}],{duration:1100,delay:550,easing:'cubic-bezier(.5,0,.2,1)',fill:'forwards'});
-  // 1150ms card rises and glides to the centre in one continuous move
-  card.animate([{transform:'translate(0,0) scale(1)'},{transform:`translate(0,${rise}px) scale(1)`,offset:.48,easing:'cubic-bezier(.35,0,.25,1)'},{transform:`translate(${dx}px,${dy}px) scale(${k})`}],{duration:2000,delay:1150,easing:'cubic-bezier(.35,0,.35,1)',fill:'forwards'});
-  setTimeout(()=>{card.style.zIndex=5},1150+960);
-  // 2050ms envelope sinks away beneath it
-  body.animate([{transform:'translateY(0)',opacity:1},{transform:'translateY(20%)',opacity:0}],{duration:1000,delay:2050,easing:'cubic-bezier(.4,0,.6,1)',fill:'forwards'});
-  pocket.animate([{opacity:1},{opacity:0}],{duration:800,delay:2150,easing:'ease',fill:'forwards'});
-  setTimeout(()=>card.classList.add('glow'),2900);
+  // 1100ms card floats up out of the envelope and settles in the centre (one continuous curve)
+  const io=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2, sm=x=>x*x*(3-2*x);
+  const T0=performance.now()+1100,DUR=2600;
+  const step=now=>{let t=(now-T0)/DUR;if(t<0){requestAnimationFrame(step);return}t=Math.min(1,t);
+    const e=io(t),lift=Math.sin(Math.PI*sm(t));
+    const y=dy*e+rise*.55*lift,x=dx*e,sc=1+(k-1)*e,rx=9*lift,rz=-1.5*lift;
+    card.style.transform=`translate3d(${x}px,${y}px,0) perspective(900px) rotateX(${rx}deg) rotateZ(${rz}deg) scale(${sc})`;
+    if(t<1)requestAnimationFrame(step)};
+  requestAnimationFrame(step);
+  // 1500ms envelope gently sinks and dissolves beneath the card
+  body.animate([{transform:'translateY(0) scale(1)',opacity:1},{transform:'translateY(38%) scale(1.04)',opacity:0}],{duration:1800,delay:1500,easing:'cubic-bezier(.45,0,.25,1)',fill:'forwards'});
+  pocket.animate([{opacity:1},{opacity:0}],{duration:1400,delay:1700,easing:'ease',fill:'forwards'});
+  setTimeout(()=>card.classList.add('glow'),3300);
   // 4050ms dissolve into the invitation
-  await wait(3950);
+  await wait(4300);
   document.body.classList.add('opened');pages[0].classList.add('active');
   await anim(op,[{opacity:1},{opacity:0}],{duration:900,easing:'cubic-bezier(.4,0,.2,1)'});
   clearTimeout(safety);finish();
